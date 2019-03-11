@@ -16,13 +16,13 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
     integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <!-- Custom CSS -->
-  <link rel="stylesheet" type="text/css" href="./css/style.css">
+  <link rel="stylesheet" type="text/css" href="./css/index_style.css">
 </head>
 
 <body>
 
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
+  <!-- FIXED-TOP NAVIGATION BAR -->
+  <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top py-4">
     <div class="container">
       <a class="navbar-brand" href="#"><i class="fas fa-running"></i> <strong>fit.io</strong></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -31,14 +31,14 @@
       <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+            <a class="nav-link" data-toggle="modal" data-target="#loginModal" href="#loginModal">Login</a>
           </li>
           <!-- <button class="btn btn-primary">Register</button> -->
           <li class="nav-item">
             <a class="nav-link" href="#">Register</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="#">Contact</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
@@ -50,13 +50,41 @@
               <a class="dropdown-item" href="#">Greek</a>
             </div>
           </li>
-
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Main search area -->
+  <!-- LOGIN MODAL -->
+  <div class="modal fade" id="loginModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel">User Login</h5>
+          <button class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" placeholder="Username" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-primary">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- MAIN AREA - SEARCH -->
   <div id="searcharea" class="jumbotron jumbotron-fluid big-banner">
     <div class="container">
       <p class="text-center h1 text-white font-weight-bolder">Find your personal trainer today!</p>
@@ -70,7 +98,7 @@
     </div>
   </div>
 
-  <!-- ICONS SECTION -->
+  <!-- 3 STEPS ICONS SECTION -->
   <section id="home-icons" class="pt-2">
     <p class="text-center h1 pb-3 font-weight-bold">Booty training in 3 easy steps!</p>
     <div class="container">
@@ -108,48 +136,48 @@
     </div>
   </section>
 
-    <!-- BOXES -->
-    <section id="boxes" class="py-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-3">
-              <div class="card text-center card-outline-primary">
-                <div class="card-block">
-                  <h3 class="text-primary pt-2">500</h3>
-                  <p>Personal Trainers</p>
-                </div>
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="card text-center card-outline-primary">
-                <div class="card-block">
-                  <h3 class="text-primary pt-2">37,000</h3>
-                  <p>Registered Users</p>
-                </div>
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="card text-center card-outline-primary">
-                <div class="card-block">
-                  <h3 class="text-primary pt-2">33</h3>
-                  <p>Workout Specialties</p>
-                </div>
-              </div>
-            </div>
-    
-            <div class="col-md-3">
-              <div class="card text-center card-outline-primary">
-                <div class="card-block">
-                  <h3 class="text-primary pt-2">1567</h3>
-                  <p>Perfect Booties</p>
-                </div>
-              </div>
+  <!-- BOXES WITH STATS -->
+  <section id="boxes" class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="card text-center card-outline-primary">
+            <div class="card-block">
+              <h3 class="text-primary pt-2">500</h3>
+              <p>Personal Trainers</p>
             </div>
           </div>
         </div>
-      </section>
+
+        <div class="col-md-3">
+          <div class="card text-center card-outline-primary">
+            <div class="card-block">
+              <h3 class="text-primary pt-2">37,000</h3>
+              <p>Registered Users</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card text-center card-outline-primary">
+            <div class="card-block">
+              <h3 class="text-primary pt-2">33</h3>
+              <p>Workout Specialties</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card text-center card-outline-primary">
+            <div class="card-block">
+              <h3 class="text-primary pt-2">1567</h3>
+              <p>Perfect Booties</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer id="main-footer" class="text-center p-4 bg-primary">
