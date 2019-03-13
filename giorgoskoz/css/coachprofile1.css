@@ -1,0 +1,36 @@
+table {
+    overflow: hidden;
+}
+
+td, th {
+    position: relative;
+}
+td:hover::after,
+th:hover::after {
+    content: "";
+    position: absolute;
+    background-color: rgba(0,0,0,0.075);
+    left: 0;
+    top: -5000px;
+    height: 10000px;
+    width: 100%;
+    z-index: -1;
+}
+
+#time:hover {
+    color: white;
+    background-color: rgb(255, 0, 98)
+}
+
+#date {
+    padding-top: 0%;
+    color: rgb(107, 107, 107)
+}
+
+#day {
+    padding-bottom: 0%
+}
+
+.navbar {
+    height: 100px;
+}
