@@ -11,6 +11,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
+
       <Router>
         <div className="App">
           <Header />
@@ -22,6 +23,7 @@ class App extends Component {
                                           <Footer />
                                     </React.Fragment>
                            )} />
+                           {/* to component thelei mikro stin arxi oxi kefalaiop */}
             <Route path="/register" component={Register} />
         </div>
       </Router>
