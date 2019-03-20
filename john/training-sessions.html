@@ -22,10 +22,13 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-sm bg-primary navbar-dark py-4">
         <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-running"></i> <strong>fit.io</strong></a>
+            <a class="navbar-brand" href="index.html"><i class="fas fa-running"></i> <strong>fit.io</strong></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <ul class="navbar-nav">
+                <a class="nav-link" href="#">Contact</a>
+            </ul>
             <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
@@ -36,6 +39,7 @@
                         <div class="dropdown-menu" aria-labelledby="navbarProfileDropdownMenuLink">
                             <a class="dropdown-item" href="#">My Profile</a>
                             <a class="dropdown-item" href="#">My Training Sessions</a>
+                            <a class="dropdown-item" href="#">My Messages</a>
                             <a class="dropdown-item" href="#">My Reviews</a>
                             <a class="dropdown-item" href="#">Logout</a>
                         </div>
@@ -58,7 +62,7 @@
     </nav>
 
     <!-- User Profile Navigation Bar -->
-    <nav class="navbar navbar-light navbar-expand-md bg-warning navbar-inverse">
+    <!-- <nav class="navbar navbar-light navbar-expand-md bg-warning navbar-inverse">
         <div class="container">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -68,9 +72,50 @@
                     <a class="nav-link" href="#">My Training Sessions</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#">My Messages</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#">My Reviews</a>
                 </li>
             </ul>
+        </div>
+    </nav>
+
+    <nav class="navbar navbar-light navbar-expand-md bg-warning">
+        <div class="container">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button class="btn btn-warning" type="button">My Profile</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-light" type="button">My Training Sessions</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-info" type="button">My Messages</button>
+                </li>
+                <li class="nav-item">
+                    <button class="btn btn-info" type="button">My Reviews</button>
+                </li>
+            </ul>
+        </div>
+    </nav> -->
+
+    <nav class="navbar navbar-light navbar-expand-md bg-warning">
+        <div class="container">
+            <div class="btn-group btn-group-toggle mr-2" data-toggle="buttons">
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option1" autocomplete="off"> My Profile
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option2" autocomplete="off"> My Training Sessions
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off"> My Messages
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="options" id="option3" autocomplete="off"> My Reviews
+                </label>
+            </div>
         </div>
     </nav>
 
@@ -105,6 +150,7 @@
     <div class="container py-3">
         <h2>History</h2>
     </div>
+
     <!-- Alternate Implemantation without cards -->
     <div class="container-fluid py-1">
         <div class="container">
@@ -197,68 +243,6 @@
         </div>
     </div>
 
-    <!-- IMPLEMANTATIONS USING CARDS -->
-    <div class="container-fluid py-1">
-        <div class="card-group container" id="training_sessions">
-            <div class="card bg-light border-light" style="width: 18rem;">
-                <div class="card-body">
-                    <img class="card-img-top p-3" src="./img/sample_trainer_1.jpg" alt="Trainer 1">
-                </div>
-            </div>
-            <div class="card bg-light border-light">
-                <div class="card-body">
-                    <!-- <img class="card-img-top p-4" src="./img/sample_trainer_1_thumb.jpg" alt="Trainer 1"> -->
-                    <h4 class="card-title text-primary">Anna Genadieva</h4>
-                    <p class="card-text">Yoga - Meditation</p>
-                </div>
-            </div>
-            <div class="card bg-light border-light">
-                <div class="card-body">
-                    <p class="card-text"><i class="fas fa-wallet"></i> 25&euro;</i></p>
-                    <p class="card-text"><i class="far fa-calendar-alt"></i> Tuesday 29/01/2019, 17:00</p>
-                    <p class="card-text"><i class="fas fa-map-marked-alt"></i> Three Laloun 101, PETRALONA, ATTIKI</p>
-                </div>
-            </div>
-            <div class="card bg-light border-light">
-                <div class="card-body p-5">
-                    <button type="button" class="btn btn-info btn-block">REVIEW <i class="far fa-star"></i></button>
-                    <button type="button" class="btn btn-outline-info btn-block">NEW APPOINTMENT</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Alternate Card Version -->
-    <div class="container-fluid py-2"></div>
-    <div class="container-fluid py-1">
-        <div class="card-group container" id="training_sessions">
-            <div class="card bg-light" style="width: 18rem;">
-                <div class="card-body">
-                    <img class="card-img-top p-3" src="./img/sample_trainer_1.jpg" alt="Trainer 1">
-                </div>
-            </div>
-            <div class="card bg-light">
-                <div class="card-body">
-                    <!-- <img class="card-img-top p-4" src="./img/sample_trainer_1_thumb.jpg" alt="Trainer 1"> -->
-                    <h4 class="card-title text-primary">Anna Genadieva</h4>
-                    <p class="card-text">Yoga - Meditation</p>
-                </div>
-            </div>
-            <div class="card bg-light">
-                <div class="card-body">
-                    <p class="card-text"><i class="fas fa-wallet"></i> 25&euro;</i></p>
-                    <p class="card-text"><i class="far fa-calendar-alt"></i> Tuesday 29/01/2019, 17:00</p>
-                    <p class="card-text"><i class="fas fa-map-marked-alt"></i> Three Laloun 101, PETRALONA, ATTIKI</p>
-                </div>
-            </div>
-            <div class="card bg-light">
-                <div class="card-body p-5">
-                    <button type="button" class="btn btn-info btn-block">REVIEW <i class="far fa-star"></i></button>
-                    <button type="button" class="btn btn-outline-info btn-block">NEW APPOINTMENT</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- FOOTER -->
     <footer id="main-footer" class="text-center p-4 bg-primary">
