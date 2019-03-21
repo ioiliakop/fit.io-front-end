@@ -10,36 +10,55 @@ class TempLogin extends Component {
     }
 
     handleSubmit(event) {
-        console.log('ref to username: ', this.username.current);
 
-        const u = this.username.current.value;
-        const p = this.password.current.value;
-        console.log('Submitting...', u, p);
+        const url = 'http://localhost:8080/login/user';
+        const loginData = {
+            "username": this.username.current.value,
+            "password": this.password.current.value
+        }
 
-        window.$.ajax({
-            url: 'http://localhost:8080/e-personal/login',
-            dataType: 'json',
-            type: 'POST',
-            data: {
-                username: u,
-                password: p
+        fetch(url, {
+            method: 'POST', // or 'PUT'
+            body: JSON.stringify(loginData), // data can be `string` or {object}!
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
-        }).then(json => {
-            localStorage.setItem('token', json.token);
-        });
+        }).then(response => {
+            response.json().then(function (data) {
+                console.log(data);
+                // TODO: handle token to localstorage logic
+            })
+        }).catch(error => console.error('Error:', error));
+
+        // ajax old code, never worked and busted balls
+        // window.$.ajax({
+        //     url: 'http://localhost:8080/login/user',
+        //     dataType: 'json',
+        //     type: 'POST',
+        //     data: {
+        //         username: u,
+        //         password: p
+        //     }
+        // }).then(json => {
+        //     console.log('Succesfully sent');
+        //     console.log(JSON.stringify(json));
+        // localStorage.setItem('token', json.token);
+        // });
 
         event.preventDefault();
     }
 
     render() {
-        let token = localStorage.getItem('token');
-        if (token) {
-            // Redirect to UserMain
-            return (
-                <h4>Welcome back</h4>
-            );
-        } else {
-        return (           
+        // saikoremnants
+        // let token = localStorage.getItem('token');
+        // if (token) {
+        //     // Redirect to UserMain
+        //     return (
+        //         <h4>Welcome back</h4>
+        //     );
+        // } else {
+        return (
             <form onSubmit={this.handleSubmit}>
                 <div className="container">
                     <div className="form-group col-sm-4 mx-auto text-center">
@@ -56,8 +75,8 @@ class TempLogin extends Component {
                 </div>
             </form>
         );
-        }
     }
+
 }
 
 export default TempLogin;

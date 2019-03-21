@@ -14,7 +14,7 @@ class App extends Component {
         <Header />
         <Route path="/" exact component={Landing} />
         <Route path="/login" component={TempLogin} />
-        <Route path="/register/:rolename" component={Register} /> {/*not working yet - todo fix*/}
+        <Route path="/register/:rolename" exact component={Register} /> {/*needs consideration to restrain possible values/routes*/}
         <Footer />
       </Router>
     );

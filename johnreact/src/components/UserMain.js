@@ -5,7 +5,9 @@ class UserMain extends Component {
         return (
             /* navbar that will be used 
             Only for reference for the time being
-            was originally implemented with pills-tabs*/
+            was originally implemented with pills-tabs
+            will prolly be rafactored to remove pills
+            */
             <div class="container-fluid bg-light">
                 <div class="container">
                     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
