@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
 
 // TODO: Password repeat validation, check if email AND username already exists
 class Register extends Component {
@@ -12,16 +13,26 @@ class Register extends Component {
         this.lastName = React.createRef();
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-            roleId : 0
+            roleId: ((this.props.match.params.rolename === 'trainer') ? 2 : 1),
+            regSuccess: false
         }
     }
 
-    componentDidMount() {
-        this.state.roleId = (this.props.match.params.rolename === 'trainer') ? 2 : 1;
-    }
+    // componentDidMount() {
+    //     let temp1 = (this.props.match.params.rolename === 'trainer') ? 2 : 1;
+    //     this.setState({ roleId : temp1 });
+    // }
 
     componentDidUpdate() {
-        this.state.roleId = (this.props.match.params.rolename === 'trainer') ? 2 : 1;
+        console.log('Current roleId:', this.state.roleId);
+        // let temp2 = (this.props.match.params.rolename === 'trainer') ? 2 : 1;
+        // this.setState({ roleId : temp2 });
+    }
+
+    renderRedirect() {
+        if (this.state.regSuccess) {
+            return <Redirect to='/' />
+        }
     }
 
     handleSubmit(event) {
@@ -50,8 +61,10 @@ class Register extends Component {
             method: 'POST', // or 'PUT'
             body: JSON.stringify(formData), // data can be `string` or {object}!
             headers: { 'Content-Type': 'application/json' }
-        }).then( (response) => {
+        }).then((response) => {
             console.log('Sent. Response status:', response.status);
+            // this.props.history.push('/');
+            this.setState({ regSuccess : true });
             // Redirect somewhere with success message alert or whatever
         }).catch(error => console.error('Error:', error));
 
@@ -89,6 +102,7 @@ class Register extends Component {
 
         return (
             <div className="container col-8">
+                {this.renderRedirect()}  {/* Redirects to landing page if registration was successfull. Will be expanded for other cases */}
                 <div className="text-center"><h1 className="mx-auto">Register as {this.props.match.params.rolename}</h1></div>
                 <form onSubmit={this.handleSubmit} className="pt-3 pb-2">
                     {/* onInput='p2.setCustomValidity(p2.value != password.value ? "Passwords do not match" : "")' */}
@@ -158,4 +172,4 @@ class Register extends Component {
     }
 }
 
-export default Register;
+export default withRouter(Register);
