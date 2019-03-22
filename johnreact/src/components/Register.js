@@ -30,6 +30,10 @@ class Register extends Component {
     }
 
     renderRedirect() {
+        if (localStorage.getItem('token')) {
+            console.log('Already loggedIn user. Cannot register');
+            return <Redirect to='/' />
+        }
         if (this.state.regSuccess) {
             return <Redirect to='/' />
         }

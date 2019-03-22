@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect, withRouter } from 'react-router-dom';
 
 class TempLogin extends Component {
 
@@ -29,6 +30,10 @@ class TempLogin extends Component {
                 console.log('Response status:', response.status);
                 console.log(data);
                 // TODO: handle token to localstorage logic
+                if (response.status === 200) {
+                    console.log('Saving token to localstorage', data.alphanumeric);
+                    localStorage.setItem('token', data.alphanumeric);
+                }
             })
         }).catch(error => console.error('Error:', error));
 
@@ -52,32 +57,33 @@ class TempLogin extends Component {
 
     render() {
         // saikoremnants
-        // let token = localStorage.getItem('token');
-        // if (token) {
-        //     // Redirect to UserMain
-        //     return (
-        //         <h4>Welcome back</h4>
-        //     );
-        // } else {
-        return (
-            <form onSubmit={this.handleSubmit}>
-                <div className="container">
-                    <div className="form-group col-sm-4 mx-auto text-center">
-                        <label htmlFor="username">Username</label>
-                        <input type="text" className="form-control" name="username" ref={this.username} required />
+        let token = localStorage.getItem('token');
+        if (token) {
+            // Redirect to UserMain
+            return (
+                <Redirect to='/messages' />
+            );
+        } else {
+            return (
+                <form onSubmit={this.handleSubmit}>
+                    <div className="container">
+                        <div className="form-group col-sm-4 mx-auto text-center">
+                            <label htmlFor="username">Username</label>
+                            <input type="text" className="form-control" name="username" ref={this.username} required />
+                        </div>
+                        <div className="form-group col-sm-4 mx-auto text-center">
+                            <label htmlFor="password">Password</label>
+                            <input type="password" className="form-control" name="password" ref={this.password} required />
+                        </div>
                     </div>
-                    <div className="form-group col-sm-4 mx-auto text-center">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password" ref={this.password} required />
+                    <div className="container">
+                        <button type="submit" className="btn btn-primary btn-block col-sm-4 mx-auto">Login</button>
                     </div>
-                </div>
-                <div className="container">
-                    <button type="submit" className="btn btn-primary btn-block col-sm-4 mx-auto">Login</button>
-                </div>
-            </form>
-        );
+                </form>
+            );
+        }
     }
 
 }
 
-export default TempLogin;
+export default withRouter(TempLogin);

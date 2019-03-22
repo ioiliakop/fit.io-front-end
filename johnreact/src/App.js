@@ -5,6 +5,7 @@ import Landing from "./components/Landing";
 import Footer from "./components/Footer";
 import Register from "./components/Register";
 import TempLogin from "./components/TempLogin";
+import Messages from "./components/Messages";
 import './App.css';
 
 class App extends Component {
@@ -15,6 +16,7 @@ class App extends Component {
         <Route path="/" exact component={Landing} />
         <Route path="/login" component={TempLogin} />
         <Route path="/register/:rolename" exact component={Register} /> {/*needs consideration to restrain possible values/routes*/}
+        <Route path="/messages" exact component={Messages} />
         <Footer />
       </Router>
     );
