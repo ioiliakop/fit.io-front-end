@@ -26,6 +26,7 @@ class TempLogin extends Component {
             }
         }).then(response => {
             response.json().then(function (data) {
+                console.log('Response status:', response.status);
                 console.log(data);
                 // TODO: handle token to localstorage logic
             })

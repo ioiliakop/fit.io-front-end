@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Main from "./Main";
+import LandingMain from "./LandingMain";
 import ThreeSteps from "./ThreeSteps";
 import ReadyToGetStarted from "./ReadyToGetStarted";
 
@@ -7,7 +7,7 @@ class Landing extends Component {
     render() {
         return (
             <React.Fragment>
-                <Main />
+                <LandingMain />
                 <ThreeSteps />
                 <ReadyToGetStarted />
             </React.Fragment>

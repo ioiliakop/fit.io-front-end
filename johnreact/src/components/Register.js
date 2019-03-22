@@ -10,8 +10,18 @@ class Register extends Component {
         this.password = React.createRef();
         this.firstName = React.createRef();
         this.lastName = React.createRef();
-        this.role = 1;
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.state = {
+            roleId : 0
+        }
+    }
+
+    componentDidMount() {
+        this.state.roleId = (this.props.match.params.rolename === 'trainer') ? 2 : 1;
+    }
+
+    componentDidUpdate() {
+        this.state.roleId = (this.props.match.params.rolename === 'trainer') ? 2 : 1;
     }
 
     handleSubmit(event) {
@@ -22,7 +32,7 @@ class Register extends Component {
         const lname = this.lastName.current.value;
         // const ph = this.phone.current.value;
 
-        console.log('Submitting...', uname, pass, em, fname, lname);
+        console.log('Submitting...', uname, pass, em, fname, lname, this.state.roleId);
 
         const url = 'http://localhost:8080/register/save';
         const formData = {
@@ -31,15 +41,17 @@ class Register extends Component {
             "email": em,
             "firstName": fname,
             "lastName": lname,
-            "role": 1
+            "role": {
+                "id": this.state.roleId
+            }
         };
 
         fetch(url, {
             method: 'POST', // or 'PUT'
             body: JSON.stringify(formData), // data can be `string` or {object}!
             headers: { 'Content-Type': 'application/json' }
-        }).then( () => {
-            console.log('Success');
+        }).then( (response) => {
+            console.log('Sent. Response status:', response.status);
             // Redirect somewhere with success message alert or whatever
         }).catch(error => console.error('Error:', error));
 
