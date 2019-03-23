@@ -11,9 +11,8 @@ class Messages extends Component {
     }
 
     componentDidMount() {
-        console.log("Messages component did mount");
+        console.log('Messages component did mount');
         const url = 'http://localhost:8080/messages/inbox';
-        const self = this;
 
         fetch(url, {
             method: 'GET',
@@ -22,36 +21,21 @@ class Messages extends Component {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
-        }).then(function(response) {
-            response.json().then(function (data) {
+        }).then(response => {
+            response.json().then(data => {
                 console.log('Response status:', response.status);
                 console.log(data);
-                // FIX error: 'this' is undefined??
-                if (response.status === 200) {
-                    console.log('Saving fetched messages to state');
-                    // this.state = ({ 
-                    //     messages: data 
-                    // });
-                    self.setState({ 
-                        messages: data 
-                    });
-                    console.log('Messages in state:', self.state.messages);
-                }
+                // if (response.status === 200) {
+                console.log('Saving fetched messages to state');
+                this.setState({
+                    messages: data
+                });
+                console.log('Messages in state:', this.state.messages);
+                // }
             })
         }).catch(error => console.error('Error:', error));
 
         console.log('End of fetch');
-
-        //     window.$.ajax({
-        //         url: 'http://localhost:3000/texts.json',
-        //         dataType: 'json',                       
-        //         type: 'GET'            
-        //    }).then ( data => {
-        //        console.log("Updating UI");
-        //        this.setState({
-        //            messages: data
-        //        });
-        //    });
     }
 
     render() {
@@ -73,9 +57,9 @@ class Messages extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.state.messages.map(k => {
-                                    console.log('Updating li for ' + k);
-                                    return <MessageRow key={k.id} msg={k}></MessageRow>
+                                {this.state.messages.map((m, index) => {
+                                    console.log('Updating li for message ' + index);
+                                    return <MessageRow key={m.id} msg={m}></MessageRow>
                                 })}
                             </tbody>
                         </table>

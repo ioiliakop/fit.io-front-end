@@ -26,31 +26,18 @@ class TempLogin extends Component {
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            response.json().then(function (data) {
+            response.json().then(data => {
                 console.log('Response status:', response.status);
                 console.log(data);
-                // TODO: handle token to localstorage logic
+                // Handle login response to localStorage
                 if (response.status === 200) {
                     console.log('Saving token to localstorage', data.alphanumeric);
+                    console.log('Saving uderInfo to localstorage', data.user);
                     localStorage.setItem('token', data.alphanumeric);
+                    localStorage.setItem('userInfo', data.user);
                 }
             })
         }).catch(error => console.error('Error:', error));
-
-        // ajax old code, never worked and busted balls
-        // window.$.ajax({
-        //     url: 'http://localhost:8080/login/user',
-        //     dataType: 'json',
-        //     type: 'POST',
-        //     data: {
-        //         username: u,
-        //         password: p
-        //     }
-        // }).then(json => {
-        //     console.log('Succesfully sent');
-        //     console.log(JSON.stringify(json));
-        // localStorage.setItem('token', json.token);
-        // });
 
         event.preventDefault();
     }
