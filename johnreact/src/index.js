@@ -16,7 +16,7 @@ if (localStorage.getItem('token')) {
   localStorageVals = {
     isLoggedIn: true,
     token: localStorage.getItem('token'),
-    userInfo: localStorage.getItem('userInfo')
+    userInfo: JSON.parse(localStorage.getItem('userInfo'))
   }
 }
 

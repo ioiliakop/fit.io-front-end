@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import UserContext from '../context/user-context';
+import LoginNav from './Header/LoginNav';
+import RegisterNav from './Header/RegisterNav';
+import UserNav from './Header/UserNav';
 
 class Header extends Component {
 
@@ -9,7 +12,7 @@ class Header extends Component {
     render() {
         return (
             <React.Fragment>
-                    <h1>{console.log(this.context)}</h1>
+                {console.log(this.context)}
                 <nav className="navbar navbar-expand-sm bg-primary navbar-dark sticky-top py-4">
                     <div className="container">
                         <a className="navbar-brand" href="/"><i className="fas fa-running"></i> <strong>fit.io</strong></a>
@@ -18,23 +21,11 @@ class Header extends Component {
                         </button>
                         <div className="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
                             <ul className="navbar-nav">
-                                <li className="nav-item">
-                                    <a className="nav-link" data-toggle="modal" data-target="#loginModal" href="#loginModal">Login</a>
-                                </li>
 
-                                <li className="nav-item dropdown">
-                                    <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownRegisterLink" role="button"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Register
-                                    </a>
-                                    <div className="dropdown-menu" aria-labelledby="navbarDropdownRegisterLink">
-                                        {/* semi-working - needs consideration */}
-                                        <Link className="dropdown-item" to="/register/user"> Register as User</Link>
-                                        <Link className="dropdown-item" to="/register/trainer"> Register as Trainer</Link>
-                                    </div>
-                                </li>
+                                {this.context.isLoggedIn ? <UserNav /> : <React.Fragment><LoginNav /><RegisterNav /></React.Fragment>}
+
                                 <li className="nav-item">
-                                    <a className="nav-link" href="#">Contact</a>
+                                    <a className="nav-link" href="/">Contact</a>
                                 </li>
                                 <li className="nav-item dropdown">
                                     <a className="nav-link dropdown-toggle" id="navbarDropdownLanguageLink" data-toggle="dropdown"
@@ -42,8 +33,8 @@ class Header extends Component {
                                         Language
                                     </a>
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdownLanguageLink">
-                                        <a className="dropdown-item" href="#">English</a>
-                                        <a className="dropdown-item" href="#">Greek</a>
+                                        <a className="dropdown-item" href="/">English</a>
+                                        <a className="dropdown-item" href="/">Greek</a>
                                     </div>
                                 </li>
                             </ul>
@@ -83,15 +74,15 @@ class Header extends Component {
 }
 
 
-const linkStyle = {
-    color: '#fff',
-    textDecoration: "none"
-}
+// const linkStyle = {
+//     color: '#fff',
+//     textDecoration: "none"
+// }
 
-const headerStyle = {
-    background: "red",
-    color: "white",
-    textAlign: "center"
-}
+// const headerStyle = {
+//     background: "red",
+//     color: "white",
+//     textAlign: "center"
+// }
 
 export default withRouter(Header);

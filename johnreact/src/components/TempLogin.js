@@ -32,9 +32,9 @@ class TempLogin extends Component {
                 // Handle login response to localStorage
                 if (response.status === 200) {
                     console.log('Saving token to localstorage', data.alphanumeric);
-                    console.log('Saving uderInfo to localstorage', data.user);
+                    console.log('Saving userInfo to localstorage', data.user);
                     localStorage.setItem('token', data.alphanumeric);
-                    localStorage.setItem('userInfo', data.user);
+                    localStorage.setItem('userInfo', JSON.stringify(data.user));
                 }
             })
         }).catch(error => console.error('Error:', error));
