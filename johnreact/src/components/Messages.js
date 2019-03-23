@@ -19,7 +19,7 @@ class Messages extends Component {
             headers: {
                 'X-MSG-AUTH': localStorage.getItem('token'),
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                // 'Content-Type': 'application/json'
             }
         }).then(response => {
             response.json().then(data => {

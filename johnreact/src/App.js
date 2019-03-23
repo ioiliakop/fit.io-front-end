@@ -13,15 +13,15 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      userCntxt: this.props.userProps
-    }
+    // this.state = {
+    //   userCntxt: this.props.userProps
+    // }
   }  
 
   render() {
     return (
       <Router>
-        <UserContext.Provider value={this.state.userCntxt}>
+        <UserContext.Provider value={this.props.userProps}>
           <Header />
           <Route path="/" exact component={Landing} />
           <Route path="/login" component={TempLogin} />

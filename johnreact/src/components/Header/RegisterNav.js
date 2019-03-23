@@ -5,10 +5,9 @@ class RegisterNav extends Component {
     render() {
         return (
             <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownRegisterLink" role="button"
+                <a className="nav-link dropdown-toggle" id="navbarDropdownRegisterLink" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Register
-                                     </a>
+                    Register</a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdownRegisterLink">
                     {/* semi-working - needs consideration */}
                     <Link className="dropdown-item" to="/register/user"> Register as User</Link>

@@ -14,7 +14,7 @@ class UserNav extends Component {
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarProfileDropdownMenuLink">
                     <a className="dropdown-item" href="#pills-myTrainingSessions">My Training Sessions</a>
-                    <a className="dropdown-item" href="#pills-myMessages">My Messages</a>
+                    <a className="dropdown-item" href="/messages">My Messages</a>
                     <a className="dropdown-item" href="#pills-myReviews">My Reviews</a>
                     <a className="dropdown-item" href="#pills-myProfile">My Profile</a>
                     <a className="dropdown-item" data-toggle="modal" data-target="#logoutModal"
