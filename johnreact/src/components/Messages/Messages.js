@@ -8,18 +8,28 @@ class Messages extends Component {
         this.state = {
             messages: [],
         };
+        if (this.props.folderType === 'inbox') {
+            this.messagesTitle = 'Received';
+            this.senderOrReceiver = 'Sender';
+            this.fetchUrl = 'http://localhost:8080/messages/inbox';
+        } else if (this.props.folderType === 'outbox') {
+            this.messagesTitle = 'Sent';
+            this.senderOrReceiver = 'Receiver';
+            this.fetchUrl = 'http://localhost:8080/messages/sent';
+        } else {
+            console.log('Unknown messages folder type');
+        }
     }
 
     componentDidMount() {
         console.log('Messages component did mount');
-        const url = 'http://localhost:8080/messages/inbox';
+        // const url = 'http://localhost:8080/messages/inbox';
 
-        fetch(url, {
+        fetch(this.fetchUrl, {
             method: 'GET',
             headers: {
                 'X-MSG-AUTH': localStorage.getItem('token'),
                 'Accept': 'application/json',
-                // 'Content-Type': 'application/json'
             }
         }).then(response => {
             response.json().then(data => {
@@ -42,7 +52,7 @@ class Messages extends Component {
         return (
             <React.Fragment>
                 <div className="container py-3 text-center">
-                    <h2>Received Messages</h2>
+                    <h2>{this.messagesTitle} Messages</h2>
                 </div>
 
                 <div className="container">
@@ -51,7 +61,7 @@ class Messages extends Component {
                             <thead>
                                 <tr className="table-info">
                                     <th></th>
-                                    <th>Sender</th>
+                                    <th>{this.senderOrReceiver}</th>
                                     <th>Message</th>
                                     <th>Date</th>
                                 </tr>
@@ -59,7 +69,7 @@ class Messages extends Component {
                             <tbody>
                                 {this.state.messages.map((m, index) => {
                                     console.log('Updating li for message ' + index);
-                                    return <MessageRow key={m.id} msg={m}></MessageRow>
+                                    return <MessageRow key={'mk_'+m.id} msg={m} folderType={this.props.folderType}></MessageRow>
                                 })}
                             </tbody>
                         </table>
