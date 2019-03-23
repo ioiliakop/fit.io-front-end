@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-
+import UserContext from '../context/user-context';
 
 class Header extends Component {
+
+    static contextType = UserContext;
+
     render() {
         return (
             <React.Fragment>
+                    <h1>{console.log(this.context)}</h1>
                 <nav className="navbar navbar-expand-sm bg-primary navbar-dark sticky-top py-4">
                     <div className="container">
                         <a className="navbar-brand" href="/"><i className="fas fa-running"></i> <strong>fit.io</strong></a>
@@ -24,7 +28,7 @@ class Header extends Component {
                                         Register
                                     </a>
                                     <div className="dropdown-menu" aria-labelledby="navbarDropdownRegisterLink">
-                                        {/* working - needs consideration */}
+                                        {/* semi-working - needs consideration */}
                                         <Link className="dropdown-item" to="/register/user"> Register as User</Link>
                                         <Link className="dropdown-item" to="/register/trainer"> Register as Trainer</Link>
                                     </div>

@@ -7,17 +7,28 @@ import Register from "./components/Register";
 import TempLogin from "./components/TempLogin";
 import Messages from "./components/Messages";
 import './App.css';
+import UserContext from './context/user-context';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      userCntxt: this.props.userProps
+    }
+  }  
+
   render() {
     return (
       <Router>
-        <Header />
-        <Route path="/" exact component={Landing} />
-        <Route path="/login" component={TempLogin} />
-        <Route path="/register/:rolename" exact component={Register} /> {/*needs consideration to restrain possible values/routes*/}
-        <Route path="/messages" exact component={Messages} />
-        <Footer />
+        <UserContext.Provider value={this.state.userCntxt}>
+          <Header />
+          <Route path="/" exact component={Landing} />
+          <Route path="/login" component={TempLogin} />
+          <Route path="/register/:rolename" exact component={Register} /> {/*needs consideration to restrain possible values/routes*/}
+          <Route path="/messages" exact component={Messages} />
+          <Footer />
+        </UserContext.Provider>
       </Router>
     );
   }
