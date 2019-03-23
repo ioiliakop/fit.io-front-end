@@ -11,7 +11,7 @@ class UserNav extends Component {
                 <a className="nav-link dropdown-toggle" id="navbarProfileDropdownMenuLink" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     {this.context.userInfo.username}
-        </a>
+                </a>
                 <div className="dropdown-menu" aria-labelledby="navbarProfileDropdownMenuLink">
                     <a className="dropdown-item" href="#pills-myTrainingSessions">My Training Sessions</a>
                     <a className="dropdown-item" href="#pills-myMessages">My Messages</a>
@@ -23,6 +23,7 @@ class UserNav extends Component {
             </li>
         );
     }
+
 }
 
 export default UserNav;

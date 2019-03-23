@@ -9,10 +9,32 @@ class Header extends Component {
 
     static contextType = UserContext;
 
+    handleLogout() {
+        const url = 'http://localhost:8080/login/logout';
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'X-MSG-AUTH': localStorage.getItem('token'),
+                // 'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            console.log('Response status:', response.status);
+            // Handle logout action to localStorage
+            if (response.status === 200) {
+                console.log('Wiping local storage...');
+                localStorage.clear();
+            }
+        }).catch(error => console.error('Error:', error));
+    }
+
     render() {
         return (
             <React.Fragment>
+
                 {console.log(this.context)}
+
                 <nav className="navbar navbar-expand-sm bg-primary navbar-dark sticky-top py-4">
                     <div className="container">
                         <a className="navbar-brand" href="/"><i className="fas fa-running"></i> <strong>fit.io</strong></a>
@@ -42,6 +64,7 @@ class Header extends Component {
                     </div>
                 </nav>
 
+                {/* LOGIN MODAL BODY */}
                 <div className="modal fade" id="loginModal">
                     <div className="modal-dialog">
                         <div className="modal-content">
@@ -64,6 +87,26 @@ class Header extends Component {
                                     <button type="submit" className="btn btn-primary btn-block col-sm-4">Login</button>
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                </div>
+
+                {/* LOGOUT MODAL BODY */}
+                <div className="modal fade" id="logoutModal">
+                    <div className="modal-dialog modal-sm">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h5 className="modal-title" id="logoutModalLabel">Logout</h5>
+                                <button className="close" data-dismiss="modal">&times;</button>
+                            </div>
+                            <div className="modal-body">
+                                <div className="text-center">
+                                    Are you sure you want to logout?
+                                </div>
+                            </div>
+                            <div className="modal-footer justify-content-center">
+                                <button className="btn btn-danger btn-block col-sm-4" data-dismiss="modal" onClick={this.handleLogout}>Logout</button>
+                            </div>
                         </div>
                     </div>
                 </div>
