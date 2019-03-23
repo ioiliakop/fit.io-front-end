@@ -6,13 +6,14 @@ class Messages extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            messages: {},
+            messages: [],
         };
     }
 
     componentDidMount() {
         console.log("Messages component did mount");
         const url = 'http://localhost:8080/messages/inbox';
+        const self = this;
 
         fetch(url, {
             method: 'GET',
@@ -31,13 +32,15 @@ class Messages extends Component {
                     // this.state = ({ 
                     //     messages: data 
                     // });
-                    this.setState({ 
+                    self.setState({ 
                         messages: data 
                     });
-                    console.log('Messages in state:', this.state.messages);
+                    console.log('Messages in state:', self.state.messages);
                 }
             })
         }).catch(error => console.error('Error:', error));
+
+        console.log('End of fetch');
 
         //     window.$.ajax({
         //         url: 'http://localhost:3000/texts.json',
@@ -70,10 +73,10 @@ class Messages extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {Object.keys(messages).map(k => {
+                                {this.state.messages.map(k => {
                                     console.log('Updating li for ' + k);
-                                    return <MessageRow key={k} msg={messages[k]}></MessageRow>
-                                })} */}
+                                    return <MessageRow key={k.id} msg={k}></MessageRow>
+                                })}
                             </tbody>
                         </table>
                     </div>

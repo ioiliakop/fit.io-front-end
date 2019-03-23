@@ -5,9 +5,9 @@ class MessageRow extends Component {
         return (
             <tr>
                 <td></td>
-                <td>this.props.msg.sender.username</td>
-                <td>this.props.msg.sender.text</td>
-                <td>this.props.msg.sender.date</td>
+                <td>{this.props.msg.sender.username}</td>
+                <td>{this.props.msg.text}</td>
+                <td>{this.props.msg.date}</td>
             </tr>
         );
     }
