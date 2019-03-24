@@ -18,7 +18,7 @@ class Header extends Component {
         //     loggedOut: false
         // };
         this.handleLogout = this.handleLogout.bind(this);
-        this.loggedOut = false;
+        this.loggedOut = false; // Context now updating. This should not be needed
     }
 
     static contextType = UserContext;
@@ -37,13 +37,14 @@ class Header extends Component {
             if (response.status === 200) {
                 console.log('Wiping local storage...');
                 localStorage.clear();
-                this.loggedOut = true;
+                this.context.updateUserContext();
                 // this.props.history.push("/");
             }
         }).catch(error => console.error('Error:', error));
     }
 
     // Redirect not working properly
+    // Context now updating. This method will probably not be needed
     renderRedirect() {
         if (this.loggedOut) {
             return <Redirect to='/' />

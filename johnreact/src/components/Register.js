@@ -16,17 +16,15 @@ class Register extends Component {
             roleId: ((this.props.match.params.rolename === 'trainer') ? 2 : 1),
             regSuccess: false
         }
+        console.log('RoleId in register constructor:', this.state.roleId);
     }
-
-    // componentDidMount() {
-    //     let temp1 = (this.props.match.params.rolename === 'trainer') ? 2 : 1;
-    //     this.setState({ roleId : temp1 });
-    // }
-
-    componentDidUpdate() {
-        console.log('Current roleId:', this.state.roleId);
-        // let temp2 = (this.props.match.params.rolename === 'trainer') ? 2 : 1;
-        // this.setState({ roleId : temp2 });
+    
+    componentDidUpdate(prevProps, prevState) {
+        console.log('Previous roleId:', prevState.roleId);
+        if (prevState.roleId !== ((this.props.match.params.rolename === 'trainer') ? 2 : 1)) {
+            this.setState({roleId: ((prevState.roleId === 2) ? 1 : 2)});
+        }
+        console.log('roleId after component did update:', this.state.roleId);
     }
 
     renderRedirect() {
@@ -40,26 +38,21 @@ class Register extends Component {
     }
 
     handleSubmit(event) {
-        const uname = this.username.current.value;
-        const pass = this.password.current.value;
-        const em = this.email.current.value;
-        const fname = this.firstName.current.value;
-        const lname = this.lastName.current.value;
         // const ph = this.phone.current.value;
-
-        console.log('Submitting...', uname, pass, em, fname, lname, this.state.roleId);
 
         const url = 'http://localhost:8080/register/save';
         const formData = {
-            "username": uname,
-            "password": pass,
-            "email": em,
-            "firstName": fname,
-            "lastName": lname,
+            "username": this.username.current.value,
+            "password": this.password.current.value,
+            "email": this.email.current.value,
+            "firstName": this.firstName.current.value,
+            "lastName": this.lastName.current.value,
             "role": {
                 "id": this.state.roleId
             }
         };
+
+        console.log('Submitting...', formData);
 
         fetch(url, {
             method: 'POST', // or 'PUT'
@@ -72,41 +65,13 @@ class Register extends Component {
             // Redirect somewhere with success message alert or whatever
         }).catch(error => console.error('Error:', error));
 
-        // window.$.ajax({
-        //     headers: { 
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json' 
-        //     },
-        //     url: 'http://localhost:8080/register/save',
-        //     dataType: 'json',
-        //     type: 'POST',
-        //     data: {
-        //         username: uname,
-        //         password: pass,
-        //         email: em,
-        //         firstName: fname,
-        //         lastName: lname,
-        //         role: 1
-        //     }
-        // }).then(data => {
-        //     console.log('Data returned');
-        //     console.log(JSON.stringify(data));
-        //     // localStorage.setItem('token', json.token);
-        // }).fail(function(xhr) {
-        //     //Ajax request failed.
-        //     var errorMessage = xhr.status + ': ' + xhr.statusText;
-        //     alert('Error - ' + errorMessage);
-        // });
-
         event.preventDefault();
     }
 
     render() {
-        // const {rolename} = this.props.match.params;
-
         return (
             <div className="container col-8">
-                {this.renderRedirect()}  {/* Redirects to landing page if registration was successfull. Will be expanded for other cases */}
+                {this.renderRedirect()}  {/* Redirects to landing page if registration was successfull. Maybe will be expanded for other cases */}
                 <div className="text-center"><h1 className="mx-auto">Register as {this.props.match.params.rolename}</h1></div>
                 <form onSubmit={this.handleSubmit} className="pt-3 pb-2">
                     {/* onInput='p2.setCustomValidity(p2.value != password.value ? "Passwords do not match" : "")' */}

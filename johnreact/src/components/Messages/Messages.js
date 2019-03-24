@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import UserContext from '../../context/user-context';
 import MessageRow from './MessageRow';
 // import './dataTables.js';
 
@@ -21,6 +23,8 @@ class Messages extends Component {
             console.log('Unknown messages folder type');
         }
     }
+
+    static contextType = UserContext;
 
     componentDidMount() {
         console.log('Messages component did mount');
@@ -59,34 +63,41 @@ class Messages extends Component {
     }
 
     render() {
-        return (
-            <React.Fragment>
-                <div className="container py-3 text-center">
-                    <h2>{this.messagesTitle} Messages</h2>
-                </div>
-
-                <div className="container">
-                    <div className="table-responsive-lg">
-                        <table className="table table-striped table-bordered" id="messagesTable">
-                            <thead>
-                                <tr className="table-info">
-                                    <th></th>
-                                    <th>{this.senderOrReceiver}</th>
-                                    <th>Message</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {this.state.messages.map((m, index) => {
-                                    console.log('Updating li for message ' + index);
-                                    return <MessageRow key={'mk_'+m.id} msg={m} folderType={this.props.folderType}></MessageRow>
-                                })}
-                            </tbody>
-                        </table>
+        if (!this.context.isLoggedIn) {
+            // Redirect to Landing
+            return (
+                <Redirect to='/' />
+            );
+        } else {
+            return (
+                <React.Fragment>
+                    <div className="container py-3 text-center">
+                        <h2>{this.messagesTitle} Messages</h2>
                     </div>
-                </div>
-            </React.Fragment>
-        );
+
+                    <div className="container">
+                        <div className="table-responsive-lg">
+                            <table className="table table-striped table-bordered" id="messagesTable">
+                                <thead>
+                                    <tr className="table-info">
+                                        <th></th>
+                                        <th>{this.senderOrReceiver}</th>
+                                        <th>Message</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.messages.map((m, index) => {
+                                        console.log('Updating li for message ' + index);
+                                        return <MessageRow key={'mk_' + m.id} msg={m} folderType={this.props.folderType}></MessageRow>
+                                    })}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </React.Fragment>
+            );
+        }
     }
 
 }
