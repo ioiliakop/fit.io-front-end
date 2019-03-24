@@ -8,12 +8,19 @@ class TempLogin extends Component {
         super(props);
         this.username = React.createRef();
         this.password = React.createRef();
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+        // console.log('Context value on Login constructor', this.context); // not visible here!!!!!!!!!
     }
 
     static contextType = UserContext;
 
-    handleSubmit(event) {
+    componentDidMount() {
+        console.log('Context value on Login didMount', this.context); //visible!!
+    }
+
+    handleLogin(event) {
+
+        console.log('Context value in handleLogin()', this.context); //visible!!
 
         const url = 'http://localhost:8080/login/user';
         const loginData = {
@@ -35,17 +42,19 @@ class TempLogin extends Component {
                 // Handle login response to localStorage
                 if (response.status === 200) {
                     console.log('Saving token to localstorage', data.alphanumeric);
-                    console.log('Saving userInfo to localstorage', data.user);
                     localStorage.setItem('token', data.alphanumeric);
+                    console.log('Saving userInfo to localstorage', data.user);
                     localStorage.setItem('userInfo', JSON.stringify(data.user));
                     // this.props.history.push('/');
                     // Attempt to change user context after login
-                    this.context.setUserContext({
-                        isLoggedIn: true,
-                        token: data.alphanumeric,
-                        userInfo: data.user
-                    });
-                    console.log('Changing context after login. New context', this.context);
+                    console.log('Context before change:', this.context)
+                    // appContext.setUserContext({
+                    //     isLoggedIn: true,
+                    //     token: data.alphanumeric,
+                    //     userInfo: data.user
+                    // });
+                    this.context.updateUserContext();
+                    console.log('Changed context after login. New context', this.context);
                 }
             })
         }).catch(error => console.error('Error:', error));
@@ -55,15 +64,15 @@ class TempLogin extends Component {
 
     render() {
         // saikoremnants
-        let token = localStorage.getItem('token');
-        if (token) {
+        // let token = localStorage.getItem('token');
+        if (this.context.isLoggedIn) {
             // Redirect to UserMain
             return (
                 <Redirect to='/messages' />
             );
         } else {
             return (
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleLogin}>
                     <div className="container">
                         <div className="form-group col-sm-4 mx-auto text-center">
                             <label htmlFor="username">Username</label>

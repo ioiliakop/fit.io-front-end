@@ -55,6 +55,7 @@ class Messages extends Component {
         // console.log('datatable script source:', script.src);
         // script.async = true;
         // document.body.appendChild(script);
+        // EPIC FAIL
     }
 
     render() {

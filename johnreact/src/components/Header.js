@@ -53,7 +53,7 @@ class Header extends Component {
     render() {
         return (
             <React.Fragment>
-                {console.log('Current context:', this.context)}
+                {console.log('Context value in Header render():', this.context)}
                 {/* {this.renderRedirect()} */}
 
                 <HeaderNavBar>
