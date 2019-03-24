@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import { Link, Redirect, withRouter } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
+import ButtonLink from './Utils/ButtonLink';
 
 // decides whether item is active or not
-function ButtonLink(props) {
-    if (props.to === props.location) {
-        return <Link className="btn btn-outline-primary btn-lg active" role="button" to={props.to}>{props.label}</Link>
-    }
-    else {
-        return <Link className="btn btn-outline-primary btn-lg" role="button" to={props.to}>{props.label}</Link>
-    }
-}
+// function ButtonLink(props) {
+//     if (props.to === props.location) {
+//         return <Link className="btn btn-outline-primary btn-lg active" role="button" to={props.to}>{props.label}</Link>
+//     }
+//     else {
+//         return <Link className="btn btn-outline-primary btn-lg" role="button" to={props.to}>{props.label}</Link>
+//     }
+// }
 
 // TODO: Password repeat validation, check if email AND username already exists
 class Register extends Component {

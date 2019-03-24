@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import UserContext from '../../context/user-context';
 import MessageRow from './MessageRow';
+import ButtonLink from '../Utils/ButtonLink';
 // import './dataTables.js';
 
 class Messages extends Component {
@@ -71,6 +72,24 @@ class Messages extends Component {
         } else {
             return (
                 <React.Fragment>
+                <nav class="navbar navbar-light navbar-expand-md">
+                    <div class="container col-sm py-4">
+                        <ul class="navbar-nav mx-auto">
+                            <li>
+                                {/* <button class="btn btn-outline-primary" type="button">Register as User</button> */}
+                                <ButtonLink label="INBOX" to="/messages/in" location={this.props.location.pathname} />
+                            </li>
+                            <li>
+                                <span class="col-1"> </span>
+                            </li>
+                            <li>
+                                {/* <button class="btn btn-outline-primary" type="button">Register as Trainer</button> */}
+                                <ButtonLink label="SENT" to="/messages/out" location={this.props.location.pathname} />
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+
                     <div className="container py-3 text-center">
                         <h2>{this.messagesTitle} Messages</h2>
                     </div>
@@ -102,4 +121,4 @@ class Messages extends Component {
 
 }
 
-export default Messages;
+export default withRouter(Messages);
