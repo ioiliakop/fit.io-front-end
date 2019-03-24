@@ -11,6 +11,7 @@ import OutboxMessages from './components/Messages/OutboxMessages';
 import './App.css';
 import UserContext from './context/user-context';
 import UserNavbar from './components/UserNavbar';
+import TrainingSessions from './components/TrainingSessions/TrainingSessions';
 
 class App extends Component {
 
@@ -23,7 +24,7 @@ class App extends Component {
 
     // Setter method for userContext which is included in userContext
     this.updateUserContext = () => {
-      this.setState( () => ({
+      this.setState(() => ({
         // isLoggedIn: state.isLoggedIn,
         // token: state.token,
         // userInfo: state.userInfo
@@ -48,7 +49,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-         <UserContext.Provider value={this.state}> {/* Passing this state as UserContext value */}
+        <UserContext.Provider value={this.state}> {/* Passing this state as UserContext value */}
           <Header />
           {this.state.isLoggedIn && <UserNavbar />}
           <Switch>
@@ -56,6 +57,7 @@ class App extends Component {
             <Route path="/messages/out" exact component={OutboxMessages} />
             <Route path="/messages/in" exact component={InboxMessages} />
             {/* <Route path="/messages/out" exact render={() => <Messages folderType='outbox' />} /> */}
+            <Route path="/training-sessions" exact component={TrainingSessions} />
             <Route path="/login" exact component={TempLogin} />
             <Route path="/" component={Landing} />
           </Switch>
