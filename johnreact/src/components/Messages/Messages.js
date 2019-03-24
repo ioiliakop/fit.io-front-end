@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MessageRow from './MessageRow';
+// import './dataTables.js';
 
 class Messages extends Component {
 
@@ -46,6 +47,14 @@ class Messages extends Component {
         }).catch(error => console.error('Error:', error));
 
         console.log('End of fetch');
+
+        // Trying to include script for dataTables integration
+        // not working
+        // const script = document.createElement("script");
+        // script.src = "./dataTables.js";
+        // console.log('datatable script source:', script.src);
+        // script.async = true;
+        // document.body.appendChild(script);
     }
 
     render() {
@@ -57,7 +66,7 @@ class Messages extends Component {
 
                 <div className="container">
                     <div className="table-responsive-lg">
-                        <table className="table table-striped table-bordered messages">
+                        <table className="table table-striped table-bordered" id="messagesTable">
                             <thead>
                                 <tr className="table-info">
                                     <th></th>

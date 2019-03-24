@@ -6,17 +6,19 @@ import { BrowserRouter } from 'react-router-dom';
 // import * as serviceWorker from './serviceWorker';
 
 
-let localStorageVals = {
-  isLoggedIn: false,
-  token: '',
-  userInfo: null
-};
+// let localStorageVals = {
+//   isLoggedIn: false,
+//   token: '',
+//   userInfo: null
+// };
+
+let localStorageVals = null;
 
 if (localStorage.getItem('token')) {
   localStorageVals = {
     isLoggedIn: true,
     token: localStorage.getItem('token'),
-    userInfo: JSON.parse(localStorage.getItem('userInfo'))
+    userInfo: JSON.parse(localStorage.getItem('userInfo')),
   }
 }
 

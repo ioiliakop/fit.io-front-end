@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
+import UserContext from '../context/user-context';
 
 class TempLogin extends Component {
 
@@ -9,6 +10,8 @@ class TempLogin extends Component {
         this.password = React.createRef();
         this.handleSubmit = this.handleSubmit.bind(this);
     }
+
+    static contextType = UserContext;
 
     handleSubmit(event) {
 
@@ -35,6 +38,14 @@ class TempLogin extends Component {
                     console.log('Saving userInfo to localstorage', data.user);
                     localStorage.setItem('token', data.alphanumeric);
                     localStorage.setItem('userInfo', JSON.stringify(data.user));
+                    // this.props.history.push('/');
+                    // Attempt to change user context after login
+                    this.context.setUserContext({
+                        isLoggedIn: true,
+                        token: data.alphanumeric,
+                        userInfo: data.user
+                    });
+                    console.log('Changing context after login. New context', this.context);
                 }
             })
         }).catch(error => console.error('Error:', error));
