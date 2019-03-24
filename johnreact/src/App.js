@@ -10,6 +10,7 @@ import InboxMessages from './components/Messages/InboxMessages';
 import OutboxMessages from './components/Messages/OutboxMessages';
 import './App.css';
 import UserContext from './context/user-context';
+import UserNavbar from './components/UserNavbar';
 
 class App extends Component {
 
@@ -49,6 +50,7 @@ class App extends Component {
       <Router>
          <UserContext.Provider value={this.state}> {/* Passing this state as UserContext value */}
           <Header />
+          {this.state.isLoggedIn && <UserNavbar />}
           <Switch>
             <Route path="/register/:rolename" exact component={Register} /> {/*needs consideration to restrain possible values/routes*/}
             <Route path="/messages/out" exact component={OutboxMessages} />
