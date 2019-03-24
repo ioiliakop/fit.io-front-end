@@ -39,7 +39,6 @@ class TrainingSessions extends Component {
         }).catch(error => console.error('Error:', error));
 
         console.log('End of fetch');
-
     }
 
 

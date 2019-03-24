@@ -9,12 +9,12 @@ class UserNav extends Component {
     render() {
         return (
             <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" id="navbarProfileDropdownMenuLink" data-toggle="dropdown"
+                <a className="nav-link dropdown-toggle active" id="navbarProfileDropdownMenuLink" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     {this.context.userInfo.username}
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarProfileDropdownMenuLink">
-                    <a className="dropdown-item" href="#pills-myTrainingSessions">My Training Sessions</a>
+                    <Link className="dropdown-item" to="/training-sessions">My Training Sessions</Link>
                     <Link className="dropdown-item" to="/messages/in">My Messages</Link>
                     <a className="dropdown-item" href="#pills-myReviews">My Reviews</a>
                     <a className="dropdown-item" href="#pills-myProfile">My Profile</a>
