@@ -11,9 +11,34 @@ class TrainingSessions extends Component {
         this.state = {
             trainingSessions: [],
         };
+
+        // Trying callback refs
+        // this.setTrainingSessionRef = trs => {
+        //     this[`trainingSession${i}`] = trs;
+        // };
+
+        // this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
     }
 
     static contextType = UserContext;
+
+    // handleSubmitMessage = (trsId) => {
+    //     const trs = this[`trainingSession${trsId}`];
+    //     const url = 'http://localhost:8080/messages/save/' + trs.trainer.username;
+
+    //     fetch(url, {
+    //         method: 'POST',
+    //         headers: {
+    //             'X-MSG-AUTH': localStorage.getItem('token'),
+    //         },
+    //         body: this.message //current.value
+    //     }).then(response => {
+    //         console.log('Response status:', response.status);
+    //         if (response.status === 200) {
+    //             console.log('Message sent.');
+    //         }
+    //     }).catch(error => console.error('Error:', error));
+    // }
 
     componentDidMount() {
         console.log('TrainingSessions component did mount');
@@ -79,9 +104,10 @@ class TrainingSessions extends Component {
                         console.log('Now value:', now.valueOf());
                         console.log('Training Session date value:', trsDate.valueOf());
                         if (now.valueOf() > trsDate.valueOf()) {
-                            return <TrainingSession key={'mk_' + t.id} trs={t} timeStatus="past"/>
+                            return <TrainingSession key={t.id} trs={t} timeStatus="past" />
                         } else {
-                            return <TrainingSession key={'mk_' + t.id} trs={t} />
+                            return <TrainingSession key={t.id} trs={t} />
+                            // ref={trs => { this[`trainingSession${id}`] = trs; }}
                         }
                     })}
                 </React.Fragment>
