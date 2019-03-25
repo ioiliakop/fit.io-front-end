@@ -4,7 +4,7 @@ const Context = React.createContext();
 
 export class Provider extends Component {
   state = {
-    loggedIn: localStorage.getItem("token") ? true : false,
+    loggedIn: localStorage.getItem("token") == "" ? false : true,
     trainingSessions: [],
     token: "",
     loggedInUser: {},
@@ -15,13 +15,10 @@ export class Provider extends Component {
 
   reducer = (state, action) => {
     switch (action.type) {
-      case "DELETE_CONTACT":
-        return {
-          ...state,
-          contacts: state.contacts.filter(
-            contact => contact.id !== action.payload
-          )
-        };
+      case "SET_LOGGED_IN_BOOLEAN":
+        this.setState({
+          loggedIn: action.payload
+        });
       case "FILL_TRAINING_SESSIONS":
         return {
           ...state,
@@ -33,6 +30,7 @@ export class Provider extends Component {
           loggedInUser: action.payload
         };
       case "FILL_TOKEN_IN_STATE":
+        console.log("ta minimata apothikevontai kai sto context.js");
         this.setState({
           token: action.payload
         });
@@ -40,12 +38,43 @@ export class Provider extends Component {
         this.setState({
           inbox: action.payload
         });
+      case "TEST":
+        console.log("to state einaii ayti ti stigmi");
+        console.log(this.state);
       default:
         return state;
     }
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    let token = localStorage.getItem("token");
+    if (token !== "") {
+      window.$.ajax({
+        type: "GET",
+        url: "http://localhost:8080/login/userFromToken",
+        headers: { "X-MSG-AUTH": token },
+        dataType: "json",
+        async: true,
+        success: user => {
+          localStorage.setItem("user", JSON.stringify(user));
+          this.setState({
+            loggedInUser: user,
+            loggedIn: true,
+            token: token
+          });
+        },
+        error: () => {
+          localStorage.setItem("user", "");
+          localStorage.setItem("token", "");
+          this.setState({
+            loggedInUser: "",
+            loggedIn: false,
+            token: ""
+          });
+        }
+      });
+    }
+  }
 
   render() {
     return (

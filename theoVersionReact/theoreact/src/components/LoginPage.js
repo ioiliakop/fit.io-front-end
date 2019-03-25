@@ -10,10 +10,6 @@ class LoginPage extends Component {
   submitForm = (dispatch, e) => {
     e.preventDefault();
     const { username, password } = this.state;
-    const loggedInUser = {
-      username,
-      password
-    };
 
     let loginCredential = {
       username: username,
@@ -28,9 +24,11 @@ class LoginPage extends Component {
       dataType: "json",
       async: true,
       success: data => {
+        localStorage.setItem("token", data.alphanumeric);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        dispatch({ type: "SET_LOGGED_IN_BOOLEAN", payload: true });
         dispatch({ type: "FILL_LOGGEDINUSER", payload: data.user });
         dispatch({ type: "FILL_TOKEN_IN_STATE", payload: data.alphanumeric });
-        localStorage.setItem("token", data.alphanumeric);
         this.props.history.push("/myProfile");
       },
       error: function() {
@@ -48,45 +46,49 @@ class LoginPage extends Component {
     return (
       <Consumer>
         {value => {
-          const { dispatch } = value;
-          return (
-            <div>
-              <form onSubmit={this.submitForm.bind(this, dispatch)}>
-                <div className="container">
-                  <div className="form-group col-sm-4 mx-auto text-center">
-                    <label htmlFor="username">Username</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="username"
-                      value={username}
-                      required
-                      onChange={this.onChange}
-                    />
+          const { loggedIn, dispatch } = value;
+          if (loggedIn) {
+            this.props.history.push("/myProfile");
+          } else {
+            return (
+              <div>
+                <form onSubmit={this.submitForm.bind(this, dispatch)}>
+                  <div className="container">
+                    <div className="form-group col-sm-4 mx-auto text-center">
+                      <label htmlFor="username">Username</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="username"
+                        value={username}
+                        required
+                        onChange={this.onChange}
+                      />
+                    </div>
+                    <div className="form-group col-sm-4 mx-auto text-center">
+                      <label htmlFor="password">Password</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        name="password"
+                        value={password}
+                        onChange={this.onChange}
+                        required
+                      />
+                    </div>
                   </div>
-                  <div className="form-group col-sm-4 mx-auto text-center">
-                    <label htmlFor="password">Password</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      name="password"
-                      value={password}
-                      onChange={this.onChange}
-                      required
-                    />
+                  <div className="container">
+                    <button
+                      type="submit"
+                      className="btn btn-primary btn-block col-sm-4 mx-auto"
+                    >
+                      Login
+                    </button>
                   </div>
-                </div>
-                <div className="container">
-                  <button
-                    type="submit"
-                    className="btn btn-primary btn-block col-sm-4 mx-auto"
-                  >
-                    Login
-                  </button>
-                </div>
-              </form>
-            </div>
-          );
+                </form>
+              </div>
+            );
+          }
         }}
       </Consumer>
     );

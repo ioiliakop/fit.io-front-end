@@ -4,10 +4,10 @@ import Header from "./components/Header";
 import Landing from "./components/Landing";
 import Footer from "./components/Footer";
 import Register from "./components/Register";
-import TempLogin from "./components/TempLogin";
 import { Provider } from "./context";
 import "./App.css";
 import LoginPage from "./components/LoginPage";
+import Logout from "./components/Logout";
 import UsersProfile from "./components/UsersProfile";
 import Messages from "./components/Messages";
 
@@ -20,6 +20,7 @@ class App extends Component {
           <Switch>
             <Route path="/" exact component={Landing} />
             <Route path="/login" component={LoginPage} />
+            <Route path="/logout" component={Logout} />
             <Route path="/myProfile" component={UsersProfile} />
             <Route path="/messages" component={Messages} />
             <Route path="/register" exact component={Register} />{" "}
