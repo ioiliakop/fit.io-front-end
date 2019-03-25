@@ -84,7 +84,7 @@ class Register extends Component {
             <React.Fragment>
                 {this.renderRedirect()}  {/* Redirects to landing page if registration was successfull. Maybe will be expanded for other cases */}
                 <nav class="navbar navbar-light navbar-expand-md">
-                    <div class="container col-sm py-4">
+                    <div class="container col-sm pt-4 pb-2">
                         <ul class="navbar-nav mx-auto">
                             <li>
                                 {/* <button class="btn btn-outline-primary" type="button">Register as User</button> */}

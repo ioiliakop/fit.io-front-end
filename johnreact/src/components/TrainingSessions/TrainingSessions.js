@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import UserContext from '../../context/user-context';
 import TrainingSession from '../TrainingSessions/TrainingSession';
+import PastTrainingSession from '../TrainingSessions/PastTrainingSession';
 
 class TrainingSessions extends Component {
 
@@ -17,6 +18,21 @@ class TrainingSessions extends Component {
     componentDidMount() {
         console.log('TrainingSessions component did mount');
         const url = 'http://localhost:8080/session/client-sessions';
+
+        // Testing datetimes
+        const now = new Date();
+        console.log('Current date:', now);
+        console.log('getDate', now.getDate());
+        console.log('getDay', now.getDay());
+        console.log('toLocaleDateString', now.toLocaleDateString());
+        console.log('valueOf', now.valueOf());
+        console.log('toLocaleTimeString', now.toLocaleTimeString());
+        console.log('getTime', now.getTime());
+
+        const otherdate = new Date('2019-03-17 16:00:00');
+        console.log('Other date:', otherdate)
+        console.log('valueOf', otherdate.valueOf());
+
 
         fetch(url, {
             method: 'GET',
@@ -57,7 +73,16 @@ class TrainingSessions extends Component {
 
                     {this.state.trainingSessions.map((t, index) => {
                         console.log('Updating li for training session ' + index);
-                        return <TrainingSession key={'mk_' + t.id} trs={t} />
+                        let trsDate = new Date(t.date + ' ' + t.time);
+                        console.log('Training session date:', trsDate);
+                        let now = new Date();
+                        console.log('Now value:', now.valueOf());
+                        console.log('Training Session date value:', trsDate.valueOf());
+                        if (now.valueOf() > trsDate.valueOf()) {
+                            return <TrainingSession key={'mk_' + t.id} trs={t} timeStatus="past"/>
+                        } else {
+                            return <TrainingSession key={'mk_' + t.id} trs={t} />
+                        }
                     })}
                 </React.Fragment>
             );

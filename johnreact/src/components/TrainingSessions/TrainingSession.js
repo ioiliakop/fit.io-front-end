@@ -1,5 +1,24 @@
 import React, { Component } from 'react';
 
+// Different Actions available for past and future training sessions
+function FutureOrPastActionButtons(props) {
+    if (props.timeStatus === 'past') {
+        return (
+            <React.Fragment>
+                <button type="button" class="btn btn-info btn-block">REVIEW <i class="far fa-star"></i></button>
+                <button type="button" class="btn btn-outline-info btn-block">NEW APPOINTMENT</button>
+            </React.Fragment>
+        );
+    } else {
+        return (
+            <React.Fragment>
+                <button type="button" className="btn btn-primary btn-block">CONTACT TRAINER</button>
+                <button type="button" className="btn btn-danger btn-block">CANCEL <i className="fas fa-ban"></i></button>
+            </React.Fragment>
+        );
+    }
+}
+
 class TrainingSession extends Component {
     render() {
         return (
@@ -19,8 +38,7 @@ class TrainingSession extends Component {
                             <p className="card-text"><i className="fas fa-map-marked-alt"></i> &nbsp;{this.props.trs.area.address}, {this.props.trs.area.city}</p>
                         </div>
                         <div className="col-lg-3 p-5">
-                            <button type="button" className="btn btn-primary btn-block">CONTACT TRAINER</button>
-                            <button type="button" className="btn btn-danger btn-block">CANCEL <i className="fas fa-ban"></i></button>
+                            <FutureOrPastActionButtons timeStatus={this.props.timeStatus}/>
                         </div>
                     </div>
                 </div>
