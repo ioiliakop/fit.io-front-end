@@ -12,6 +12,8 @@ import './App.css';
 import UserContext from './context/user-context';
 import UserNavbar from './components/UserNavbar';
 import TrainingSessions from './components/TrainingSessions/TrainingSessions';
+import PastTrainingSessions from './components/TrainingSessions/PastTrainingSessions';
+import FutureTrainingSessions from './components/TrainingSessions/FutureTrainingSessions';
 
 class App extends Component {
 
@@ -57,7 +59,8 @@ class App extends Component {
             <Route path="/messages/out" exact component={OutboxMessages} />
             <Route path="/messages/in" exact component={InboxMessages} />
             {/* <Route path="/messages/out" exact render={() => <Messages folderType='outbox' />} /> */}
-            <Route path="/training-sessions" exact component={TrainingSessions} />
+            <Route path="/training-sessions" exact component={FutureTrainingSessions} />
+            <Route path="/training-sessions/past" exact component={PastTrainingSessions} />
             {/* <Route path="/login" exact component={TempLogin} /> */}
             <Route path="/" component={Landing} />
           </Switch>

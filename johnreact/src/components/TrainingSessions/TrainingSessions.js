@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import UserContext from '../../context/user-context';
 import TrainingSession from '../TrainingSessions/TrainingSession';
 import PastTrainingSession from '../TrainingSessions/PastTrainingSession';
+import ButtonLink from '../../components/Utils/ButtonLink';
 
 class TrainingSessions extends Component {
 
@@ -11,6 +12,14 @@ class TrainingSessions extends Component {
         this.state = {
             trainingSessions: [],
         };
+
+        if (this.props.folderType === 'FUTURE') {
+            this.trainingSessionsTitle = 'Future';
+        } else if (this.props.folderType === 'PAST') {
+            this.trainingSessionsTitle = 'Past';
+        } else {
+            console.log('Unknown messages folder type');
+        }
 
         // Trying callback refs
         // this.setTrainingSessionRef = trs => {
@@ -45,18 +54,17 @@ class TrainingSessions extends Component {
         const url = 'http://localhost:8080/session/client-sessions';
 
         // Testing datetimes
-        const now = new Date();
-        console.log('Current date:', now);
-        console.log('getDate', now.getDate());
-        console.log('getDay', now.getDay());
-        console.log('toLocaleDateString', now.toLocaleDateString());
-        console.log('valueOf', now.valueOf());
-        console.log('toLocaleTimeString', now.toLocaleTimeString());
-        console.log('getTime', now.getTime());
-
-        const otherdate = new Date('2019-03-17 16:00:00');
-        console.log('Other date:', otherdate)
-        console.log('valueOf', otherdate.valueOf());
+        // const now = new Date();
+        // console.log('Current date:', now);
+        // console.log('getDate', now.getDate());
+        // console.log('getDay', now.getDay());
+        // console.log('toLocaleDateString', now.toLocaleDateString());
+        // console.log('valueOf', now.valueOf());
+        // console.log('toLocaleTimeString', now.toLocaleTimeString());
+        // console.log('getTime', now.getTime());
+        // const otherdate = new Date('2019-03-17 16:00:00');
+        // console.log('Other date:', otherdate)
+        // console.log('valueOf', otherdate.valueOf());
 
 
         fetch(url, {
@@ -92,8 +100,24 @@ class TrainingSessions extends Component {
         } else {
             return (
                 <React.Fragment>
+                    <nav className="navbar navbar-light navbar-expand-md">
+                        <div className="container col-sm pt-4 pb-0">
+                            <ul className="navbar-nav mx-auto">
+                                <li>
+                                    <ButtonLink label="FUTURE" to="/training-sessions" location={this.props.location.pathname} />
+                                </li>
+                                <li>
+                                    <span className="col-1"> </span>
+                                </li>
+                                <li>
+                                    <ButtonLink label="PAST" to="/training-sessions/past" location={this.props.location.pathname} />
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+
                     <div className="container py-3 text-center">
-                        <h2>Training Sessions</h2>
+                        <h2>{this.trainingSessionsTitle} Training Sessions</h2>
                     </div>
 
                     {this.state.trainingSessions.map((t, index) => {
@@ -103,10 +127,12 @@ class TrainingSessions extends Component {
                         let now = new Date();
                         console.log('Now value:', now.valueOf());
                         console.log('Training Session date value:', trsDate.valueOf());
-                        if (now.valueOf() > trsDate.valueOf()) {
-                            return <TrainingSession key={t.id} trs={t} timeStatus="past" />
-                        } else {
-                            return <TrainingSession key={t.id} trs={t} />
+
+                        // Adds only corresponding training sessions to array returned
+                        if (now.valueOf() > trsDate.valueOf() && this.props.folderType == 'PAST') {
+                            return <TrainingSession key={t.id} trs={t} timeStatus="PAST" />
+                        } else if (now.valueOf() < trsDate.valueOf() && this.props.folderType == 'FUTURE'){
+                            return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" />
                             // ref={trs => { this[`trainingSession${id}`] = trs; }}
                         }
                     })}
@@ -117,4 +143,4 @@ class TrainingSessions extends Component {
 
 }
 
-export default TrainingSessions;
+export default withRouter(TrainingSessions);

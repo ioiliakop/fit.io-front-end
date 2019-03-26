@@ -4,7 +4,7 @@ import ReviewModalButton from './ReviewModalButton';
 
 // Different Actions available for past and future training sessions
 function FutureOrPastActionButtons(props) {
-    if (props.timeStatus === 'past') {
+    if (props.timeStatus === 'PAST') {
         return (
             <React.Fragment>
                 <ReviewModalButton trsData={props.trsData} />
@@ -12,7 +12,7 @@ function FutureOrPastActionButtons(props) {
                 <button type="button" className="btn btn-outline-info btn-block">NEW APPOINTMENT</button>
             </React.Fragment>
         );
-    } else {
+    } else if (props.timeStatus === 'FUTURE') {
         return (
             <React.Fragment>
                 <ContactModalButton trsData={props.trsData} />
@@ -21,6 +21,8 @@ function FutureOrPastActionButtons(props) {
                 <button type="button" className="btn btn-danger btn-block">CANCEL <i className="fas fa-ban"></i></button>
             </React.Fragment>
         );
+    } else {
+        console.log('Unknown timeStatus for Training Session:', props.timeStatus);
     }
 }
 
@@ -32,7 +34,7 @@ class TrainingSession extends Component {
                     <div className="container">
                         <div className="row bg-light border">
                             <div className="col-lg-3 border-right text-center pt-5">
-                                <img className="img-fluid" src="./img/sample_trainer_1_thumb.jpg" alt="Trainer 1" />
+                                <img className="img-fluid" src="./img/sample_trainer_1_thumb.jpg" alt="Trainer Photo" />
                             </div>
                             <div className="col-lg-3 pt-4 px-4 border-right">
                                 <h4 className="text-primary">{this.props.trs.trainer.firstName} {this.props.trs.trainer.lastName}</h4>

@@ -72,23 +72,23 @@ class Messages extends Component {
         } else {
             return (
                 <React.Fragment>
-                <nav className="navbar navbar-light navbar-expand-md">
-                    <div className="container col-sm py-4">
-                        <ul className="navbar-nav mx-auto">
-                            <li>
-                                {/* <button className="btn btn-outline-primary" type="button">Register as User</button> */}
-                                <ButtonLink label="INBOX" to="/messages/in" location={this.props.location.pathname} />
-                            </li>
-                            <li>
-                                <span className="col-1"> </span>
-                            </li>
-                            <li>
-                                {/* <button className="btn btn-outline-primary" type="button">Register as Trainer</button> */}
-                                <ButtonLink label="SENT" to="/messages/out" location={this.props.location.pathname} />
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+                    <nav className="navbar navbar-light navbar-expand-md">
+                        <div className="container col-sm pt-4 pb-0">
+                            <ul className="navbar-nav mx-auto">
+                                <li>
+                                    {/* <button className="btn btn-outline-primary" type="button">Register as User</button> */}
+                                    <ButtonLink label="INBOX" to="/messages/in" location={this.props.location.pathname} />
+                                </li>
+                                <li>
+                                    <span className="col-1"> </span>
+                                </li>
+                                <li>
+                                    {/* <button className="btn btn-outline-primary" type="button">Register as Trainer</button> */}
+                                    <ButtonLink label="SENT" to="/messages/out" location={this.props.location.pathname} />
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
 
                     <div className="container py-3 text-center">
                         <h2>{this.messagesTitle} Messages</h2>

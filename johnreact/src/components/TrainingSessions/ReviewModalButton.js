@@ -20,9 +20,9 @@ class ReviewModalButton extends Component {
 
         fetch(url, {
             method: 'POST',
-            headers: {
-                'X-MSG-AUTH': localStorage.getItem('token'),
-            },
+            // headers: {
+            //     'X-MSG-AUTH': localStorage.getItem('token'),
+            // },
             body: this.review.current.value
         }).then(response => {
             console.log('Response status:', response.status);
