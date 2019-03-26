@@ -19,7 +19,6 @@ class TempLogin extends Component {
     }
 
     handleLogin(event) {
-
         console.log('Context value in handleLogin()', this.context); //visible!!
 
         const url = 'http://localhost:8080/login/user';

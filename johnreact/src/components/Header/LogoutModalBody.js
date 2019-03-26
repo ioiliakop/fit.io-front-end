@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 class LogoutModalBody extends Component {
+    
     render() {
         return (
             <div className="modal fade" id="logoutModal">

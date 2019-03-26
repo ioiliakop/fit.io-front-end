@@ -72,18 +72,18 @@ class Messages extends Component {
         } else {
             return (
                 <React.Fragment>
-                <nav class="navbar navbar-light navbar-expand-md">
-                    <div class="container col-sm py-4">
-                        <ul class="navbar-nav mx-auto">
+                <nav className="navbar navbar-light navbar-expand-md">
+                    <div className="container col-sm py-4">
+                        <ul className="navbar-nav mx-auto">
                             <li>
-                                {/* <button class="btn btn-outline-primary" type="button">Register as User</button> */}
+                                {/* <button className="btn btn-outline-primary" type="button">Register as User</button> */}
                                 <ButtonLink label="INBOX" to="/messages/in" location={this.props.location.pathname} />
                             </li>
                             <li>
-                                <span class="col-1"> </span>
+                                <span className="col-1"> </span>
                             </li>
                             <li>
-                                {/* <button class="btn btn-outline-primary" type="button">Register as Trainer</button> */}
+                                {/* <button className="btn btn-outline-primary" type="button">Register as Trainer</button> */}
                                 <ButtonLink label="SENT" to="/messages/out" location={this.props.location.pathname} />
                             </li>
                         </ul>

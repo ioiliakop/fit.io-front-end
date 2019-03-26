@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Landing from "./components/Landing";
 import Footer from "./components/Footer";
 import Register from "./components/Register";
-import TempLogin from "./components/TempLogin";
+import TempLogin from "./components/TempLogin-LEGACY";
 import Messages from "./components/Messages/Messages";
 import InboxMessages from './components/Messages/InboxMessages';
 import OutboxMessages from './components/Messages/OutboxMessages';
@@ -58,7 +58,7 @@ class App extends Component {
             <Route path="/messages/in" exact component={InboxMessages} />
             {/* <Route path="/messages/out" exact render={() => <Messages folderType='outbox' />} /> */}
             <Route path="/training-sessions" exact component={TrainingSessions} />
-            <Route path="/login" exact component={TempLogin} />
+            {/* <Route path="/login" exact component={TempLogin} /> */}
             <Route path="/" component={Landing} />
           </Switch>
           <Footer />

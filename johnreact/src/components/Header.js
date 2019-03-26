@@ -18,6 +18,7 @@ class Header extends Component {
         //     loggedOut: false
         // };
         this.handleLogout = this.handleLogout.bind(this);
+        // this.handleLogin = this.handleLogin.bind(this);
         this.loggedOut = false; // Context now updating. This should not be needed
     }
 
