@@ -40,12 +40,28 @@ class ReviewModalButton extends Component {
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title" id={'rmLabel_' + this.props.trsData.id}>Leave review to {this.props.trsData.trainer.firstName} {this.props.trsData.trainer.lastName}</h5>
+                                <h5 className="modal-title" id={'rmLabel_' + this.props.trsData.id}>Review {this.props.trsData.trainer.firstName} {this.props.trsData.trainer.lastName}</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div className="modal-body">
+                                <div className="row text-center mb-2">
+                                    <div className="col-md-8 mx-auto">For your {this.props.trsData.trainingType.title} training session</div>
+                                </div>
+                                {/* <div className="col-md-6 border mx-auto">
+                                    <p><i className="far fa-calendar-alt"></i> &nbsp;{this.props.trsData.date}, {this.props.trsData.time}</p>
+                                    <p><i className="fas fa-map-marked-alt"></i> &nbsp;{this.props.trsData.area.address}, {this.props.trsData.area.city}</p>
+                                </div> */}
+                                <div className="col-8 col-sm-6 mx-auto">
+                                    <i className="far fa-calendar-alt"></i> &nbsp;{this.props.trsData.date}, {this.props.trsData.time}
+                                </div>
+                                <div className="col-8 col-sm-6 mx-auto">
+                                    <i className="fas fa-map-marked-alt"></i> &nbsp;{this.props.trsData.area.address}, {this.props.trsData.area.city}
+                                </div>
+                                <div className="col-8 col-sm-6 mx-auto">
+                                    <i className="fas fa-wallet"></i> &nbsp;{this.props.trsData.trainer.price}&euro;
+                                </div>
                                 <form>
                                     <div className="form-group">
                                         <label htmlFor={'review-text_' + this.props.trsData.id} className="col-form-label">Review:</label>

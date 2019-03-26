@@ -8,7 +8,7 @@ import ContactModalButton from './ContactModalButton';
  */
 class AvailableActionsButtons extends Component {
 
-    // Will be used to check if user has already reviewd the session
+    // Will be used to check if user has already reviewed the session
     // Back not sending proper response yet
     sessionIsReviewed() {
         const url = 'http://localhost:8080/session/review/' + this.props.trsData.id;
