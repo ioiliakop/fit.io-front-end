@@ -53,9 +53,9 @@ class Header extends Component {
             <React.Fragment>
               <nav className="navbar navbar-expand-sm bg-primary navbar-dark sticky-top py-4">
                 <div className="container">
-                  <a className="navbar-brand" href="/">
+                  <Link className="navbar-brand" to="/">
                     <i className="fas fa-running" /> <strong>fit.io</strong>
-                  </a>
+                  </Link>
                   <button
                     className="navbar-toggler"
                     type="button"
@@ -84,14 +84,17 @@ class Header extends Component {
                       ) : (
                         <React.Fragment>
                           <li className="nav-item">
-                            <a
+                            <Link to="/login" className="nav-link">
+                              Login
+                            </Link>
+                            {/* <a
                               className="nav-link"
                               data-toggle="modal"
                               data-target="#loginModal"
                               href="#loginModal"
                             >
                               Login
-                            </a>
+                            </a> */}
                           </li>
 
                           <li className="nav-item dropdown">

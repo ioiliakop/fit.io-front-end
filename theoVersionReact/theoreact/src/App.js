@@ -10,6 +10,8 @@ import "./App.css";
 import LoginPage from "./components/LoginPage";
 import UsersProfile from "./components/UsersProfile";
 import Messages from "./components/Messages";
+import Results from "./components/Results";
+import Main from "./components/Main";
 
 class App extends Component {
   render() {
@@ -20,9 +22,11 @@ class App extends Component {
           <UserHeader />
           <Switch>
             <Route path="/" exact component={Landing} />
+            <Route path="/mainn" component={Main} />
             <Route path="/login" component={LoginPage} />
             <Route path="/myProfile" component={UsersProfile} />
             <Route path="/messages" component={Messages} />
+            <Route path="/searchResults" component={Results} />
             <Route path="/register" exact component={Register} />{" "}
           </Switch>
           <Footer />

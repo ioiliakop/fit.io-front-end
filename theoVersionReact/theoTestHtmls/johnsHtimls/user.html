@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Training Sessions</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Fontawesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <!-- DataTables/Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="./css/user_profile_style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-sm bg-primary navbar-dark py-4">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-running"></i> <strong>fit.io</strong></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <ul class="navbar-nav">
+                <a class="nav-link" href="#">Contact</a>
+            </ul>
+            <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarProfileDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Username
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarProfileDropdownMenuLink">
+                            <a class="dropdown-item" href="#pills-myTrainingSessions">My Training Sessions</a>
+                            <a class="dropdown-item" href="#pills-myMessages">My Messages</a>
+                            <a class="dropdown-item" href="#pills-myReviews">My Reviews</a>
+                            <a class="dropdown-item" href="#pills-myProfile">My Profile</a>
+                            <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"
+                                href="#logoutModal">Logout</a>
+                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarLanguageDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Language
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarLanguageDropdownMenuLink">
+                            <a class="dropdown-item" href="#">English</a>
+                            <a class="dropdown-item" href="#">Greek</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- User Profile Navigation Bar -->
+    <div class="container-fluid bg-light">
+        <div class="container">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="pills-myTrainingSessions-tab" data-toggle="pill"
+                        href="#pills-myTrainingSessions" role="tab" aria-controls="pills-myTrainingSessions"
+                        aria-selected="true">My Training Sessions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-myMessages-tab" data-toggle="pill" href="#pills-myMessages" role="tab"
+                        aria-controls="pills-myMessages" aria-selected="false">My Messages</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-myReviews-tab" data-toggle="pill" href="#pills-myReviews" role="tab"
+                        aria-controls="pills-myReviews" aria-selected="false">My Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="pills-myProfile-tab" data-toggle="pill" href="#pills-myProfile" role="tab"
+                        aria-controls="pills-myProfile" aria-selected="false">My Profile</a>
+                </li>
+            </ul>
+
+            <!-- TRAINING SESSIONS TAB -->
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade" id="pills-myTrainingSessions" role="tabpanel"
+                    aria-labelledby="pills-myTrainingSessions-tab">
+                    <!-- TRAINING SESSIONS SECTION -->
+                    <div class="container py-3">
+                        <h2>Future Appointments</h2>
+                    </div>
+
+                    <div class="container-fluid py-1">
+                        <div class="container">
+                            <div class="row bg-light border">
+                                <div class="col-lg-3 border-right text-center pt-5">
+                                    <img class="img-fluid" src="./img/sample_trainer_1_thumb.jpg" alt="Trainer 1">
+                                </div>
+                                <div class="col-lg-3 pt-4 px-4 border-right">
+                                    <h4 class="text-primary">Anna Genadieva</h4>
+                                    <p>Yoga - Meditation</p>
+                                </div>
+                                <div class="col-lg-3 pt-4 px-4 border-right">
+                                    <p class="card-text"><i class="fas fa-wallet"></i> 25&euro;</p>
+                                    <p class="card-text"><i class="far fa-calendar-alt"></i> Tuesday 29/01/2019, 17:00
+                                    </p>
+                                    <p class="card-text"><i class="fas fa-map-marked-alt"></i> Three Laloun 101,
+                                        PETRALONA, ATTIKI</p>
+                                </div>
+                                <div class="col-lg-3 p-5">
+                                    <button type="button" class="btn btn-primary btn-block">CONTACT TRAINER</button>
+                                    <button type="button" class="btn btn-danger btn-block">CANCEL <i
+                                            class="fas fa-ban"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container py-3">
+                        <h2>History</h2>
+                    </div>
+
+                    <div class="container-fluid py-1">
+                        <div class="container">
+                            <div class="row bg-light border">
+                                <div class="col-md-3 border-right text-center pt-5">
+                                    <img class="img-fluid" src="./img/sample_trainer_1_thumb.jpg" alt="Trainer 1">
+                                </div>
+                                <div class="col-md-3 pt-4 px-4 border-right">
+                                    <h4 class="text-primary">Anna Genadieva</h4>
+                                    <p>Yoga - Meditation</p>
+                                </div>
+                                <div class="col-md-3 pt-4 px-4 border-right">
+                                    <p class="card-text"><i class="fas fa-wallet"></i> 25&euro;</i></p>
+                                    <p class="card-text"><i class="far fa-calendar-alt"></i> Tuesday 29/01/2019, 17:00
+                                    </p>
+                                    <p class="card-text"><i class="fas fa-map-marked-alt"></i> Three Laloun 101,
+                                        PETRALONA, ATTIKI</p>
+                                </div>
+                                <div class="col-lg-3 p-5">
+                                    <button type="button" class="btn btn-info btn-block">REVIEW <i
+                                            class="far fa-star"></i></button>
+                                    <button type="button" class="btn btn-outline-info btn-block">NEW
+                                        APPOINTMENT</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Copied for testing -->
+                    <div class="container-fluid py-1">
+                        <div class="container">
+                            <div class="row bg-light border">
+                                <div class="col-lg-3 border-right text-center pt-5">
+                                    <img class="img-fluid" src="./img/sample_trainer_1_thumb.jpg" alt="Trainer 1">
+                                </div>
+                                <div class="col-lg-3 pt-4 px-4 border-right">
+                                    <h4 class="text-primary">Anna Genadieva</h4>
+                                    <p>Yoga - Meditation</p>
+                                </div>
+                                <div class="col-lg-3 pt-4 px-4 border-right">
+                                    <p class="card-text"><i class="fas fa-wallet"></i> 25&euro;</i></p>
+                                    <p class="card-text"><i class="far fa-calendar-alt"></i> Tuesday 29/01/2019, 17:00
+                                    </p>
+                                    <p class="card-text"><i class="fas fa-map-marked-alt"></i> Three Laloun 101,
+                                        PETRALONA, ATTIKI</p>
+                                </div>
+                                <div class="col-lg-3 p-5">
+                                    <button type="button" class="btn btn-info btn-block">REVIEW <i
+                                            class="far fa-star"></i></button>
+                                    <button type="button" class="btn btn-outline-info btn-block">NEW
+                                        APPOINTMENT</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid py-1">
+                        <div class="container">
+                            <div class="row bg-light border">
+                                <div class="col-lg-3 border-right text-center pt-5">
+                                    <img class="img-fluid" src="./img/sample_trainer_1_thumb.jpg" alt="Trainer 1">
+                                </div>
+                                <div class="col-lg-3 pt-4 px-4 border-right">
+                                    <h4 class="text-primary">Anna Genadieva</h4>
+                                    <p>Yoga - Meditation</p>
+                                </div>
+                                <div class="col-lg-3 pt-4 px-4 border-right">
+                                    <p class="card-text"><i class="fas fa-wallet"></i> 25&euro;</i></p>
+                                    <p class="card-text"><i class="far fa-calendar-alt"></i> Tuesday 29/01/2019, 17:00
+                                    </p>
+                                    <p class="card-text"><i class="fas fa-map-marked-alt"></i> Three Laloun 101,
+                                        PETRALONA, ATTIKI</p>
+                                </div>
+                                <div class="col-lg-3 p-5">
+                                    <button type="button" class="btn btn-info btn-block">REVIEW <i
+                                            class="far fa-star"></i></button>
+                                    <button type="button" class="btn btn-outline-info btn-block">NEW
+                                        APPOINTMENT</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid py-1">
+                        <div class="container">
+                            <div class="row bg-light border">
+                                <div class="col-lg-3 border-right text-center pt-5">
+                                    <img class="img-fluid" src="./img/sample_trainer_1_thumb.jpg" alt="Trainer 1">
+                                </div>
+                                <div class="col-lg-3 pt-4 px-4 border-right">
+                                    <h4 class="text-primary">Anna Genadieva</h4>
+                                    <p>Yoga - Meditation</p>
+                                </div>
+                                <div class="col-lg-3 pt-4 px-4 border-right">
+                                    <p class="card-text"><i class="fas fa-wallet"></i> 25&euro;</i></p>
+                                    <p class="card-text"><i class="far fa-calendar-alt"></i> Tuesday 29/01/2019, 17:00
+                                    </p>
+                                    <p class="card-text"><i class="fas fa-map-marked-alt"></i> Three Laloun 101,
+                                        PETRALONA, ATTIKI</p>
+                                </div>
+                                <div class="col-lg-3 p-5">
+                                    <button type="button" class="btn btn-info btn-block">REVIEW <i
+                                            class="far fa-star"></i></button>
+                                    <button type="button" class="btn btn-outline-info btn-block">NEW
+                                        APPOINTMENT</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MYMESSAGES TAB -->
+                <div class="tab-pane fade" id="pills-myMessages" role="tabpanel" aria-labelledby="pills-myMessages-tab">
+                    <div class="container py-3 text-center">
+                        <h2>Received Messages</h2>
+                    </div>
+
+                    <div class="container">
+                        <div class="table-responsive-lg">
+                            <table class="table table-striped table-bordered" id="receivedMessages">
+                                <thead>
+                                    <tr class="table-info">
+                                        <th></th>
+                                        <th>Sender</th>
+                                        <th>Message</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>I will train your ass hard as hell!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="container py-3 text-center">
+                        <h2>Sent Messages</h2>
+                    </div>
+
+                    <div class="container">
+                        <div class="table-responsive-lg">
+                            <table class="table table-striped table-bordered" id="sentMessages">
+                                <tr class="table-info">
+                                    <th></th>
+                                    <th>To</th>
+                                    <th>Message</th>
+                                    <th>Date</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>Take fora and I'm coming!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>Take fora and I'm coming!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>Take fora and I'm coming!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>Take fora and I'm coming!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>Take fora and I'm coming!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Elina</td>
+                                        <td>Take fora and I'm coming!</td>
+                                        <td>23-03-2019 00:34</td>
+                                    </tr>
+                                </tbody>
+                                <!-- <tfoot>
+                                    <tr>
+                                        <td></td>
+                                        <th>To</th>
+                                        <th>Message</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </tfoot> -->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MYREVIEWS TAB -->
+                <div class="tab-pane fade" id="pills-myReviews" role="tabpanel" aria-labelledby="pills-myReviews-tab">
+                    ...
+                </div>
+
+                <!-- MYPROFILE TAB -->
+                <div class="tab-pane fade show active" id="pills-myProfile" role="tabpanel"
+                    aria-labelledby="pills-home-tab">
+                    ...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGOUT MODAL -->
+    <div class="modal fade" id="logoutModal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        Are you sure you want to logout?
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button class="btn btn-danger btn-block col-sm-4">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer id="main-footer" class="text-center p-4 bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="text-center text-white">Copyright 2019 &copy; fit.io</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Optional JavaScript -->
+    <script>
+        $(document).ready(function () {
+            var r = $('#receivedMessages').DataTable({
+                "columnDefs": [{
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": 0
+                }],
+                "order": [[1, 'asc']]
+            });
+
+            r.on('order.dt search.dt', function () {
+                r.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+
+            var t = $('#sentMessages').DataTable({
+                "columnDefs": [{
+                    "searchable": false,
+                    "orderable": false,
+                    "targets": 0
+                }],
+                "order": [[1, 'asc']]
+            });
+
+            t.on('order.dt search.dt', function () {
+                t.column(0, { search: 'applied', order: 'applied' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1;
+                });
+            }).draw();
+        });
+    </script>
+</body>
+
+</html>
