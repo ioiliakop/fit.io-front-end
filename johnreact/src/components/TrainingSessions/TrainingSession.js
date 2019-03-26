@@ -1,30 +1,5 @@
 import React, { Component } from 'react';
-import ContactModalButton from './ContactModalButton';
-import ReviewModalButton from './ReviewModalButton';
-
-// Different Actions available for past and future training sessions
-function FutureOrPastActionButtons(props) {
-    if (props.timeStatus === 'PAST') {
-        return (
-            <React.Fragment>
-                <ReviewModalButton trsData={props.trsData} />
-                {/* <button type="button" className="btn btn-info btn-block">REVIEW <i className="far fa-star"></i></button> */}
-                <button type="button" className="btn btn-outline-info btn-block">NEW APPOINTMENT</button>
-            </React.Fragment>
-        );
-    } else if (props.timeStatus === 'FUTURE') {
-        return (
-            <React.Fragment>
-                <ContactModalButton trsData={props.trsData} />
-                {/* <button type="button" className="btn btn-primary btn-block" data-toggle="modal" data-target={'cm_'+props.trsData.id}>CONTACT TRAINER</button> */}
-                {/* <ContactModal trsDt={props.trsData} /> */}
-                <button type="button" className="btn btn-danger btn-block">CANCEL <i className="fas fa-ban"></i></button>
-            </React.Fragment>
-        );
-    } else {
-        console.log('Unknown timeStatus for Training Session:', props.timeStatus);
-    }
-}
+import AvailableActionsButtons from './AvailableActionsButtons';
 
 class TrainingSession extends Component {
     render() {
@@ -46,7 +21,7 @@ class TrainingSession extends Component {
                                 <p className="card-text"><i className="fas fa-map-marked-alt"></i> &nbsp;{this.props.trs.area.address}, {this.props.trs.area.city}</p>
                             </div>
                             <div className="col-lg-3 p-5">
-                                <FutureOrPastActionButtons timeStatus={this.props.timeStatus} trsData={this.props.trs} />
+                                <AvailableActionsButtons timeStatus={this.props.timeStatus} trsData={this.props.trs} />
                             </div>
                         </div>
                     </div>
