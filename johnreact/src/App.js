@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from "./components/Header";
-import Landing from "./components/Landing";
+import Header from "./components/Header/Header";
+import Landing from "./components/Landing/Landing";
 import Footer from "./components/Footer";
 import Register from "./components/Register";
 import TempLogin from "./components/TempLogin-LEGACY";
@@ -10,7 +10,7 @@ import InboxMessages from './components/Messages/InboxMessages';
 import OutboxMessages from './components/Messages/OutboxMessages';
 import './App.css';
 import UserContext from './context/user-context';
-import UserNavbar from './components/UserNavbar';
+import UserNavbar from './components/User/UserNavbar';
 import TrainingSessions from './components/TrainingSessions/TrainingSessions';
 import PastTrainingSessions from './components/TrainingSessions/PastTrainingSessions';
 import FutureTrainingSessions from './components/TrainingSessions/FutureTrainingSessions';
@@ -55,7 +55,7 @@ class App extends Component {
           <Header />
           {this.state.isLoggedIn && <UserNavbar />}
           <Switch>
-            <Route path="/register/:rolename" exact component={Register} /> {/*needs consideration to restrain possible values/routes*/}
+            <Route path="/register/:rolename" exact component={Register} /> {/*perhaps needs consideration to restrain possible values/routes*/}
             <Route path="/messages/out" exact component={OutboxMessages} />
             <Route path="/messages/in" exact component={InboxMessages} />
             {/* <Route path="/messages/out" exact render={() => <Messages folderType='outbox' />} /> */}

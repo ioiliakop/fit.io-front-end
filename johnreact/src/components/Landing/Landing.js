@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import LandingMain from "./Landing/LandingMain";
-import ThreeSteps from "./Landing/ThreeSteps";
-import ReadyToGetStarted from "./Landing/ReadyToGetStarted";
+import LandingMain from "./LandingMain";
+import ThreeSteps from "./ThreeSteps";
+import ReadyToGetStarted from "./ReadyToGetStarted";
 
 class Landing extends Component {
     render() {

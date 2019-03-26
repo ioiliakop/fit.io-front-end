@@ -1,3 +1,6 @@
+// UNUSED CURRENTLY
+// TESTING FAILED
+
 $(document).ready(function () {
     var t = $('#messagesTable').DataTable({
         "columnDefs": [{

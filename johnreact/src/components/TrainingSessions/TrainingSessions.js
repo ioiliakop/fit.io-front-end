@@ -25,7 +25,6 @@ class TrainingSessions extends Component {
         // this.setTrainingSessionRef = trs => {
         //     this[`trainingSession${i}`] = trs;
         // };
-
         // this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
     }
 

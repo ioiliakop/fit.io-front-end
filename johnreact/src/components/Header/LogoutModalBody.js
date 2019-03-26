@@ -1,6 +1,28 @@
 import React, { Component } from 'react';
+import UserContext from '../../context/user-context'
 
 class LogoutModalBody extends Component {
+
+    static contextType = UserContext;
+    
+    handleLogout = () => {
+        const url = 'http://localhost:8080/login/logout';
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'X-MSG-AUTH': localStorage.getItem('token'),
+            }
+        }).then(response => {
+            console.log('Response status:', response.status);
+            // Handle logout action to localStorage
+            if (response.status === 200) {
+                console.log('Wiping local storage...');
+                localStorage.clear();
+                this.context.updateUserContext();
+            }
+        }).catch(error => console.error('Error:', error));
+    }
     
     render() {
         return (
@@ -17,7 +39,7 @@ class LogoutModalBody extends Component {
                         </div>
                         </div>
                         <div className="modal-footer justify-content-center">
-                            <button className="btn btn-danger btn-block col-sm-4" data-dismiss="modal" onClick={this.props.handle}>Logout</button>
+                            <button className="btn btn-danger btn-block col-sm-4" data-dismiss="modal" onClick={this.handleLogout}>Logout</button>
                         </div>
                     </div>
                 </div>

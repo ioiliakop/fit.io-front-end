@@ -9,7 +9,7 @@ class RegisterNav extends Component {
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Register</a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdownRegisterLink">
-                    {/* semi-working - needs consideration */}
+                    {/* semi-working - needs some consideration - working atm*/}
                     <Link className="dropdown-item" to="/register/user"> Register as User</Link>
                     <Link className="dropdown-item" to="/register/trainer"> Register as Trainer</Link>
                 </div>
