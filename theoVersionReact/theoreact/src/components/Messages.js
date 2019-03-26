@@ -38,11 +38,11 @@ class Messages extends Component {
             return (
               <div class="container">
                 <div class="row col-md-6 col-md-offset-2 custyle">
+                  <a href="#" class="btn btn-primary btn-xs pull-right">
+                    <b>+</b> Send new Message
+                  </a>
                   <table class="table table-striped custab">
                     <thead>
-                      <a href="#" class="btn btn-primary btn-xs pull-right">
-                        <b>+</b> Add new categories
-                      </a>
                       <tr>
                         <th>ID</th>
                         <th>Sender</th>
@@ -51,26 +51,11 @@ class Messages extends Component {
                         <th class="text-center">Action</th>
                       </tr>
                     </thead>
-                    {messages.map(
-                      message => {
-                        console.log(message);
-                        return <Message message={message} />;
-                      }
-
-                      // <tr>
-                      //   <td>1</td>
-                      //   <td>News</td>
-                      //   <td>News Cate</td>
-                      //   <td class="text-center">
-                      //     <a class="btn btn-info btn-xs" href="#">
-                      //       <span class="glyphicon glyphicon-edit" /> Edit
-                      //     </a>
-                      //     <a href="#" class="btn btn-danger btn-xs">
-                      //       <span class="glyphicon glyphicon-remove" /> Del
-                      //     </a>
-                      //   </td>
-                      // </tr>
-                    )}
+                    <tbody>
+                      {messages.map(message => {
+                        return <Message key={message.id} message={message} />;
+                      })}
+                    </tbody>
                   </table>
                 </div>
               </div>

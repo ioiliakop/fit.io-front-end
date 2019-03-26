@@ -73,6 +73,7 @@ class Header extends Component {
                         <React.Fragment>
                           <li className="nav-item">
                             <Link
+                              to="#"
                               className="nav-link"
                               onClick={this.logout.bind(this, dispatch)}
                             >
@@ -215,16 +216,5 @@ class Header extends Component {
     );
   }
 }
-
-const linkStyle = {
-  color: "#fff",
-  textDecoration: "none"
-};
-
-const headerStyle = {
-  background: "red",
-  color: "white",
-  textAlign: "center"
-};
 
 export default withRouter(Header);

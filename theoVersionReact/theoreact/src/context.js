@@ -19,28 +19,37 @@ export class Provider extends Component {
         this.setState({
           loggedIn: action.payload
         });
+        break;
       case "FILL_TRAINING_SESSIONS":
         return {
           ...state,
           trainingSessions: action.payload
         };
       case "FILL_LOGGEDINUSER":
-        return {
-          ...state,
+        this.setState({
           loggedInUser: action.payload
-        };
+        });
+        break;
+      // return {
+      //   ...state,
+      //   loggedInUser: action.payload
+      // };
       case "FILL_TOKEN_IN_STATE":
-        console.log("ta minimata apothikevontai kai sto context.js");
         this.setState({
           token: action.payload
         });
+        break;
       case "FILL_INBOX_MESSAGES":
         this.setState({
           inbox: action.payload
         });
+        break;
       case "TEST":
+        console.log("+++++++++++++++++++++");
         console.log("to state einaii ayti ti stigmi");
         console.log(this.state);
+        console.log("+++++++++++++++++++++");
+        break;
       default:
         return state;
     }

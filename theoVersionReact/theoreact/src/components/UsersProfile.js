@@ -1,27 +1,8 @@
 import React, { Component } from "react";
 import "./stylesheets/profile.css";
 import { Consumer } from "../context";
-import { Link } from "react-router-dom";
 
 class UsersProfile extends Component {
-  goToMessages = (loggedInUser, token, dispatch) => {
-    window.$.ajax({
-      type: "GET",
-      contentType: "application/json; charset=utf-8",
-      url: "http://localhost:8080/messages/sent",
-      headers: { "X-MSG-AUTH": token },
-      dataType: "json",
-      async: true,
-      success: messages => {
-        dispatch({ type: "FILL_INBOX_MESSAGES", payload: messages });
-        this.props.history.push("/messages");
-      },
-      error: () => {
-        alert("errorr");
-      }
-    });
-  };
-
   render() {
     return (
       <Consumer>
@@ -52,18 +33,6 @@ class UsersProfile extends Component {
                             <i class="ace-icon fa fa-plus-circle bigger-120" />
                             <span class="bigger-110">Add as a friend</span>
                           </a>
-                          <button
-                            onClick={this.goToMessages.bind(
-                              this,
-                              loggedInUser,
-                              token,
-                              dispatch
-                            )}
-                            class="btn btn-sm btn-block btn-primary"
-                          >
-                            <i class="ace-icon fa fa-envelope-o bigger-110" />
-                            <span class="bigger-110">Your Messages</span>
-                          </button>
                         </div>
 
                         <div class="col-xs-12 col-sm-9">
