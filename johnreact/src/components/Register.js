@@ -32,13 +32,16 @@ class Register extends Component {
 
     componentDidUpdate(prevProps, prevState) {
         console.log('Previous roleId:', prevState.roleId);
+        // We MUST make this check, otherwise the component will never stop updating (Infinite loop)
         if (prevState.roleId !== ((this.props.match.params.rolename === 'trainer') ? 2 : 1)) {
             this.setState({ roleId: ((prevState.roleId === 2) ? 1 : 2) });
         }
         console.log('roleId after component did update:', this.state.roleId);
     }
 
+    // Used to redirect after registration
     renderRedirect() {
+        // This check will probably be romeved/not be needed
         if (localStorage.getItem('token')) {
             console.log('Already loggedIn user. Cannot register');
             return <Redirect to='/' />

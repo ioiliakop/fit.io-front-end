@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import UserContext from '../../context/user-context';
 import TrainingSession from '../TrainingSessions/TrainingSession';
-import PastTrainingSession from '../TrainingSessions/PastTrainingSession';
+import PastTrainingSession from './PastTrainingSession-LEGACY';
 import ButtonLink from '../../components/Utils/ButtonLink';
 
 class TrainingSessions extends Component {
@@ -64,7 +64,6 @@ class TrainingSessions extends Component {
         // const otherdate = new Date('2019-03-17 16:00:00');
         // console.log('Other date:', otherdate)
         // console.log('valueOf', otherdate.valueOf());
-
 
         fetch(url, {
             method: 'GET',
