@@ -11,67 +11,52 @@ class AvailableActionsButtons extends Component {
 
     constructor(props) {
         super(props);
-        // this.sessionIsReviewed = this.sessionIsReviewed.bind(this);
         this.state = {
             reviewed: false,
             review: {}
         }
+        this.fetchSessionReview = this.fetchSessionReview.bind(this);
     }
 
     componentDidMount() {
         console.log('AvailableActionsButtons didMount');
         console.log('TRS is:', this.props.trsData.id);
         console.log('TRS timeStatus:', this.props.timeStatus);
-        // check if current training session is reviewed
-        // if yes we pass the review as props to relative child button/modal
+
         if (this.props.timeStatus === 'PAST') {
-            const url = 'http://localhost:8080/session/review/' + this.props.trsData.id;
-            fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                }
-            }).then(response => {
-                console.log('sessionIsReviewed Response status:', response.status);
-                console.log('Response', response);
-                try {
-                    response.json().then(data => {
-                        // console.log('sessionIsReviewed Response status:', response.status);
-                        console.log('Training session has already been reviewed');
-                        console.log('Review Data returned:', data);
-                        this.setState({ reviewed: true , review: data });
-                    })
-                } catch (e) {
-                    console.log('No review exists for this training session');
-                }
-            }).catch(error => console.error('Error:', error));
+            this.fetchSessionReview();
         }
     }
 
-    // Will be used to check if user has already reviewed the session
-    // Back not sending proper response yet
-    // Implemented directly on componentDidMount for the time being
-    // sessionIsReviewed() {
-    //     const url = 'http://localhost:8080/session/review/' + this.props.trsData.id;
-    //     fetch(url, {
-    //         method: 'GET',
-    //         headers: {
-                // 'X-MSG-AUTH': localStorage.getItem('token'),
-    //             'Accept': 'application/json',
-    //         }
-    //     }).then(response => {
-    //         response.json().then(data => {
-    //             console.log('sessionIsReviewed Response status:', response.status);
-    //             console.log('sessionIsReviewed Data returned:', data);
-    //         })
-    //     }).catch(error => console.error('Error:', error));
-    // }
+    // check if current training session is reviewed
+    // if yes we set state accordingly and pass it as props to relative child button/modal
+    fetchSessionReview() {
+        const url = 'http://localhost:8080/session/review/' + this.props.trsData.id;
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+            }
+        }).then(response => {
+            console.log('sessionIsReviewed Response status:', response.status);
+            console.log('Response', response);
+            try {
+                response.json().then(data => {
+                    console.log('Training session has already been reviewed');
+                    console.log('Review Data returned:', data);
+                    this.setState({ reviewed: true, review: data });
+                })
+            } catch (e) {
+                console.log('No review exists for this training session');
+            }
+        }).catch(error => console.error('Error:', error));
+    }
 
     render() {
         if (this.props.timeStatus === 'PAST') {
             return (
                 <React.Fragment>
-                    {this.state.reviewed ? <ReviewedModalButton trsData={this.props.trsData} review={this.state.review} /> : <ReviewModalButton trsData={this.props.trsData} />}
+                    {this.state.reviewed ? <ReviewedModalButton trsData={this.props.trsData} review={this.state.review} /> : <ReviewModalButton trsData={this.props.trsData} handle={this.fetchSessionReview} />}
                     {/* <ReviewModalButton trsData={this.props.trsData} /> */}
                     {/* <button type="button" className="btn btn-info btn-block">REVIEW <i className="far fa-star"></i></button> */}
                     <button type="button" className="btn btn-outline-info btn-block">NEW APPOINTMENT</button>

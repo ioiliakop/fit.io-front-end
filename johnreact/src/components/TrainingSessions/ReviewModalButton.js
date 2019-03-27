@@ -28,6 +28,9 @@ class ReviewModalButton extends Component {
             console.log('Response status:', response.status);
             if (response.status === 200) {
                 console.log('Review Submitted');
+                // After review submission user should no longer have option to review
+                // We update the state of the parent element to properly rerender button/modal
+                this.props.handle();
             }
         }).catch(error => console.error('Error:', error));
     }
