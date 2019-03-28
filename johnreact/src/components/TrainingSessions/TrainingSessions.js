@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import UserContext from '../../context/user-context';
 import TrainingSession from '../TrainingSessions/TrainingSession';
-import PastTrainingSession from './PastTrainingSession-LEGACY';
 import ButtonLink from '../../components/Utils/ButtonLink';
 
 class TrainingSessions extends Component {
@@ -18,7 +17,7 @@ class TrainingSessions extends Component {
         } else if (this.props.folderType === 'PAST') {
             this.trainingSessionsTitle = 'Past';
         } else {
-            console.log('Unknown messages folder type');
+            console.error('Unknown messages folder type');
         }
 
         // Trying callback refs
@@ -127,9 +126,9 @@ class TrainingSessions extends Component {
                         console.log('Training Session date value:', trsDate.valueOf());
 
                         // Adds only corresponding training sessions to array returned
-                        if (now.valueOf() > trsDate.valueOf() && this.props.folderType == 'PAST') {
+                        if (now.valueOf() > trsDate.valueOf() && this.props.folderType === 'PAST') {
                             return <TrainingSession key={t.id} trs={t} timeStatus="PAST" />
-                        } else if (now.valueOf() < trsDate.valueOf() && this.props.folderType == 'FUTURE'){
+                        } else if (now.valueOf() < trsDate.valueOf() && this.props.folderType === 'FUTURE'){
                             return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" />
                             // ref={trs => { this[`trainingSession${id}`] = trs; }}
                         }
