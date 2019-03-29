@@ -17,15 +17,17 @@ class ReviewModalButton extends Component {
         console.log('Inside handleSubmitReview');
         console.log('ReviewRef:', this.review.current.value);
         const url = 'http://localhost:8080/session/add-comment/' + this.props.trsData.id;
+        console.log('url:', url);
 
         fetch(url, {
             method: 'POST',
-            // headers: {
-            //     'X-MSG-AUTH': localStorage.getItem('token'),
-            // },
+            headers: {
+                'X-MSG-AUTH': localStorage.getItem('token'),
+            },
             body: this.review.current.value
         }).then(response => {
             console.log('Response status:', response.status);
+            console.log(response);
             if (response.status === 200) {
                 console.log('Review Submitted');
                 // After review submission user should no longer have option to review

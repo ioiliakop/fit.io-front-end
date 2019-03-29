@@ -10,7 +10,7 @@ class Messages extends Component {
 
     constructor(props) {
         super(props);
-        this.messagesPerPageOptions = [3, 6, 9];
+        this.messagesPerPageOptions = [5, 10, 25];
         this.state = {
             currentPage: 1,
             totalPages: 1,
@@ -92,9 +92,10 @@ class Messages extends Component {
                 console.log(data);
                 // if (response.status === 200) {
                 console.log('Saving fetched messages to state');
-                let lastPageMessages = data.count % this.state.messagesPerPage;
+                const lastPageMessages = data.count % this.state.messagesPerPage;
+                const pagesNumber = (lastPageMessages > 0) ? (((data.count - lastPageMessages) / this.state.messagesPerPage) + 1) : (data.count / this.state.messagesPerPage);
                 this.setState({
-                    totalPages: ((data.count - lastPageMessages) / this.state.messagesPerPage) + 1,
+                    totalPages: pagesNumber,
                     totalMessages: data.count,
                     messages: data.results
                 });
