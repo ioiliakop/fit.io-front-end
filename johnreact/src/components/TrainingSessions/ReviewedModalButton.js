@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
 
+function Rating (props) {
+    return (
+        <React.Fragment>
+         {Array.from({ length: 5 }, (v, i) => {
+         return ((i+1) <= props.rating) ? <i key={i} className="fas fa-star" style={{color: '#EEBD01'}}></i> : <i key={i} className="far fa-star" style={{color: '#EEBD01'}}></i>;
+        })}
+        </React.Fragment>
+    );
+}
+
 class ReviewedModalButton extends Component {
 
     render() {
@@ -31,6 +41,7 @@ class ReviewedModalButton extends Component {
                             <hr></hr>
                             <div className="mt-3 text-center">
                                 <h5>Your Review:</h5>
+                                <Rating rating={this.props.review.rating} />
                                 <div>{this.props.review.comment}</div>
                                 <small className="text-muted">{(new Date(this.props.review.date)).toDateString()}</small>
                             </div>

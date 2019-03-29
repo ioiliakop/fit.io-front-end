@@ -40,7 +40,7 @@ function Next(props) {
 
 // This Component 
 function PageNumberIcon(props) {
-    let numberOfSideButtons = 2; // We can adjust this. Number of buttons on either side of active one
+    let numberOfSideButtons = 3; // We can adjust this. Number of buttons on either side of active one
     let leftBreakPoint = props.activePage - (numberOfSideButtons + 1);
     let rightBreakPoint = props.activePage + (numberOfSideButtons + 1);
 
