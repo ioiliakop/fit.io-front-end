@@ -4,17 +4,12 @@ import Header from "./components/Header/Header";
 import Landing from "./components/Landing/Landing";
 import Footer from "./components/Footer";
 import Register from "./components/Register";
-// import TempLogin from "./components/TempLogin-LEGACY";
-// import Messages from "./components/Messages/Messages";
 import InboxMessages from './components/Messages/InboxMessages';
 import OutboxMessages from './components/Messages/OutboxMessages';
-// import './App.css';
 import UserContext from './context/user-context';
 import UserNavbar from './components/User/UserNavbar';
-// import TrainingSessions from './components/TrainingSessions/TrainingSessions';
 import PastTrainingSessions from './components/TrainingSessions/PastTrainingSessions';
 import FutureTrainingSessions from './components/TrainingSessions/FutureTrainingSessions';
-import MessagesPaginated from './components/Messages/MessagesPaginated';
 import MyAccount from './components/User/MyAccount';
 
 class App extends Component {
@@ -59,7 +54,7 @@ class App extends Component {
           <Switch>
             <Route path="/register/:rolename" exact component={Register} /> {/*perhaps needs consideration to restrain possible values/routes*/}
             <Route path="/messages/out" exact component={OutboxMessages} />
-            <Route path="/messages/in" exact component={InboxMessages} />
+            <Route path="/messages/" exact component={InboxMessages} />
             {/* <Route path="/messages/out" exact render={() => <Messages folderType='outbox' />} /> */}
             <Route path="/training-sessions" exact component={FutureTrainingSessions} />
             <Route path="/training-sessions/past" exact component={PastTrainingSessions} />

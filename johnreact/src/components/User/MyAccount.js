@@ -5,6 +5,8 @@ class MyAccount extends Component {
 
     static contextType = UserContext;
 
+    handleImage
+
     render() {
         return (
             <div className="container py-3 my-3">
@@ -72,9 +74,10 @@ class MyAccount extends Component {
                         <div><i className="far fa-user-circle fa-8x"></i></div>
                         <div className="my-2">John Doe</div>
                         <div className="custom-file text-left">
-                            <input type="file" className="custom-file-input" id="customFile" />
-                            <label className="custom-file-label" htmlFor="customFile">Upload Picture</label>
+                            <input type="file" className="custom-file-input" id="profilePic" accept=".jpg, .png, .gif" />
+                            <label className="custom-file-label" htmlFor="profilePic">Upload Picture</label>
                         </div>
+                        <img src="../../../userimages/user1.jpg"/> {/* left for testing - still considering where to upload */}
                         <button type="button" className="btn btn-primary btn-block my-3">Save Picture</button>
                     </div>
 
