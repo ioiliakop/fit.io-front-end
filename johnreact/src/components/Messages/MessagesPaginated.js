@@ -26,24 +26,24 @@ class Messages extends Component {
         if (this.props.folderType === 'inbox') {
             this.messagesTitle = 'Received';
             this.senderOrReceiver = 'Sender';
-            this.fetchUrl = 'http://localhost:8080/messages/inbox?';
+            this.fetchUrl = 'http://localhost:8080/messages/inbox';
         } else if (this.props.folderType === 'outbox') {
             this.messagesTitle = 'Sent';
             this.senderOrReceiver = 'Receiver';
-            this.fetchUrl = 'http://localhost:8080/messages/sent?';
+            this.fetchUrl = 'http://localhost:8080/messages/sent';
         } else {
-            console.log('Unknown messages folder type');
+            console.error('Unknown messages folder type');
         }
     }
 
     static contextType = UserContext;
 
     // handle passed to PaginationFooter child
-    setActivePage(activePage) {
+    setActivePage(newActivePage) {
         console.log('Current page before change', this.state.currentPage);
-        console.log('Active Page passed as param', activePage);
+        console.log('Active Page passed as param', newActivePage);
         this.setState({
-            currentPage: activePage,
+            currentPage: newActivePage,
         } , () => this.fetchPageMessages());
         // setState is asynchronous
         // We had to update messages with callback to make sure they get updated AFTER the value of the current page has been set
@@ -77,7 +77,7 @@ class Messages extends Component {
     // fetches messages based on current state
     fetchPageMessages() {
         const startIndex = (this.state.currentPage - 1) * this.state.messagesPerPage;
-        const url = this.fetchUrl + 'index1=' + startIndex + '&index2=' + this.state.messagesPerPage;
+        const url = this.fetchUrl + '?index1=' + startIndex + '&index2=' + this.state.messagesPerPage;
         console.log('url for messages fetch:', url);
 
         fetch(url, {

@@ -38,15 +38,15 @@ function Next(props) {
     );
 }
 
-// This Component 
+// Decides what page navigation icons to render based on props
 function PageNumberIcon(props) {
-    let numberOfSideButtons = 3; // We can adjust this. Number of buttons on either side of active one
-    let leftBreakPoint = props.activePage - (numberOfSideButtons + 1);
-    let rightBreakPoint = props.activePage + (numberOfSideButtons + 1);
+    const numberOfSideButtons = 2; // We can adjust this. Number of navigation buttons on both sides of active one, first and last page exclusive
+    const leftBreakPoint = props.activePage - (numberOfSideButtons + 1);
+    const rightBreakPoint = props.activePage + (numberOfSideButtons + 1);
 
     // We want to show as number buttons these cases
     if (props.pageNumber === 1 || props.pageNumber === props.lastPage || (props.pageNumber > leftBreakPoint && props.pageNumber < rightBreakPoint)) {
-        // We distinguish if it will be an active button with the corresponding page link or the current page button
+        // We distinguish if it will be a navigation button with the corresponding page link or the current page button
         if (props.activePage !== props.pageNumber)
             return (
                 <li className="page-item" onClick={() => props.setActivePage(props.pageNumber)}><a className="page-link" href="#">{props.pageNumber}</a></li>

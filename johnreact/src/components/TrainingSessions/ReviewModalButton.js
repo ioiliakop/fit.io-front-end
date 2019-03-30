@@ -1,22 +1,36 @@
 import React, { Component } from 'react';
+import Rating from 'react-rating';
 
 class ReviewModalButton extends Component {
 
     constructor(props) {
         super(props);
         this.review = React.createRef();
+        this.state = {
+            rating: 0
+        }
         this.handleSubmitReview = this.handleSubmitReview.bind(this);
+        this.handleRatingChange = this.handleRatingChange.bind(this);
     }
 
+    // only for checking data atm - will probably be ommitted later
     componentDidMount() {
         console.log('trsData:', this.props.trsData);
         console.log('rm_' + this.props.trsData.id);
     }
 
+    // setState could be called directly on onChange of Rating Component - will probably be ommitted later
+    handleRatingChange(newValue) {
+        console.log('Previous rating value:', this.state.rating);
+        console.log('Rating value selected:', newValue);
+        this.setState({rating: newValue});
+    }
+
     handleSubmitReview() {
         console.log('Inside handleSubmitReview');
         console.log('ReviewRef:', this.review.current.value);
-        const url = 'http://localhost:8080/session/add-comment/' + this.props.trsData.id;
+        console.log('Review Rating:', this.state.rating);
+        const url = 'http://localhost:8080/session/add-comment/' + this.props.trsData.id + '/' + this.state.rating;
         console.log('url:', url);
 
         fetch(url, {
@@ -54,10 +68,6 @@ class ReviewModalButton extends Component {
                                 <div className="row text-center mb-2">
                                     <div className="col-md-8 mx-auto">For your {this.props.trsData.trainingType.title} training session</div>
                                 </div>
-                                {/* <div className="col-md-6 border mx-auto">
-                                    <p><i className="far fa-calendar-alt"></i> &nbsp;{this.props.trsData.date}, {this.props.trsData.time}</p>
-                                    <p><i className="fas fa-map-marked-alt"></i> &nbsp;{this.props.trsData.area.address}, {this.props.trsData.area.city}</p>
-                                </div> */}
                                 <div className="col-8 col-sm-6 mx-auto">
                                     <i className="far fa-calendar-alt"></i> &nbsp;{this.props.trsData.date}, {this.props.trsData.time}
                                 </div>
@@ -67,10 +77,12 @@ class ReviewModalButton extends Component {
                                 <div className="col-8 col-sm-6 mx-auto">
                                     <i className="fas fa-wallet"></i> &nbsp;{this.props.trsData.trainer.price}&euro;
                                 </div>
+                                <hr />
                                 <form>
-                                    <div className="form-group">
-                                        <label htmlFor={'review-text_' + this.props.trsData.id} className="col-form-label">Review:</label>
-                                        <textarea className="form-control" id={'review-text_' + this.props.trsData.id} ref={this.review} required ></textarea>
+                                    <div className="form-group text-center">
+                                        {/* <label htmlFor={'review-text_' + this.props.trsData.id} className="col-form-label"><h5>Review: </h5></label> */}
+                                        <div><Rating emptySymbol="far fa-star" fullSymbol="fas fa-star" style={{color: '#EEBD01'}} initialRating={this.state.rating} onClick={this.handleRatingChange}/></div>
+                                        <textarea className="form-control mt-3" id={'review-text_' + this.props.trsData.id} ref={this.review} required ></textarea>
                                     </div>
                                 </form>
                             </div>
