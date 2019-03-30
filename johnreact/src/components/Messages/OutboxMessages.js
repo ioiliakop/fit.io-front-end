@@ -6,7 +6,7 @@ class OutboxMessages extends Component {
     render() {
         return (
             // <Messages folderType='outbox'/>
-            <MessagesPaginated folderType='outbox' />
+            <MessagesPaginated folderType='OUTBOX' />
         );
     }
 }

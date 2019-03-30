@@ -6,7 +6,7 @@ class InboxMessages extends Component {
     render() {
         return (
             // <Messages folderType='inbox'/>
-            <MessagesPaginated folderType='inbox' />
+            <MessagesPaginated folderType='INBOX' />
         );
     }
 }

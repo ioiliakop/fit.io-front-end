@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import ReplyModalButton from './ReplyModalButton';
 
 class MessageRow extends Component {
 
     render() {
         return (
             <tr>
-                <td>{this.props.i}</td>
-                <td>{this.props.folderType === 'inbox' ? this.props.msg.sender.firstName +' '+ this.props.msg.sender.lastName : this.props.msg.receiver.username}</td>
+                <th scope="row">{this.props.i}</th>
+                <td>{this.props.folderType === 'INBOX' ? this.props.msg.sender.firstName +' '+ this.props.msg.sender.lastName : this.props.msg.receiver.username}</td>
                 <td>{this.props.msg.text}</td>
                 <td>{(new Date(this.props.msg.date)).toDateString()} {(new Date(this.props.msg.date)).toLocaleTimeString()}</td>
+                <td><ReplyModalButton msg={this.props.msg} folderType={this.props.folderType} /></td>
             </tr>
         );
     }

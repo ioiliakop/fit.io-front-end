@@ -23,11 +23,11 @@ class Messages extends Component {
         this.fetchPageMessages = this.fetchPageMessages.bind(this);
 
         // Check will probably be moved to a HOC later on for better maintanability
-        if (this.props.folderType === 'inbox') {
+        if (this.props.folderType === 'INBOX') {
             this.messagesTitle = 'Received';
             this.senderOrReceiver = 'Sender';
             this.fetchUrl = 'http://localhost:8080/messages/inbox';
-        } else if (this.props.folderType === 'outbox') {
+        } else if (this.props.folderType === 'OUTBOX') {
             this.messagesTitle = 'Sent';
             this.senderOrReceiver = 'Receiver';
             this.fetchUrl = 'http://localhost:8080/messages/sent';
@@ -148,13 +148,14 @@ class Messages extends Component {
 
                     <div className="container">
                         <div className="table-responsive-lg">
-                            <table className="table table-striped table-bordered" id="messagesTable">
+                            <table className="table table-striped table-borderless table-hover" id="messagesTable">
                                 <thead>
                                     <tr className="table-primary">
                                         <th>#</th>
                                         <th>{this.senderOrReceiver}</th>
                                         <th>Message</th>
                                         <th>Date</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
