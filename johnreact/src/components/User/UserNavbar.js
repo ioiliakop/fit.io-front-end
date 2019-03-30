@@ -19,7 +19,7 @@ class UserNavbar extends Component {
                     <NavLink label="My Training Sessions" to="/training-sessions" location={this.props.location.pathname} />
                     <NavLink label="My Messages" to="/messages/in" location={this.props.location.pathname} />
                     <NavLink label="My Reviews" to="/temp2" location={this.props.location.pathname} />
-                    <NavLink label="My Profile" to="/temp3" location={this.props.location.pathname} />
+                    <NavLink label="My Account" to="/myaccount" location={this.props.location.pathname} />
                 </div>
             </div>
         );

@@ -82,7 +82,7 @@ class ReviewModalButton extends Component {
                                     <div className="form-group text-center">
                                         {/* <label htmlFor={'review-text_' + this.props.trsData.id} className="col-form-label"><h5>Review: </h5></label> */}
                                         <div><Rating emptySymbol="far fa-star" fullSymbol="fas fa-star" style={{color: '#EEBD01'}} initialRating={this.state.rating} onClick={this.handleRatingChange}/></div>
-                                        <textarea className="form-control mt-3" id={'review-text_' + this.props.trsData.id} ref={this.review} required ></textarea>
+                                        <textarea className="form-control mt-3" id={'review-text_' + this.props.trsData.id} ref={this.review} required placeholder={"Leave a rating and a comment for your experience with " + this.props.trsData.trainer.firstName}></textarea>
                                     </div>
                                 </form>
                             </div>

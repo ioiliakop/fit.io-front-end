@@ -8,13 +8,14 @@ import Register from "./components/Register";
 // import Messages from "./components/Messages/Messages";
 import InboxMessages from './components/Messages/InboxMessages';
 import OutboxMessages from './components/Messages/OutboxMessages';
-import './App.css';
+// import './App.css';
 import UserContext from './context/user-context';
 import UserNavbar from './components/User/UserNavbar';
 // import TrainingSessions from './components/TrainingSessions/TrainingSessions';
 import PastTrainingSessions from './components/TrainingSessions/PastTrainingSessions';
 import FutureTrainingSessions from './components/TrainingSessions/FutureTrainingSessions';
 import MessagesPaginated from './components/Messages/MessagesPaginated';
+import MyAccount from './components/User/MyAccount';
 
 class App extends Component {
 
@@ -62,6 +63,7 @@ class App extends Component {
             {/* <Route path="/messages/out" exact render={() => <Messages folderType='outbox' />} /> */}
             <Route path="/training-sessions" exact component={FutureTrainingSessions} />
             <Route path="/training-sessions/past" exact component={PastTrainingSessions} />
+            <Route path="/myaccount" exact component={MyAccount} />
             {/* <Route path="/login" exact component={TempLogin} /> */}
             <Route path="/" component={Landing} />
           </Switch>

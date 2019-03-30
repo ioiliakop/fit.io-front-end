@@ -27,7 +27,7 @@ class ReviewedModalButton extends Component {
                         </div>
                         <div className="modal-body">
                             <div className="row text-center mb-2">
-                                <div className="col-md-8 mx-auto">You have already left a review on for your {this.props.trsData.trainingType.title} training session with {this.props.trsData.trainer.firstName} {this.props.trsData.trainer.lastName}</div>
+                                <div className="col-md-8 mx-auto">You have already left a review for your {this.props.trsData.trainingType.title} training session with {this.props.trsData.trainer.firstName} {this.props.trsData.trainer.lastName}</div>
                             </div>
                             <div className="col-8 col-sm-6 mx-auto">
                                 <i className="far fa-calendar-alt"></i> &nbsp;{this.props.trsData.date}, {this.props.trsData.time}
