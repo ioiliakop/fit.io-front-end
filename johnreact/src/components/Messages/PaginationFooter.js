@@ -85,7 +85,7 @@ function PageNumberIcon(props) {
 class PaginationFooter extends Component {
     render() {
         // we don't render anything for pagination bar if there is only one page
-        if (this.props.totalPages === 1) return null;
+        if (this.props.totalPages <= 1) return null;
         return (
             <div className="container">
                 <nav aria-label="Pagination">

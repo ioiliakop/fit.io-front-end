@@ -9,7 +9,7 @@ class TrainingSession extends Component {
                     <div className="container">
                         <div className="row bg-light border">
                             <div className="col-lg-3 border-right text-center pt-5">
-                                <img className="img-fluid" src="./img/sample_trainer_1_thumb.jpg" alt="Trainer" />
+                                <img className="img-fluid" src="/img/sample_trainer_1_thumb.jpg" alt="Trainer" />
                             </div>
                             <div className="col-lg-3 pt-4 px-4 border-right">
                                 <h4 className="text-primary">{this.props.trs.trainer.firstName} {this.props.trs.trainer.lastName}</h4>

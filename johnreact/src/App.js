@@ -11,6 +11,7 @@ import UserNavbar from './components/User/UserNavbar';
 import PastTrainingSessions from './components/TrainingSessions/PastTrainingSessions';
 import FutureTrainingSessions from './components/TrainingSessions/FutureTrainingSessions';
 import MyAccount from './components/User/MyAccount';
+import AdminTestPage from './components/Admin/AdminTestPage';
 
 class App extends Component {
 
@@ -51,13 +52,14 @@ class App extends Component {
         <UserContext.Provider value={this.state}> {/* Passing this state as UserContext value */}
           <Header />
           {this.state.isLoggedIn && <UserNavbar />}
+          <Route path="/admin" exact component={AdminTestPage} />  {/*Testing withAuthorization HOC*/}
           <Switch>
             <Route path="/register/:rolename" exact component={Register} /> {/*perhaps needs consideration to restrain possible values/routes*/}
             <Route path="/messages/out" exact component={OutboxMessages} />
             <Route path="/messages/" exact component={InboxMessages} />
             {/* <Route path="/messages/out" exact render={() => <Messages folderType='outbox' />} /> */}
-            <Route path="/training-sessions" exact component={FutureTrainingSessions} />
             <Route path="/training-sessions/past" exact component={PastTrainingSessions} />
+            <Route path="/training-sessions" exact component={FutureTrainingSessions} />
             <Route path="/myaccount" exact component={MyAccount} />
             {/* <Route path="/login" exact component={TempLogin} /> */}
             <Route path="/" component={Landing} />

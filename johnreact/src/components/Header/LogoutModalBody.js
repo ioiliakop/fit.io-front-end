@@ -5,9 +5,11 @@ class LogoutModalBody extends Component {
 
     static contextType = UserContext;
     
+
     handleLogout = () => {
         const url = 'http://localhost:8080/login/logout';
 
+        // We sand ajax call to backend
         fetch(url, {
             method: 'POST',
             headers: {

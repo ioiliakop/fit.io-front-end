@@ -5,6 +5,8 @@ import MessageRow from './MessageRow';
 import ButtonLink from '../Utils/ButtonLink';
 import PaginationFooter from './PaginationFooter';
 import PaginationHeader from './PaginationHeader';
+import withAuthorization from '../../hoc/withAuthorization';
+import Role from '../Role';
 
 class Messages extends Component {
 
@@ -113,13 +115,13 @@ class Messages extends Component {
     }
 
     render() {
-        if (!this.context.isLoggedIn) {
+        // if (!this.context.isLoggedIn) {
             // Redirect to Landing
             // Will probably be moved to a HOC later on for better maintanability
-            return (
-                <Redirect to='/' />
-            );
-        } else {
+        //     return (
+        //         <Redirect to='/' />
+        //     );
+        // } else {
             return (
                 <React.Fragment>
                     <nav className="navbar navbar-light navbar-expand-md">
@@ -170,8 +172,9 @@ class Messages extends Component {
                 </React.Fragment>
             );
         }
-    }
+    // }
 
 }
 
-export default withRouter(Messages);
+// export default withRouter(Messages);
+export default withRouter(withAuthorization(Messages, [Role.Admin, Role.User, Role.Trainer]));

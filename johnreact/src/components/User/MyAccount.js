@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import UserContext from '../../context/user-context';
+import { withAuthorizationOrRedirect } from '../../hoc/withAuthorization';
+import Role from '../Role';
 
 class MyAccount extends Component {
 
     static contextType = UserContext;
 
-    handleImage
+    //TODO
+    handleImageUpload(){};
 
     render() {
         return (
@@ -87,4 +90,4 @@ class MyAccount extends Component {
     }
 }
 
-export default MyAccount;
+export default withAuthorizationOrRedirect(MyAccount, [Role.User, Role.Trainer, Role.Admin]);

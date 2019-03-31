@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import ButtonLink from './Utils/ButtonLink';
+import Role from './Role';
+import withAuthorization from '../hoc/withAuthorization';
 
 // decides whether item is active or not
 // function ButtonLink(props) {
@@ -74,8 +76,8 @@ class Register extends Component {
             headers: { 'Content-Type': 'application/json' }
         }).then((response) => {
             console.log('Sent. Response status:', response.status);
-            // this.props.history.push('/');
-            this.setState({ regSuccess: true });
+            this.props.history.push('/');
+            // this.setState({ regSuccess: true });
             // Redirect somewhere with success message alert or whatever
         }).catch(error => console.error('Error:', error));
 
@@ -85,19 +87,19 @@ class Register extends Component {
     render() {
         return (
             <React.Fragment>
-                {this.renderRedirect()}  {/* Redirects to landing page if registration was successfull. Maybe will be expanded for other cases */}
-                <nav class="navbar navbar-light navbar-expand-md">
-                    <div class="container col-sm pt-4 pb-2">
-                        <ul class="navbar-nav mx-auto">
+                {this.renderRedirect()}  {/* Redirects to landing page if registration was successfull. Maybe will be expanded for other cases Alternative way with history.push*/}
+                <nav className="navbar navbar-light navbar-expand-md">
+                    <div className="container col-sm pt-4 pb-2">
+                        <ul className="navbar-nav mx-auto">
                             <li>
-                                {/* <button class="btn btn-outline-primary" type="button">Register as User</button> */}
+                                {/* <button className="btn btn-outline-primary" type="button">Register as User</button> */}
                                 <ButtonLink label="Register as User" to="/register/user" location={this.props.location.pathname} />
                             </li>
                             <li>
-                                <span class="col-1"> </span>
+                                <span className="col-1"> </span>
                             </li>
                             <li>
-                                {/* <button class="btn btn-outline-primary" type="button">Register as Trainer</button> */}
+                                {/* <button className="btn btn-outline-primary" type="button">Register as Trainer</button> */}
                                 <ButtonLink label="Register as Trainer" to="/register/trainer" location={this.props.location.pathname} />
                             </li>
                         </ul>
@@ -175,4 +177,8 @@ class Register extends Component {
     }
 }
 
-export default withRouter(Register);
+// worked with history.push
+// export default withRouter(Register);
+
+// with authorization alternative
+export default withAuthorization(Register, [Role.Guest]);
