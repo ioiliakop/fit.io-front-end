@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Messages from './Messages-LEGACY';
 import MessagesPaginated from './MessagesPaginated';
+import withAuthorization from '../../hoc/withAuthorization';
+import Role from '../Role';
 
 class InboxMessages extends Component {
     render() {
@@ -11,4 +13,4 @@ class InboxMessages extends Component {
     }
 }
 
-export default InboxMessages;
+export default withAuthorization(InboxMessages, [Role.User, Role.Trainer, Role.Admin], true);

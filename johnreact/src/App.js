@@ -52,8 +52,8 @@ class App extends Component {
         <UserContext.Provider value={this.state}> {/* Passing this state as UserContext value */}
           <Header />
           {this.state.isLoggedIn && <UserNavbar />}
-          <Route path="/admin" exact component={AdminTestPage} />  {/*Testing withAuthorization HOC*/}
           <Switch>
+            <Route path="/admin" exact component={AdminTestPage} />  {/* Testing withAuthorization HOC* */}
             <Route path="/register/:rolename" exact component={Register} /> {/*perhaps needs consideration to restrain possible values/routes*/}
             <Route path="/messages/out" exact component={OutboxMessages} />
             <Route path="/messages/" exact component={InboxMessages} />

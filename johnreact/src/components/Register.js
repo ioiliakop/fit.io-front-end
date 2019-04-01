@@ -181,4 +181,4 @@ class Register extends Component {
 // export default withRouter(Register);
 
 // with authorization alternative
-export default withAuthorization(Register, [Role.Guest]);
+export default withAuthorization(Register, [Role.Guest], true);

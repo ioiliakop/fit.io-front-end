@@ -14,4 +14,4 @@ class AdminTestPage extends Component {
     }
 }
 
-export default withAuthorization(AdminTestPage, [Role.Admin]);
+export default withAuthorization(AdminTestPage, [Role.Admin], true);

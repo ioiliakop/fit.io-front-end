@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import TrainingSessions from './TrainingSessions';
+import withAuthorization from '../../hoc/withAuthorization';
+import Role from '../Role';
 
 class FutureTrainingSessions extends Component {
     render() {
@@ -9,4 +11,4 @@ class FutureTrainingSessions extends Component {
     }
 }
 
-export default FutureTrainingSessions;
+export default withAuthorization(FutureTrainingSessions, [Role.User, Role.Trainer, Role.Admin], true);

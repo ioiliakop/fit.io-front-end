@@ -176,5 +176,5 @@ class Messages extends Component {
 
 }
 
-// export default withRouter(Messages);
-export default withRouter(withAuthorization(Messages, [Role.Admin, Role.User, Role.Trainer]));
+export default withRouter(Messages);
+// export default withRouter(withAuthorization(Messages, [Role.Admin, Role.User, Role.Trainer]));

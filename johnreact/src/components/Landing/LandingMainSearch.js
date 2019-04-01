@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import withAuthorization from '../../hoc/withAuthorization';
 import Role from '../Role';
 
-// Only testing atm
-// Still making considerations regarding withAuthorization
 class LandingMainSearch extends Component {
     render() {
         return (
@@ -17,4 +15,5 @@ class LandingMainSearch extends Component {
 
 }
 
-export default withAuthorization(LandingMainSearch, [Role.Trainer, Role.User]);
+// We only want logged in users to be able to search for trainers
+export default withAuthorization(LandingMainSearch, [Role.User]);

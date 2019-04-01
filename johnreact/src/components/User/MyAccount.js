@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UserContext from '../../context/user-context';
-import { withAuthorizationOrRedirect } from '../../hoc/withAuthorization';
+import withAuthorization from '../../hoc/withAuthorization';
 import Role from '../Role';
 
 class MyAccount extends Component {
@@ -75,7 +75,7 @@ class MyAccount extends Component {
                     {/* <!-- Right Section --> */}
                     <div className="container col-md-4 text-center p-5">
                         <div><i className="far fa-user-circle fa-8x"></i></div>
-                        <div className="my-2">John Doe</div>
+                        <div className="my-2">John Doe <div className="text-muted">({this.context.userInfo.role.name})</div></div>                       
                         <div className="custom-file text-left">
                             <input type="file" className="custom-file-input" id="profilePic" accept=".jpg, .png, .gif" />
                             <label className="custom-file-label" htmlFor="profilePic">Upload Picture</label>
@@ -90,4 +90,4 @@ class MyAccount extends Component {
     }
 }
 
-export default withAuthorizationOrRedirect(MyAccount, [Role.User, Role.Trainer, Role.Admin]);
+export default withAuthorization(MyAccount, [Role.User, Role.Trainer, Role.Admin], true);
