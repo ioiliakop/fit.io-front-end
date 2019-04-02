@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Role from '../Role';
 
 class ContactModalButton extends Component {
 
@@ -6,6 +7,14 @@ class ContactModalButton extends Component {
         super(props);
         this.message = React.createRef();
         this.handleSendMessage = this.handleSendMessage.bind(this);
+        console.log('Current user Role: ', props.userRole);
+        if (props.userRole === Role.User) {
+            this.othersInfo = this.props.trsData.trainer;
+            console.log('Others info:', this.props.trsData.trainer);
+        } else if (props.userRole === Role.Trainer) {
+            this.othersInfo = this.props.trsData.client;
+            console.log('Others info:', this.props.trsData.client);
+        } else console.error('Unknown role for training session contact modal:', props.userRole);
     }
 
     componentDidMount() {
@@ -16,7 +25,7 @@ class ContactModalButton extends Component {
     handleSendMessage() {
         console.log('Inside handleSendMessage');
         console.log('MessageRef:', this.message.current.value);
-        const url = 'http://localhost:8080/messages/save/' + this.props.trsData.trainer.username;
+        const url = 'http://localhost:8080/messages/save/' + this.othersInfo.username;
 
         fetch(url, {
             method: 'POST',
@@ -33,6 +42,12 @@ class ContactModalButton extends Component {
     }
 
     render() {
+        // let othersInfo;
+        // if (this.props.userRole === Role.User) {
+        //     othersInfo = this.props.trsData.trainer;
+        // } else {
+        //     othersInfo = this.props.trsData.client;
+        // }
         return (
             <React.Fragment>
                 <button type="button" className="btn btn-primary btn-block" data-toggle="modal" data-target={'#cm_' + this.props.trsData.id}>CONTACT</button>
@@ -40,7 +55,7 @@ class ContactModalButton extends Component {
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
                             <div className="modal-header">
-                                <h5 className="modal-title" id={'cmLabel_' + this.props.trsData.id}>New message to {this.props.trsData.trainer.firstName} {this.props.trsData.trainer.lastName}</h5>
+                                <h5 className="modal-title" id={'cmLabel_' + this.props.trsData.id}>New message to {this.othersInfo.firstName} {this.othersInfo.lastName}</h5>
                                 <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>

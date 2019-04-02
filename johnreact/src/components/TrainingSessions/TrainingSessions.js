@@ -3,6 +3,7 @@ import { Redirect, withRouter } from 'react-router-dom';
 import UserContext from '../../context/user-context';
 import TrainingSession from '../TrainingSessions/TrainingSession';
 import ButtonLink from '../../components/Utils/ButtonLink';
+import Role from '../Role';
 
 class TrainingSessions extends Component {
 
@@ -12,6 +13,7 @@ class TrainingSessions extends Component {
             trainingSessions: [],
         };
 
+        // Depending on props will get respective training sessions
         if (this.props.folderType === 'FUTURE') {
             this.trainingSessionsTitle = 'Future';
         } else if (this.props.folderType === 'PAST') {
@@ -20,36 +22,22 @@ class TrainingSessions extends Component {
             console.error('Unknown messages folder type');
         }
 
-        // Trying callback refs
-        // this.setTrainingSessionRef = trs => {
-        //     this[`trainingSession${i}`] = trs;
-        // };
-        // this.handleSubmitMessage = this.handleSubmitMessage.bind(this);
     }
 
     static contextType = UserContext;
 
-    // handleSubmitMessage = (trsId) => {
-    //     const trs = this[`trainingSession${trsId}`];
-    //     const url = 'http://localhost:8080/messages/save/' + trs.trainer.username;
-
-    //     fetch(url, {
-    //         method: 'POST',
-    //         headers: {
-    //             'X-MSG-AUTH': localStorage.getItem('token'),
-    //         },
-    //         body: this.message //current.value
-    //     }).then(response => {
-    //         console.log('Response status:', response.status);
-    //         if (response.status === 200) {
-    //             console.log('Message sent.');
-    //         }
-    //     }).catch(error => console.error('Error:', error));
-    // }
-
     componentDidMount() {
         console.log('TrainingSessions component did mount');
-        const url = 'http://localhost:8080/session/client-sessions';
+        // const url = 'http://localhost:8080/session/client-sessions';
+        let url;
+
+        // Making this element
+        console.log('User Role: ', this.context.userInfo.role.name);
+        if (this.context.userInfo.role.name === Role.User) {
+            url = 'http://localhost:8080/session/client-sessions';
+        } else if (this.context.userInfo.role.name === Role.Trainer) {
+            url = 'http://localhost:8080/session/trainer-sessions';
+        } else console.error('Invalid role for training session:', this.context.userInfo.role.name);
 
         // Testing datetimes
         // const now = new Date();
@@ -127,10 +115,9 @@ class TrainingSessions extends Component {
 
                         // Adds only corresponding training sessions to array returned
                         if (now.valueOf() > trsDate.valueOf() && this.props.folderType === 'PAST') {
-                            return <TrainingSession key={t.id} trs={t} timeStatus="PAST" />
+                            return <TrainingSession key={t.id} trs={t} timeStatus="PAST" userRole={this.context.userInfo.role.name} />
                         } else if (now.valueOf() < trsDate.valueOf() && this.props.folderType === 'FUTURE'){
-                            return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" />
-                            // ref={trs => { this[`trainingSession${id}`] = trs; }}
+                            return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" userRole={this.context.userInfo.role.name} />
                         }
                     })}
                 </React.Fragment>
