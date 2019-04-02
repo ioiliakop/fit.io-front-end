@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 
+// Returns rating left as 5 stars with respective filled or empty status depending on rating number
 function Rating (props) {
     return (
         <React.Fragment>
          {Array.from({ length: 5 }, (v, i) => {
-         return ((i+1) <= props.rating) ? <i key={i} className="fas fa-star" style={{color: '#EEBD01'}}></i> : <i key={i} className="far fa-star" style={{color: '#EEBD01'}}></i>;
+         return ((i + 1) <= props.rating) ? <i key={i} className="fas fa-star" style={{color: '#EEBD01'}}></i> : <i key={i} className="far fa-star" style={{color: '#EEBD01'}}></i>;
         })}
         </React.Fragment>
     );
 }
 
+// Appears when training session has already been reviewed
 class ReviewedModalButton extends Component {
 
     render() {

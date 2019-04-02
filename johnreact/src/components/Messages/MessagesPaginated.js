@@ -24,7 +24,7 @@ class Messages extends Component {
         this.setMessagesPerPage = this.setMessagesPerPage.bind(this);
         this.fetchPageMessages = this.fetchPageMessages.bind(this);
 
-        // Check will probably be moved to a HOC later on for better maintanability
+        // Check for folderType
         if (this.props.folderType === 'INBOX') {
             this.messagesTitle = 'Received';
             this.senderOrReceiver = 'Sender';
@@ -176,5 +176,5 @@ class Messages extends Component {
 
 }
 
+// parent components handle authorization
 export default withRouter(Messages);
-// export default withRouter(withAuthorization(Messages, [Role.Admin, Role.User, Role.Trainer]));
