@@ -12,6 +12,13 @@ import UsersProfile from "./components/UsersProfile";
 import Messages from "./components/Messages";
 import Results from "./components/Results";
 import Main from "./components/Main";
+import Reviews from "./components/Reviews";
+import Calendar from "./components/Calendar";
+import TrainingSession from "./components/TrainingSession";
+import Profile from "./components/Profile";
+import { TrainersCalendar } from "./components/TrainersCalendar";
+import BookTrainingSession from "./components/BookTrainingSession";
+import EditAccount from "./components/EditAccount";
 
 class App extends Component {
   render() {
@@ -22,12 +29,21 @@ class App extends Component {
           <UserHeader />
           <Switch>
             <Route path="/" exact component={Landing} />
-            <Route path="/mainn" component={Main} />
             <Route path="/login" component={LoginPage} />
             <Route path="/myProfile" component={UsersProfile} />
             <Route path="/messages" component={Messages} />
+            <Route path="/Reviews/:id" component={Reviews} />
             <Route path="/searchResults" component={Results} />
-            <Route path="/register" exact component={Register} />{" "}
+            <Route path="/myCalendar" component={Calendar} />
+            <Route path="/profile/:id" component={Profile} />
+            <Route path="/settings" component={EditAccount} />
+            <Route path="/trainingSession" component={TrainingSession} />
+            <Route
+              path="/bookTrainingSession"
+              component={BookTrainingSession}
+            />
+            <Route path="/register" exact component={Register} />
+            <Route path="/trainersCalendar/:id" component={TrainersCalendar} />
           </Switch>
           <Footer />
         </Router>

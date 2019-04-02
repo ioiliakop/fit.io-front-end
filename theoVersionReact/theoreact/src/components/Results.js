@@ -33,9 +33,9 @@ class Results extends Component {
         localStorage.setItem("area", "");
         localStorage.setItem("workoutStyle", "");
       },
-      error: function() {
+      error: () => {
         // alert("No Trainers Available in this area for this Workout Style");
-        // this.props.history.push("/"); //gia kapoio gamimeno logo den doulevei mesa sto results
+        this.props.history.push("/"); //gia kapoio logo den doulevei mesa sto results
       }
     });
   };

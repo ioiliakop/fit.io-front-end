@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <h1>A <em>Coder's</em> Advent Calendar</h1>
+    <section id="modal">
+      <div class="wrapper">
+        <div class="content">
+          <div class="close"></div>
+          <div class="box"></div>
+        </div>
+      </div>
+    </section>
+    <section id="calendar" class="collectonme">
+      <div id="day-labels">
+        <div class="label">Sun</div>
+        <div class="label">Mon</div>
+        <div class="label">Tue</div>
+        <div class="label">Wed</div>
+        <div class="label">Thu</div>
+        <div class="label">Fri</div>
+        <div class="label">Sat</div>
+      </div>
+      <div id="one" class="week">
+        <div class="day noDate"></div>
+        <div class="day noDate"></div>
+        <div class="day">
+          <span class="date">1</span>
+          <div class="surprise">
+            <h2>A Hilarious Design Classic</h2>
+            <p>
+              For your first day, I present for your reading pleasure a
+              wonderful classic comic by the incomparable Matthew Inman (aka The
+              Oatmeal).
+            </p>
+            <a
+              class="button"
+              href="http://theoatmeal.com/comics/design_hell"
+              target="_blank"
+              >Read On</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">2</span>
+          <div class="surprise">
+            <h2>For Your Second Day, Some Humor</h2>
+            <p>
+              A user interface is like a joke. If you have to explain it,
+              chances are it's not that good.
+            </p>
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">3</span>
+          <div class="surprise">
+            <h2>And Now, to Waste Your Time</h2>
+            <p>
+              This site has some great illustrations, some funny random stuff,
+              and overall is just a champion time-waster, for those of you tired
+              of Buzzfeed hell.
+            </p>
+            <a href="http://www.booksofadam.com" target="_blank" class="button"
+              >Visit Books of Adam</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">4</span>
+          <div class="surprise">
+            <h2>And Now - A History of Web Design</h2>
+            <p>
+              Web design has been around for a while now, and it has a storied
+              history. Webs.com and AmeriCommerce have put together a fun
+              infographic to walk you down memory lane.
+            </p>
+            <a
+              class="button"
+              href="http://www.webs.com/blog/2015/02/04/history-web-design-infographic/"
+              target="_blank"
+              >View the Infographic</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">5</span>
+          <div class="surprise">
+            <h2>Oh Look - Another Pen of Mine!</h2>
+            <p>A few fun modal animations for your enjoyment.</p>
+            <a
+              class="button"
+              href="https://codepen.io/designcouch/full/obvKxm"
+              target="_blank"
+              >View the Pen</a
+            >
+          </div>
+        </div>
+      </div>
+      <div id="two" class="week">
+        <div class="day">
+          <span class="date">6</span>
+          <div class="surprise">
+            <h2>A Stellar Podcast</h2>
+            <p>
+              If you're not familiar with Chris Coyier, shame on you. The dude
+              is one of the founders of Codepen, for crying out loud. Anywho, he
+              has a podcast called the Shoptalk Show that is audio gold.
+            </p>
+            <a class="button" href="http://shoptalkshow.com" target="_blank"
+              >Listen Now</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">7</span>
+          <div class="surprise">
+            <h2>An Up and Coming Designer</h2>
+            <p>
+              Dan Eden is a prodigious young brit working for Dropbox who has
+              already contributed a large amount to the web design world. He's
+              got a blog that's admittedly not updated often - but what's there
+              is worth your time.
+            </p>
+            <a href="https://daneden.me/blog/" class="button" target="_blank"
+              >Visit DanEden.me</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">8</span>
+          <div class="surprise">
+            <h2>Swift for the Masses</h2>
+            <p>
+              For those of you familiar with Swift, Apple's new programming
+              language, it's been an exciting few weeks. Apple, as promised
+              open-sourced Swift, and in response, IBM introduced a cool Swift
+              toy.
+            </p>
+            <a
+              class="button"
+              href="https://developer.ibm.com/swift/2015/12/03/introducing-the-ibm-swift-sandbox/"
+              >Visit the Swift Sandbox</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">9</span>
+          <div class="surprise">
+            <h2>Beautiful Progressive Loading Images</h2>
+            <p>
+              So it seems that we're all after a great solution for smoothly and
+              progressively loaded, large images. There hasn't been a perfect
+              solution presented yet, but this one at CSS Tricks comes close!
+            </p>
+            <a
+              href="https://css-tricks.com/the-blur-up-technique-for-loading-background-images/"
+              class="button"
+              >Visit CSS Tricks</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">10</span>
+          <div class="surprise">
+            <h2>A Wonderful Web Comic</h2>
+            <p>
+              Jerry King is great - and he does an awesome web comic for
+              WebDesignerDepot every week.
+            </p>
+            <a
+              href="http://www.webdesignerdepot.com/author/Jerry-King/"
+              target="_blank"
+              class="button"
+              >Visit WebDesignerDepot</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">11</span>
+          <div class="surprise">
+            <h2>CSS Animation Nirvana</h2>
+            <p>
+              While perusing another advent calendar (24ways) I stumbled across
+              an in-progress website that is pretty epic. The guys at Rally
+              Interactive are seriously impressive.
+            </p>
+            <a
+              class="button"
+              href="http://beta.rallyinteractive.com"
+              target="_blank"
+              >Visit Their Beta Site</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">12</span>
+          <div class="surprise">
+            <h2>Freelancers, Rejoice</h2>
+            <p>
+              One of the most integral pieces of a freelance business is your
+              billing. I've been using Hiveage since it was called Curdbee, and
+              love it. It's not as ubiquitous as it should be, but you should
+              definitely check it out.
+            </p>
+            <a class="button" href="https://www.hiveage.com" target="_blank"
+              >Visit Hiveage</a
+            >
+          </div>
+        </div>
+      </div>
+      <div id="three" class="week">
+        <div class="day">
+          <span class="date">13</span>
+          <div class="surprise">
+            <h2>A Designer's CMS</h2>
+            <p>
+              While there are a slew of full-featured, easy-to-use CMS options
+              out there, my personal preference is a lesser known one called
+              MODX. If you take the time to get into it, you can do almost
+              anything you want with relative ease.
+            </p>
+            <a class="button" href="http://www.modx.com" target="_blank"
+              >Visit MODX.com</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">14</span>
+          <div class="surprise">
+            <h2>A MODX Helping Hand</h2>
+            <p>
+              To aid in my CMS suggestion from yesterday, one of the best MODX
+              resources is MODX.today. You should give it a look!
+            </p>
+            <a class="button" href="http://www.modx.com" target="_blank"
+              >Visit MODX.today</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">15</span>
+          <div class="surprise">
+            <h2>Begin at the Beginning: Part 1</h2>
+            <p>
+              Jon Duckett has a <strong>fantastic</strong> series of books on
+              the basic technology involved in front-end web design. Here's the
+              first.
+            </p>
+            <a
+              class="button"
+              href="http://www.amazon.com/gp/product/1118531647?keywords=jon%20duckett&qid=1450450861&ref_=sr_1_3&s=books&sr=1-3"
+              target="_blank"
+              >Buy Javascript & Jquery: Interactive Front-End <br />Web
+              Development</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">16</span>
+          <div class="surprise">
+            <h2>Begin at the Beginning: Part 2</h2>
+            <p>
+              Jon Duckett has a <strong>fantastic</strong> series of books on
+              the basic technology involved in front-end web design. Here's the
+              second.
+            </p>
+            <a
+              class="button"
+              href="http://www.amazon.com/gp/product/1118008189?keywords=jon%20duckett&qid=1450450861&ref_=sr_1_4&s=books&sr=1-4"
+              target="_blank"
+              >Buy HTML and CSS: Design and Build Websites</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">17</span>
+          <div class="surprise">
+            <h2>Looking To Break Into UI Design?</h2>
+            <p>
+              UI-Patterns.com is a fantastic resource for learning and
+              practicing UI design. You should really check it out, even if you
+              don't consider yourself a dyed-in-the-wool UI designer.
+            </p>
+            <a href="http://ui-patterns.com" target="_blank" class="button"
+              >Visit UI-Designs.com</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">18</span>
+          <div class="surprise">
+            <h2>Get to Learning!</h2>
+            <p>
+              If you're just beginning in web design, I've shared a few
+              resources already that should help you build up your
+              fundamentals—but no resource is more effective than Treehouse.
+              They do a fantastic job at making complex concepts easy to
+              understand, and their wealth of material covers much more than
+              just web design.
+            </p>
+            <a href="https://teamtreehouse.com" target="_blank" class="button"
+              >Visit Team Treehouse</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">19</span>
+          <div class="surprise">
+            <h2>And Now For Something Completely Random</h2>
+            <p>
+              Most of the things I'm sharing on here are related to web design,
+              but haven't you always wondered what happened to Kevin Mccallister
+              of Home Alone fame? Well, now we know—and it ain't good.
+            </p>
+            <a
+              href="https://www.youtube.com/watch?v=yh7-wAy_8ss"
+              target="_blank"
+              class="button"
+              >Watch on YouTube</a
+            >
+          </div>
+        </div>
+      </div>
+      <div id="four" class="week">
+        <div class="day">
+          <span class="date">20</span>
+          <div class="surprise">
+            <h2>Tonight, on 60 Minutes...</h2>
+            <p>
+              You should check out the 60 Minutes segment with Charlie Rose
+              tonight. He's peeking inside of Jony Ive's secret design studio.
+            </p>
+            <a
+              href="https://twitter.com/60Minutes/status/677632512827506688?ref_src=twsrc%5Etfw"
+              target="_blank"
+              class="button"
+              >Read the Tweet</a
+            >
+          </div>
+        </div>
+        <div class="day">
+          <span class="date">21</span>
+        </div>
+        <div class="day">
+          <span class="date">22</span>
+        </div>
+        <div class="day">
+          <span class="date">23</span>
+        </div>
+        <div class="day">
+          <span class="date">24</span>
+        </div>
+        <div class="day" id="christmas-day">
+          <span class="date">25</span>
+        </div>
+        <div class="day noDate"></div>
+      </div>
+    </section>
+    <div id="bottom" class="collectonme"></div>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      // target current day, disable future days and days without dates
+
+      var d = new Date();
+      var todaysDate = d.getDate();
+      var target = $("#calendar .week .day .date");
+
+      target.each(function() {
+        var day = $(this).html();
+        if (todaysDate == day) {
+          $(this).addClass("today");
+        }
+        if (todaysDate < day) {
+          $(this)
+            .parent()
+            .addClass("future");
+        }
+        if (todaysDate >= day) {
+          $(this)
+            .parent()
+            .addClass("past");
+        }
+      });
+
+      // handle clicks on days
+
+      $(".day").click(function() {
+        if ($(this).hasClass("future")) {
+          $("#modal").addClass("active");
+          $("#modal .wrapper .content .box").html(
+            "<h2>Naughty, naughty.</h2> <p>You can't look early! Check back on that day to see what I've left for you.</p>"
+          );
+        }
+        if ($(this).hasClass("past")) {
+          var content = $(this)
+            .children(".surprise")
+            .html();
+          $("#modal").addClass("active");
+          $("#modal .wrapper .content .box").html("");
+          $("#modal .wrapper .content .box").html(content);
+        }
+      });
+
+      // close modal
+
+      $(".close").click(function() {
+        var ultimateParent = $(this)
+          .parent()
+          .parent()
+          .parent();
+        ultimateParent.addClass("moveOut");
+        setTimeout(function() {
+          ultimateParent.removeClass("moveOut").removeClass("active");
+        }, 250);
+      });
+
+      // snow effect customizations
+
+      $(document).snowfall({
+        flakeCount: 100,
+        collection: ".collectonme",
+        maxSpeed: 10
+      });
+    </script>
+  </body>
+</html>

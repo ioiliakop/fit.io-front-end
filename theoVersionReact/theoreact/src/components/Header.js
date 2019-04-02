@@ -33,7 +33,6 @@ class Header extends Component {
   }
 
   logout(dispatch) {
-    console.log("kanw logoutt");
     localStorage.setItem("user", "");
     localStorage.setItem("token", "");
     dispatch({ type: "SET_LOGGED_IN_BOOLEAN", payload: false });

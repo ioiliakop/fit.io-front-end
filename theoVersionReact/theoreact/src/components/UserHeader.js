@@ -3,22 +3,20 @@ import { Consumer } from "../context";
 import { Link, withRouter } from "react-router-dom";
 
 class UserHeader extends Component {
-  goToMessages = (token, dispatch) => {
+  getReviews = (dispatch, loggedInUser) => {
     window.$.ajax({
       type: "GET",
-      contentType: "application/json; charset=utf-8",
-      url: "http://localhost:8080/messages/sent",
-      headers: { "X-MSG-AUTH": token },
+      url: `http://localhost:8080/session/review-trainer/${
+        loggedInUser.id
+      }?index1=0&index2=10`,
       dataType: "json",
       async: true,
-      success: messages => {
-        dispatch({ type: "FILL_INBOX_MESSAGES", payload: messages });
-        // dispatch({ type: "TEST", payload: "" });
-        this.props.history.push("/messages");
+      success: reviews => {
+        console.log(reviews.results);
+        dispatch({ type: "FILL_MY_REVIEWS", payload: reviews.results });
+        this.props.history.push("/Reviews/" + loggedInUser.id);
       },
-      error: () => {
-        alert("errorr");
-      }
+      error: () => {}
     });
   };
 
@@ -26,7 +24,7 @@ class UserHeader extends Component {
     return (
       <Consumer>
         {value => {
-          const { loggedIn, token, dispatch } = value;
+          const { loggedIn, token, dispatch, loggedInUser } = value;
           return (
             <React.Fragment>
               {loggedIn ? (
@@ -39,25 +37,24 @@ class UserHeader extends Component {
                         </Link>
                       </label>
                       <label class="btn btn-secondary">
-                        <Link to="#" style={{ color: "white" }}>
+                        <Link to="/myCalendar" style={{ color: "white" }}>
                           My Training Sessions
                         </Link>
                       </label>
                       <label class="btn btn-secondary">
-                        <Link
-                          onClick={this.goToMessages.bind(
-                            this,
-                            token,
-                            dispatch
-                          )}
-                          style={{ color: "white" }}
-                          to="/messages"
-                        >
+                        <Link style={{ color: "white" }} to="/messages">
                           My Messages
                         </Link>
                       </label>
                       <label class="btn btn-secondary">
-                        <Link to="#" style={{ color: "white" }}>
+                        <Link
+                          onClick={this.getReviews.bind(
+                            this,
+                            dispatch,
+                            loggedInUser
+                          )}
+                          style={{ color: "white" }}
+                        >
                           My Reviews
                         </Link>
                       </label>
