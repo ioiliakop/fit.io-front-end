@@ -90,9 +90,10 @@ class Messages extends Component {
             }
         }).then(response => {
             response.json().then(data => {
+                console.log('token for fetch:', localStorage.getItem('token'));
                 console.log('Response status:', response.status);
                 console.log(data);
-                // if (response.status === 200) {
+                if (response.status === 200) {
                 console.log('Saving fetched messages to state');
                 const lastPageMessages = data.count % this.state.messagesPerPage;
                 const pagesNumber = (lastPageMessages > 0) ? (((data.count - lastPageMessages) / this.state.messagesPerPage) + 1) : (data.count / this.state.messagesPerPage);
@@ -102,7 +103,7 @@ class Messages extends Component {
                     messages: data.results
                 });
                 console.log('Messages in state:', this.state.messages);
-                // }
+                }
             })
         }).catch(error => console.error('Error:', error));
 

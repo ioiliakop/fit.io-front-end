@@ -5,7 +5,7 @@ function Previous(props) {
     if (props.activePage === 1) return (
         <li className="page-item active" aria-current="page">
             <span className="page-link">
-                <span aria-hidden="true"><i class="fas fa-angle-left"></i></span>
+                <span aria-hidden="true"><i className="fas fa-angle-left"></i></span>
                 {/* <span aria-hidden="true">&laquo;</span> */}
                 <span className="sr-only">(current)</span>
             </span>
@@ -13,7 +13,7 @@ function Previous(props) {
     else return (
         <li className="page-item">
             <a className="page-link" href="#" aria-label="Previous" onClick={() => props.setActivePage(props.activePage - 1)}>
-                <span aria-hidden="true"><i class="fas fa-angle-left"></i></span>
+                <span aria-hidden="true"><i className="fas fa-angle-left"></i></span>
             </a>
         </li>
     );
@@ -24,7 +24,7 @@ function Next(props) {
     if (props.activePage === props.lastPage) return (
         <li className="page-item active" aria-current="page">
             <span className="page-link">
-                <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
+                <span aria-hidden="true"><i className="fas fa-angle-right"></i></span>
                 {/* <span aria-hidden="true">&raquo;</span> */}
                 <span className="sr-only">(current)</span>
             </span>
@@ -32,7 +32,7 @@ function Next(props) {
     else return (
         <li className="page-item">
             <a className="page-link" href="#" aria-label="Next" onClick={() => props.setActivePage(props.activePage + 1)}>
-                <span aria-hidden="true"><i class="fas fa-angle-right"></i></span>
+                <span aria-hidden="true"><i className="fas fa-angle-right"></i></span>
             </a>
         </li>
     );
@@ -62,7 +62,7 @@ function PageNumberIcon(props) {
     else if (props.pageNumber === leftBreakPoint || props.pageNumber === rightBreakPoint) {
         return (
             <li className="page-item disabled" aria-current="page">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">...</a>
+                <a className="page-link" href="#" tabindex="-1" aria-disabled="true">...</a>
             </li>
         );
     }
