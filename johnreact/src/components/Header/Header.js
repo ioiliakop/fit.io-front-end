@@ -9,6 +9,7 @@ import LogoutModalBody from './LogoutModalBody';
 import ContactNav from './ContactNav';
 import LanguageNav from './LanguageNav';
 import HeaderNavBar from './HeaderNavBar';
+import TrainersNav from './TrainersNav';
 
 class Header extends Component {
 
@@ -20,6 +21,7 @@ class Header extends Component {
                 {console.log('Context value in Header render():', this.context)}
 
                 <HeaderNavBar>
+                    <TrainersNav />
                     {this.context.isLoggedIn ? <UserNav /> : <React.Fragment><LoginNav /><RegisterNav /></React.Fragment>}
                     <ContactNav />
                     <LanguageNav />

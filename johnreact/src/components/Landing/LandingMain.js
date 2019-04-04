@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LandingMainSearch from './LandingMainSearch';
+import LandingMainSearch from './LandingMainSearch-UNUSED-ATM';
 
 class LandingMain extends Component {
   render() {
@@ -13,7 +13,7 @@ class LandingMain extends Component {
             <input type="text" id="password" className="form-control form-control-lg mr-0 col-sm-5" placeholder="Or choose workout style"/>
             <button className="btn btn-primary btn-lg col-sm-2" type="submit">Search</button>
           </form> */}
-          <LandingMainSearch />
+          {/* <LandingMainSearch /> Moved to dedicated page */}
         </div>
       </div>
     );

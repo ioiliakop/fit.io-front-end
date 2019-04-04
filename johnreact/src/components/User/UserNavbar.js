@@ -14,6 +14,12 @@ function NavLink(props) {
     }
 }
 
+const MyTrainingTypesNavLink = withAuthorization(((props) => {
+    return (
+        <NavLink label="My Training Types" to="/my-training-types" location={props.location} />
+    )
+}),[Role.Trainer]);
+
 class UserNavbar extends Component {
     render() {
         return (
@@ -21,8 +27,9 @@ class UserNavbar extends Component {
                 <div className="list-group list-group-horizontal-sm">
                     <NavLink label="My Training Sessions" to="/training-sessions" location={this.props.location.pathname} />
                     <NavLink label="My Messages" to="/messages" location={this.props.location.pathname} />
-                    {/* Without check - will revisit authorization */}
-                    <NavLink label="My Training Types" to="/my-training-types" location={this.props.location.pathname} />
+                    {/* Without check for user - will revisit authorization */}
+                    {/* <NavLink label="My Training Types" to="/my-training-types" location={this.props.location.pathname} /> */}
+                    <MyTrainingTypesNavLink location={this.props.location.pathname} />
                     <NavLink label="My Account" to="/myaccount" location={this.props.location.pathname} />
                 </div>
             </div>
