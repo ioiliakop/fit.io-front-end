@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
-// import './css/bootstrap.min.css';
-// import './css/all.css';
+import 'bootstrap/dist/css/bootstrap.css';
+// import './index.css';
+import 'bootstrap';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faRunning } from '@fortawesome/free-solid-svg-icons';
 // import * as serviceWorker from './serviceWorker';
 
+library.add(faRunning);
 
 // let localStorageVals = {
 //   isLoggedIn: false,

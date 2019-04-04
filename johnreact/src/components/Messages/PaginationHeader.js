@@ -5,7 +5,7 @@ function MessagesPerPageOption(props) {
         return (<a className="dropdown-item" href="#" onClick={() => props.setOption(props.option)}>{props.option}</a>)
     else
         return (
-            <a className="dropdown-item disabled" href="#" tabindex="-1" aria-disabled="true">{props.option}</a>
+            <a className="dropdown-item disabled" href="#" tabIndex="-1" aria-disabled="true">{props.option}</a>
         );
 }
 

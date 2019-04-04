@@ -38,7 +38,8 @@ function Next(props) {
     );
 }
 
-// Decides what page navigation icons to render based on props
+// Decides what page navigation icon to render based on props
+// e.g. active with number or clickable link with page number or 3 dots disabled or ommit page number button entirely
 function PageNumberIcon(props) {
     const numberOfSideButtons = 2; // We can adjust this. Number of navigation buttons on both sides of active one, first and last page exclusive
     const leftBreakPoint = props.activePage - (numberOfSideButtons + 1);

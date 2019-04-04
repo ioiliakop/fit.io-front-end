@@ -12,6 +12,10 @@ import PastTrainingSessions from './components/TrainingSessions/PastTrainingSess
 import FutureTrainingSessions from './components/TrainingSessions/FutureTrainingSessions';
 import MyAccount from './components/User/MyAccount';
 import AdminTestPage from './components/Admin/AdminTestPage';
+// import { library } from '@fortawesome/fontawesome-svg-core';
+// import { faRunning } from '@fortawesome/free-solid-svg-icons';
+
+// library.add(faRunning);
 
 class App extends Component {
 
