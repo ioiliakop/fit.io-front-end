@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import withAuthorization from '../../hoc/withAuthorization';
+import Role from '../Role';
 
 // decides whether item is active or not
 function NavLink(props) {
-    if (props.location === "/") return <Link className="list-group-item list-group-item-secondary list-group-item-action" to={props.to}>{props.label}</Link>    
+    if (props.location === "/") return <Link className="list-group-item list-group-item-secondary list-group-item-action" to={props.to}>{props.label}</Link>
     if (props.to.includes(props.location) || props.location.includes(props.to)) {
         return <Link className="list-group-item list-group-item-secondary list-group-item-action active" to={props.to}>{props.label}</Link>
     }
     else {
         return <Link className="list-group-item list-group-item-secondary list-group-item-action" to={props.to}>{props.label}</Link>
-    }    
+    }
 }
 
 class UserNavbar extends Component {
@@ -19,7 +21,8 @@ class UserNavbar extends Component {
                 <div className="list-group list-group-horizontal-sm">
                     <NavLink label="My Training Sessions" to="/training-sessions" location={this.props.location.pathname} />
                     <NavLink label="My Messages" to="/messages" location={this.props.location.pathname} />
-                    {/* <NavLink label="My Reviews" to="/temp2" location={this.props.location.pathname} /> */}
+                    {/* Without check - will revisit authorization */}
+                    <NavLink label="My Training Types" to="/my-training-types" location={this.props.location.pathname} />
                     <NavLink label="My Account" to="/myaccount" location={this.props.location.pathname} />
                 </div>
             </div>

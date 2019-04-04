@@ -7,9 +7,11 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faRunning } from '@fortawesome/free-solid-svg-icons';
-// import * as serviceWorker from './serviceWorker';
+import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
 
-library.add(faRunning);
+// // import * as serviceWorker from './serviceWorker';
+
+library.add(faRunning, faUserCircle);
 
 // let localStorageVals = {
 //   isLoggedIn: false,

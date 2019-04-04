@@ -89,22 +89,21 @@ class Messages extends Component {
                 'Accept': 'application/json',
             }
         }).then(response => {
-            response.json().then(data => {
-                console.log('token for fetch:', localStorage.getItem('token'));
-                console.log('Response status:', response.status);
+            console.log('Response status:', response.status);
+            if (response.status === 200) {
+                response.json().then( data => {
                 console.log(data);
-                if (response.status === 200) {
-                    console.log('Saving fetched messages to state');
-                    const lastPageMessages = data.count % this.state.messagesPerPage;
-                    const pagesNumber = (lastPageMessages > 0) ? (((data.count - lastPageMessages) / this.state.messagesPerPage) + 1) : (data.count / this.state.messagesPerPage);
-                    this.setState({
-                        totalPages: pagesNumber,
-                        totalMessages: data.count,
-                        messages: data.results
-                    });
-                    console.log('Messages in state:', this.state.messages);
-                }
-            })
+                console.log('Saving fetched messages to state');
+                const lastPageMessages = data.count % this.state.messagesPerPage;
+                const pagesNumber = (lastPageMessages > 0) ? (((data.count - lastPageMessages) / this.state.messagesPerPage) + 1) : (data.count / this.state.messagesPerPage);
+                this.setState({
+                    totalPages: pagesNumber,
+                    totalMessages: data.count,
+                    messages: data.results
+                });
+                console.log('Messages in state:', this.state.messages);
+                })
+            }
         }).catch(error => console.error('Error:', error));
 
         console.log('End of fetch');

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-{/* <i className="fas fa-running"></i> */}
 class HeaderNavBar extends Component {
     render() {
         return (

@@ -12,10 +12,7 @@ import PastTrainingSessions from './components/TrainingSessions/PastTrainingSess
 import FutureTrainingSessions from './components/TrainingSessions/FutureTrainingSessions';
 import MyAccount from './components/User/MyAccount';
 import AdminTestPage from './components/Admin/AdminTestPage';
-// import { library } from '@fortawesome/fontawesome-svg-core';
-// import { faRunning } from '@fortawesome/free-solid-svg-icons';
-
-// library.add(faRunning);
+import MyTrainingTypes from './components/User/MyTrainingTypes';
 
 class App extends Component {
 
@@ -65,6 +62,7 @@ class App extends Component {
             <Route path="/training-sessions/past" exact component={PastTrainingSessions} />
             <Route path="/training-sessions" exact component={FutureTrainingSessions} />
             <Route path="/myaccount" exact component={MyAccount} />
+            <Route path="/my-training-types" exact component={MyTrainingTypes} />
             {/* <Route path="/login" exact component={TempLogin} /> */}
             <Route path="/" component={Landing} />
           </Switch>

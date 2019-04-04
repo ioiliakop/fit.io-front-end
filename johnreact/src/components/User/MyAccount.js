@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UserContext from '../../context/user-context';
 import withAuthorization from '../../hoc/withAuthorization';
 import Role from '../Role';
@@ -71,10 +72,10 @@ class MyAccount extends Component {
                             <button type="submit" className="btn btn-primary">Save Changes</button>
                         </form>
                     </div>
-
+                    
                     {/* <!-- Right Section --> */}
                     <div className="container col-md-4 text-center p-5">
-                        <div><i className="far fa-user-circle fa-8x"></i></div>
+                        <div><FontAwesomeIcon icon={["far", "user-circle"]} size="8x" /></div>
                         <div className="my-2">{this.context.userInfo.firstName + ' ' + this.context.userInfo.lastName}<div className="text-muted">({this.context.userInfo.role.name})</div></div>                       
                         <div className="custom-file text-left">
                             <input type="file" className="custom-file-input" id="profilePic" accept=".jpg, .png, .gif" />
