@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+/**
+ * props needed
+ * {trainer}
+ */
 class TrainerRow extends Component {
 
     constructor(props) {
@@ -16,16 +20,23 @@ class TrainerRow extends Component {
         this.fetchTrainerAreas();
     }
 
+    componentDidUpdate(prevProps) {
+        if (this.props.trainer.id !== prevProps.trainer.id) {
+          this.fetchTrainerTypes();
+          this.fetchTrainerAreas();
+        }
+      }
+
     fetchTrainerTypes() {
         const url = 'http://localhost:8080/types/trainer-types/' + this.props.trainer.id;
 
         fetch(url, {
             method: 'GET',
         }).then(response => {
-            console.log('Response status:', response.status);
+            console.log('fetchTrainerTypes for trainerId', this.props.trainer.id, 'Response status:', response.status);
             if (response.status === 200) {
                 response.json().then( trainerTypes => {
-                    console.log('fetchTrainerTypes response data:', trainerTypes);
+                    console.log('fetchTrainerTypes for trainerId', this.props.trainer.id, ' response data:', trainerTypes);
                     console.log('Saving fetched training types to state');
                     this.setState({
                         trainerTypes: trainerTypes
@@ -69,7 +80,7 @@ class TrainerRow extends Component {
                         <div className="col-md-3 pt-4 px-4 border-right text-center">
                             <h4 className="text-primary">{this.props.trainer.firstName + ' ' + this.props.trainer.lastName}</h4>
                             <p>{trainerTypes.map( (trainerType, index) => {
-                                return (index !== (trainerTypes.length - 1)) ? (trainerType.title + ' - ') : trainerType.title;
+                                return (index < (trainerTypes.length - 1)) ? (trainerType.title + ' - ') : trainerType.title;
                             })}</p>
                         </div>
                         <div className="col-md-3 pt-4 px-4 border-right">
