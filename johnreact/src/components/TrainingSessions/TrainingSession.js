@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import AvailableActionsButtons from './AvailableActionsButtons';
 import Role from '../Role';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 class TrainingSession extends Component {
     render() {
@@ -28,9 +30,9 @@ class TrainingSession extends Component {
                             <h5 className="text-primary">{this.props.trs.trainingType.title}</h5>
                         </div>
                         <div className="col-lg-3 pt-4 px-4 border-right">
-                            <p className="card-text"><i className="far fa-calendar-alt"></i> &nbsp;{this.props.trs.date}, {this.props.trs.time}</p>
-                            <p className="card-text"><i className="fas fa-map-marked-alt"></i> &nbsp;{this.props.trs.area.address}, {this.props.trs.area.city}</p>
-                            <p className="card-text"><i className="fas fa-wallet"></i> &nbsp;{this.props.trs.trainer.price}&euro;</p>
+                            <p className="card-text"><FontAwesomeIcon icon={["far", "calendar-alt"]} /> &nbsp;{this.props.trs.date}, {this.props.trs.time}</p>
+                            <p className="card-text"><FontAwesomeIcon icon="map-marked-alt" /> &nbsp;{this.props.trs.area.address}, {this.props.trs.area.city}</p>
+                            <p className="card-text"><FontAwesomeIcon icon="wallet" /> &nbsp;{this.props.trs.trainer.price}&euro;</p>
                         </div>
                         <div className="col-lg-3 p-5">
                             <AvailableActionsButtons timeStatus={this.props.timeStatus} trsData={this.props.trs} userRole={this.props.userRole}/>

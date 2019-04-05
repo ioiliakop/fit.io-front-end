@@ -3,10 +3,11 @@ import ReviewModalButton from './ReviewModalButton';
 import ReviewedModalButton from './ReviewedModalButton';
 import ContactModalButton from './ContactModalButton';
 import Role from '../Role';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /**
  * Different Actions available to each training session
- * Depending on time status (future/past) and other parameters
+ * Depending on time status (future/past) and user Role (user/trainer)
  */
 class AvailableActionsButtons extends Component {
 
@@ -67,7 +68,7 @@ class AvailableActionsButtons extends Component {
                 return (
                     <React.Fragment>
                         <ContactModalButton trsData={this.props.trsData} userRole={this.props.userRole} />
-                        <button type="button" className="btn btn-danger btn-block">CANCEL <i className="fas fa-ban"></i></button>
+                        <button type="button" className="btn btn-danger btn-block">CANCEL <FontAwesomeIcon icon="ban" /></button>
                     </React.Fragment>
                 );
             } else {
@@ -85,7 +86,7 @@ class AvailableActionsButtons extends Component {
                 return (
                     <React.Fragment>
                         <ContactModalButton trsData={this.props.trsData} userRole={this.props.userRole} />
-                        <button type="button" className="btn btn-danger btn-block">CANCEL <i className="fas fa-ban"></i></button>
+                        <button type="button" className="btn btn-danger btn-block">CANCEL <FontAwesomeIcon icon="ban" /></button>
                     </React.Fragment>
                 );
             } else {

@@ -56,7 +56,7 @@ class App extends Component {
           <Header />
           {this.state.isLoggedIn && <UserNavbar />}
           <Switch>
-            <Route path="/admin" exact component={AdminTestPage} />  {/* Testing withAuthorization HOC* */}
+            <Route path="/admin" exact component={AdminTestPage} />  {/* Testing withAuthorization HOC - OK */}
             <Route path="/register/:rolename" exact component={Register} /> {/*perhaps needs consideration to restrain possible values/routes*/}
             <Route path="/messages/out" exact component={OutboxMessages} />
             <Route path="/messages/" exact component={InboxMessages} />

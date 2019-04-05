@@ -29,7 +29,7 @@ class TrainersSearch extends Component {
         this.handleSearch = this.handleSearch.bind(this);
     }
 
-    // We get areas and trainingTypes to populate our state and our datalists
+    // We get areas and trainingTypes from db to populate our state and our datalists
     componentDidMount() {
         console.log('Search component did mount');
         this.fetchAreas();
@@ -91,8 +91,8 @@ class TrainersSearch extends Component {
                 if (inputAreaId !== -1) {
                     url = "http://localhost:8080/find/trainers-area/" + inputAreaId;
                 }
-            }
-            // else url = "get all trainers url";
+            } // find all trainers url - this works with pagination - unimplemented atm
+            else url = "http://localhost:8080/find/all-trainers" + '?start=' + '0' + '&end=' + '100';
         } else if (this.inputArea.current.value === "") {
             url = "http://localhost:8080/find/trainer-type/" + this.inputTrainingType.current.value;
         } else {

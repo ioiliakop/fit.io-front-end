@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import UserContext from '../../context/user-context';
 import MessageRow from './MessageRow';
 import ButtonLink from '../Utils/ButtonLink';
 import PaginationFooter from './PaginationFooter';
 import PaginationHeader from './PaginationHeader';
-import withAuthorization from '../../hoc/withAuthorization';
-import Role from '../Role';
 
 class Messages extends Component {
 
@@ -79,7 +77,7 @@ class Messages extends Component {
     // fetches messages based on current state
     fetchPageMessages() {
         const startIndex = (this.state.currentPage - 1) * this.state.messagesPerPage;
-        const url = this.fetchUrl + '?index1=' + startIndex + '&index2=' + this.state.messagesPerPage;
+        const url = this.fetchUrl + '?start=' + startIndex + '&end=' + this.state.messagesPerPage;
         console.log('url for messages fetch:', url);
 
         fetch(url, {
@@ -115,13 +113,6 @@ class Messages extends Component {
     }
 
     render() {
-        // if (!this.context.isLoggedIn) {
-        // Redirect to Landing
-        // Will probably be moved to a HOC later on for better maintanability
-        //     return (
-        //         <Redirect to='/' />
-        //     );
-        // } else {
         return (
             <React.Fragment>
                 <nav className="navbar navbar-light navbar-expand-md">
@@ -172,7 +163,6 @@ class Messages extends Component {
             </React.Fragment>
         );
     }
-    // }
 
 }
 

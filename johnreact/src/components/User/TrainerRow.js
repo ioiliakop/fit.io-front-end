@@ -73,11 +73,10 @@ class TrainerRow extends Component {
                             })}</p>
                         </div>
                         <div className="col-md-3 pt-4 px-4 border-right">
-                            {/* <p className="card-text"><i className="far fa-calendar-alt"></i> Tuesday 29/01/2019, 17:00</p> */}
-                            <p className="card-text"><i className="fas fa-map-marked-alt"></i> {trainerAreas.map( (trainerArea, index) => {
+                            <p className="card-text"><FontAwesomeIcon icon="map-marked-alt" /> &nbsp;{trainerAreas.map( (trainerArea, index) => {
                                 return (index < (trainerAreas.length - 1)) ? (trainerArea.city + ' - ') : trainerArea.city;
                             })}</p>
-                            <p className="card-text"><i className="fas fa-wallet"></i> {this.props.trainer.price}&euro;</p>
+                            <p className="card-text"><FontAwesomeIcon icon="wallet" /> &nbsp;{this.props.trainer.price}&euro;</p>
                         </div>
                         <div className="col-lg-3 p-5">
                             <button type="button" className="btn btn-info btn-block">PROFILE</button>

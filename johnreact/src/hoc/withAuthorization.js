@@ -28,6 +28,7 @@ function withAuthorization(WrappedComponent, roles, redirect) {
             if (!this.context.isLoggedIn) {
                 // component explicitly allowing access to logged out users only (e.g. Login/Register)
                 if (roles && roles.includes(Role.Guest)) return <WrappedComponent {...this.props} />;
+                // otherwise user is not authorized
                 else {
                     if (redirect === true) {
                         console.log('Redirect to main triggerred from withAuthorization');
@@ -36,7 +37,7 @@ function withAuthorization(WrappedComponent, roles, redirect) {
                 }
             }
 
-            // User unauthorized for this component
+            // User not authorized for this component
             if (!(roles && roles.includes(this.context.userInfo.role.name))) {
                 if (redirect === true) {
                     console.log('Redirect to main triggerred from withAuthorization');

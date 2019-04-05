@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Rating from 'react-rating';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class ReviewModalButton extends Component {
 
@@ -54,7 +55,7 @@ class ReviewModalButton extends Component {
     render() {
         return (
             <React.Fragment>
-                <button type="button" className="btn btn-info btn-block" data-toggle="modal" data-target={'#rm_' + this.props.trsData.id}>REVIEW <i className="far fa-star"></i></button>
+                <button type="button" className="btn btn-info btn-block" data-toggle="modal" data-target={'#rm_' + this.props.trsData.id}>REVIEW <FontAwesomeIcon icon={["far", "star"]} /></button>
                 <div className="modal fade" id={'rm_' + this.props.trsData.id} tabIndex="-1" role="dialog" aria-labelledby={'rmLabel_' + this.props.trsData.id} aria-hidden="true">
                     <div className="modal-dialog" role="document">
                         <div className="modal-content">
@@ -69,19 +70,19 @@ class ReviewModalButton extends Component {
                                     <div className="col-md-8 mx-auto">For your {this.props.trsData.trainingType.title} training session</div>
                                 </div>
                                 <div className="col-8 col-sm-6 mx-auto">
-                                    <i className="far fa-calendar-alt"></i> &nbsp;{this.props.trsData.date}, {this.props.trsData.time}
+                                    <FontAwesomeIcon icon={["far", "calendar-alt"]} /> &nbsp;{this.props.trsData.date}, {this.props.trsData.time}
                                 </div>
                                 <div className="col-8 col-sm-6 mx-auto">
-                                    <i className="fas fa-map-marked-alt"></i> &nbsp;{this.props.trsData.area.address}, {this.props.trsData.area.city}
+                                    <FontAwesomeIcon icon="map-marked-alt" /> &nbsp;{this.props.trsData.area.address}, {this.props.trsData.area.city}
                                 </div>
                                 <div className="col-8 col-sm-6 mx-auto">
-                                    <i className="fas fa-wallet"></i> &nbsp;{this.props.trsData.trainer.price}&euro;
+                                    <FontAwesomeIcon icon="wallet" /> &nbsp;{this.props.trsData.trainer.price}&euro;
                                 </div>
                                 <hr />
                                 <form>
                                     <div className="form-group text-center">
                                         {/* <label htmlFor={'review-text_' + this.props.trsData.id} className="col-form-label"><h5>Review: </h5></label> */}
-                                        <div><Rating emptySymbol="far fa-star" fullSymbol="fas fa-star" style={{color: '#EEBD01'}} initialRating={this.state.rating} onClick={this.handleRatingChange}/></div>
+                                        <div><Rating emptySymbol={<FontAwesomeIcon icon={["far", "star"]} />} fullSymbol={<FontAwesomeIcon icon="star" />} style={{color: '#EEBD01'}} initialRating={this.state.rating} onClick={this.handleRatingChange}/></div>
                                         <textarea className="form-control mt-3" id={'review-text_' + this.props.trsData.id} ref={this.review} required placeholder={"Leave a rating and a comment for your experience with " + this.props.trsData.trainer.firstName}></textarea>
                                     </div>
                                 </form>
