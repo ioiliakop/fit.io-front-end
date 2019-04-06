@@ -60,6 +60,7 @@ class MyTrainingTypes extends Component {
         console.log('End of fetch all training types');
     }
 
+    // fetches current trainer's training types
     fetchTrainersTrainingTypes() {
         const url = 'http://localhost:8080/types/trainer-types/' + this.context.userInfo.id;
 

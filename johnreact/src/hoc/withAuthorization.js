@@ -12,7 +12,7 @@ import Role from '../components/Role';
  * 
  * @param {Component} WrappedComponent
  * @param {Array} roles
- * @param {boolean} redirect
+ * @param {Boolean} redirect
  */
 function withAuthorization(WrappedComponent, roles, redirect) {
     return class extends Component {

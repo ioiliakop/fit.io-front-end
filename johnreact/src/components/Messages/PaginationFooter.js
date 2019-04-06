@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+/**
+ * Props needed for PaginationFooter
+ * @param {Number} props.activePage
+ * @param {Number} props.totalPages
+ * @param {Function} props.handle to set active page
+ */
+
 // The Button of our pagination bar that redirects to the previous page
 function Previous(props) {
     if (props.activePage === 1) return (
         <li className="page-item active" aria-current="page">
             <span className="page-link">
                 <span aria-hidden="true"><FontAwesomeIcon icon="angle-left" /></span>
-                {/* <span aria-hidden="true">&laquo;</span> */}
                 <span className="sr-only">(current)</span>
             </span>
         </li>);
@@ -15,7 +21,6 @@ function Previous(props) {
         <li className="page-item">
             <a className="page-link" href="#" aria-label="Previous" onClick={() => props.setActivePage(props.activePage - 1)}>
                 <span aria-hidden="true"><FontAwesomeIcon icon="angle-left" /></span>
-                {/* <span aria-hidden="true">&laquo;</span> */}
             </a>
         </li>
     );
@@ -27,7 +32,6 @@ function Next(props) {
         <li className="page-item active" aria-current="page">
             <span className="page-link">
                 <span aria-hidden="true"><FontAwesomeIcon icon="angle-right" /></span>
-                {/* <span aria-hidden="true">&raquo;</span> */}
                 <span className="sr-only">(current)</span>
             </span>
         </li>);
@@ -35,8 +39,6 @@ function Next(props) {
         <li className="page-item">
             <a className="page-link" href="#" aria-label="Next" onClick={() => props.setActivePage(props.activePage + 1)}>
                 <span aria-hidden="true"><FontAwesomeIcon icon="angle-right" /></span>
-                {/* <span aria-hidden="true">&raquo;</span> */}
-
             </a>
         </li>
     );

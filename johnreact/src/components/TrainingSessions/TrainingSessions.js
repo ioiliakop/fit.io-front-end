@@ -116,9 +116,9 @@ class TrainingSessions extends Component {
                         // Adds only corresponding training sessions to array returned
                         if (now.valueOf() > trsDate.valueOf() && this.props.folderType === 'PAST') {
                             return <TrainingSession key={t.id} trs={t} timeStatus="PAST" userRole={this.context.userInfo.role.name} />
-                        } else if (now.valueOf() < trsDate.valueOf() && this.props.folderType === 'FUTURE'){
+                        } else if (now.valueOf() < trsDate.valueOf() && this.props.folderType === 'FUTURE') {
                             return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" userRole={this.context.userInfo.role.name} />
-                        }
+                        } return console.error('Training Sessions return unknown Error');
                     })}
                 </React.Fragment>
             );

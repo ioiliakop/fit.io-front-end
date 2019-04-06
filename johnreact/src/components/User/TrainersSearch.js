@@ -118,7 +118,7 @@ class TrainersSearch extends Component {
                 method: 'GET',
             }).then((response) => {
                 console.log('Sent. Response status:', response.status);
-                if (response.status == 200) {
+                if (response.status === 200) {
                     response.json().then( trainersList => {
                         console.log('Search results fetched:', trainersList);
                         console.log('search results in state before setState:', this.state.searchResults);
