@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Redirect, withRouter } from 'react-router-dom';
 
 /**
  * Props needed
@@ -13,7 +14,11 @@ class TrainerRow extends Component {
         this.state = {
             trainerAreas: [],
             trainerTypes: [],
+            redirect: false
         };
+        this.redirectToTrainerProfile = this.redirectToTrainerProfile.bind(this);
+        this.setRedirect = this.setRedirect.bind(this);
+        this.renderRedirect = this.renderRedirect.bind(this);
     }
 
     componentDidMount() {
@@ -68,11 +73,36 @@ class TrainerRow extends Component {
         console.log('End of fetch trainer areas');
     }
 
+    redirectToTrainerProfile() {
+        this.props.history.push('/trainer-profile/' + this.props.trainer.id);
+    }
+
+    setRedirect() {
+        this.setState({
+            redirect: true
+        });
+    }
+
+    renderRedirect() {
+        // We pass trainer, trainerAreas, trainerTypes as props to the redirected TrainerProfile component/route
+        if (this.state.redirect) {
+            return <Redirect to={{
+                pathname: '/trainer-profile/' + this.props.trainer.id,
+                state: {
+                    trainer: this.props.trainer,
+                    trainerAreas: this.state.trainerAreas,
+                    trainerTypes: this.state.trainerTypes
+                 }
+            }} />
+        }
+    }
+
     render() {
         const trainerTypes = this.state.trainerTypes;
         const trainerAreas = this.state.trainerAreas;
         return (
             <div className="container-fluid py-1">
+            {this.renderRedirect()}
                 <div className="container">
                     <div className="row bg-light border">
                         <div className="col-md-3 border-right text-center pt-5">
@@ -91,8 +121,9 @@ class TrainerRow extends Component {
                             <p className="card-text"><FontAwesomeIcon icon="wallet" /> &nbsp;{this.props.trainer.price}&euro;</p>
                         </div>
                         <div className="col-lg-3 p-5">
-                            <button type="button" className="btn btn-info btn-block">PROFILE</button>
-                            <button type="button" className="btn btn-warning btn-block">APPOINTMENT</button>
+                            {/* <button type="button" className="btn btn-info btn-block" onClick={this.redirectToTrainerProfile}>PROFILE</button> */}
+                            <button type="button" className="btn btn-info btn-block" onClick={this.setRedirect}>PROFILE</button>                            
+                            <button type="button" className="btn btn-danger btn-block">APPOINTMENT</button>
                         </div>
                     </div>
                 </div>
@@ -101,4 +132,4 @@ class TrainerRow extends Component {
     }
 }
 
-export default TrainerRow;
+export default withRouter(TrainerRow);

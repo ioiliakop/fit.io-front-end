@@ -14,6 +14,7 @@ import MyAccount from './components/User/MyAccount';
 import AdminTestPage from './components/Admin/AdminTestPage';
 import MyTrainingTypes from './components/User/MyTrainingTypes';
 import TrainersSearch from './components/User/TrainersSearch';
+import TrainerProfile from './components/User/TrainerProfile';
 
 class App extends Component {
 
@@ -67,6 +68,7 @@ class App extends Component {
             <Route path="/myaccount" exact component={MyAccount} />
             <Route path="/my-training-types" exact component={MyTrainingTypes} />
             <Route path="/trainers" exact component={TrainersSearch} />
+            <Route path="/trainer-profile/:trainerId" exact component={TrainerProfile} />
             {/* <Route path="/login" exact component={TempLogin} /> */}
             <Route path="/" component={Landing} />
           </Switch>

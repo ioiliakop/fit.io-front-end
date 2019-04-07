@@ -41,13 +41,9 @@ class Register extends Component {
         console.log('roleId after component did update:', this.state.roleId);
     }
 
-    // Used to redirect after registration
+    // Used to redirect after registration | either this or history.props.push
     renderRedirect() {
-        // This check will probably be romeved/not be needed
-        if (localStorage.getItem('token')) {
-            console.log('Already loggedIn user. Cannot register');
-            return <Redirect to='/' />
-        }
+        return null;
         if (this.state.regSuccess) {
             return <Redirect to='/' />
         }

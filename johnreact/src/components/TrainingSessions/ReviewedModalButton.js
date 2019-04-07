@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
 import Role from '../Role';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-// Returns rating left as 5 stars with respective filled/empty status depending on rating number
-function Rating (props) {
-    return (
-        <React.Fragment>
-         {Array.from({ length: 5 }, (v, i) => {
-         return ((i + 1) <= props.rating) ? <FontAwesomeIcon key={i} icon="star" style={{color: '#EEBD01'}} /> : <FontAwesomeIcon key={i} icon={["far", "star"]} style={{color: '#EEBD01'}} />;
-        })}
-        </React.Fragment>
-    );
-}
+import StarRating from './StarRating';
 
 // Appears when training session has already been reviewed
 class ReviewedModalButton extends Component {
@@ -53,7 +43,7 @@ class ReviewedModalButton extends Component {
                             <hr></hr>
                             <div className="mt-3 text-center">
                                 <h5>Your Review:</h5>
-                                <Rating rating={this.props.review.rating} />
+                                <StarRating rating={this.props.review.rating} />
                                 <div>{this.props.review.comment}</div>
                                 <small className="text-muted">{(new Date(this.props.review.date)).toDateString()}</small>
                             </div>

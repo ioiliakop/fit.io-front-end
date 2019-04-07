@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Rating from 'react-rating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import UserContext from '../../context/user-context';
 
 class ReviewModalButton extends Component {
 
@@ -13,6 +14,8 @@ class ReviewModalButton extends Component {
         this.handleSubmitReview = this.handleSubmitReview.bind(this);
         this.handleRatingChange = this.handleRatingChange.bind(this);
     }
+
+    static contextType = UserContext;
 
     // only for checking data atm - will probably be ommitted later
     componentDidMount() {

@@ -77,7 +77,7 @@ class Messages extends Component {
     // fetches messages based on current state
     fetchPageMessages() {
         const startIndex = (this.state.currentPage - 1) * this.state.messagesPerPage;
-        const url = this.fetchUrl + '?start=' + startIndex + '&end=' + this.state.messagesPerPage;
+        const url = this.fetchUrl + '?start=' + startIndex + '&size=' + this.state.messagesPerPage;
         console.log('url for messages fetch:', url);
 
         fetch(url, {
