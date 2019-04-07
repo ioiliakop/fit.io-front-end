@@ -18,18 +18,18 @@ class TrainingSession extends Component {
   };
 
   render() {
-    const {
-      area,
-      client,
-      date,
-      time,
-      trainer,
-      trainingType
-    } = this.props.location.state.session;
     const { state } = this.props.location;
     if (state == null) {
       this.props.history.push("/calendar");
     } else {
+      const {
+        area,
+        client,
+        date,
+        time,
+        trainer,
+        trainingType
+      } = this.props.location.state.session;
       return (
         <React.Fragment>
           <br />
