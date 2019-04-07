@@ -4,6 +4,7 @@ import UserContext from '../../context/user-context';
 import withAuthorization from '../../hoc/withAuthorization';
 import Role from '../Role';
 
+// UNFINISHED
 class MyAccount extends Component {
 
     static contextType = UserContext;

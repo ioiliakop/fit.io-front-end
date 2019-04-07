@@ -16,6 +16,10 @@ import MyTrainingTypes from "./components/User/MyTrainingTypes";
 import TrainersSearch from "./components/User/TrainersSearch";
 import Calendar from "./components/myCalendar/Calendar";
 import TrainingSession from "./components/myCalendar/TrainingSession";
+import TrainerProfile from "./components/trainersProfile/TrainerProfile";
+import Reviews from "./components/trainersProfile/Reviews";
+import { TrainersCalendar } from "./components/trainersProfile/TrainersCalendar";
+import BookTrainingSession from "./components/trainersProfile/BookTrainingSession";
 
 class App extends Component {
   constructor(props) {
@@ -62,7 +66,7 @@ class App extends Component {
           {this.state.isLoggedIn && <UserNavbar />}
           <Switch>
             <Route path="/admin" exact component={AdminTestPage} />{" "}
-            {/* Testing withAuthorization HOC* */}
+            {/* Testing withAuthorization HOC - OK */}
             <Route path="/register/:rolename" exact component={Register} />{" "}
             {/*perhaps needs consideration to restrain possible values/routes*/}
             <Route path="/messages/out" exact component={OutboxMessages} />
@@ -84,9 +88,16 @@ class App extends Component {
               exact
               component={MyTrainingTypes}
             />
+            <Route path="/trainers" exact component={TrainersSearch} />
+            <Route path="/trainerProfile/:id" component={TrainerProfile} />
+            <Route path="/reviews/:id" component={Reviews} />
+            <Route path="/trainersCalendar/:id" component={TrainersCalendar} />
+            <Route
+              path="/bookTrainingSession"
+              component={BookTrainingSession}
+            />
             <Route path="/myCalendar" component={Calendar} />
             <Route path="/trainingSession" component={TrainingSession} />
-            <Route path="/trainers" exact component={TrainersSearch} />
             {/* <Route path="/login" exact component={TempLogin} /> */}
             <Route path="/" component={Landing} />
           </Switch>

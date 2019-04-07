@@ -3,15 +3,17 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-// import './index.css';
+// import './index_style.css';
 import 'bootstrap';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faRunning } from '@fortawesome/free-solid-svg-icons';
-import { faUserCircle } from '@fortawesome/free-regular-svg-icons';
+import { faRunning, faMapMarkedAlt, faWallet, faAngleLeft, faAngleRight, faBan, faSearch, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faUserCircle, faCalendarAlt, faEye } from '@fortawesome/free-regular-svg-icons';
+import { faStar as fasFaStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
 
 // // import * as serviceWorker from './serviceWorker';
 
-library.add(faRunning, faUserCircle);
+library.add(faRunning, faMapMarkedAlt, faWallet, faAngleLeft, faAngleRight, faBan, faSearch, faCheck, faUserCircle, faCalendarAlt, fasFaStar, farFaStar, faEye);
 
 // let localStorageVals = {
 //   isLoggedIn: false,

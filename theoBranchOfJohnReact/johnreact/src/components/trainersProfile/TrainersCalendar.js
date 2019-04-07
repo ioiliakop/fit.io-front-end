@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import "../../stylesheets/calendar.css";
-import DayWithSession from "./DayWithSession";
-import { Link, withRouter } from "react-router-dom";
+import CalendarDay from "./CalendarDay";
+import { withRouter, Link } from "react-router-dom";
 import $ from "jquery";
 
-export class Calendar extends Component {
+export class TrainersCalendar extends Component {
   state = {
-    user:
-      localStorage.getItem("userInfo") != ""
-        ? JSON.parse(localStorage.getItem("userInfo"))
-        : null,
+    user: {},
     sessions: [],
     month: 0,
     modalSessions: [],
@@ -17,64 +14,75 @@ export class Calendar extends Component {
   };
 
   componentDidMount() {
-    if (localStorage.getItem("userInfo") !== "") {
-      var date = new Date();
-      var month = date.getMonth();
-      let user = this.state.user;
-      this.setState({
-        month: month + 1
-      });
-      let token = localStorage.getItem("token");
+    const { id } = this.props.match.params;
+    var date = new Date();
+    var month = date.getMonth();
 
-      let url;
-      if (user.role.id == 2) {
-        url = "http://localhost:8080/session/trainer-sessions";
-      } else {
-        url = "http://localhost:8080/session/client-sessions";
-      }
-      $.ajax({
-        type: "GET",
-        url: url,
-        headers: { "X-MSG-AUTH": token },
-        dataType: "json",
-        async: true,
-        success: sessions => {
-          console.log(sessions);
-          this.setState({
-            sessions: sessions
-          });
-        },
-        error: () => {}
-      });
-    }
+    this.setState({
+      month: month + 1
+    });
+    let token = localStorage.getItem("token");
+    $.ajax({
+      type: "GET",
+      url: `http://localhost:8080/session/trainer-sessions/${id}`,
+      headers: { "X-MSG-AUTH": token },
+      dataType: "json",
+      async: true,
+      success: sessions => {
+        this.setState({
+          sessions: sessions
+        });
+      },
+      error: () => {}
+    });
+    this.getUser(id);
   }
+
+  getUser = id => {
+    $.ajax({
+      type: "GET",
+      url: `http://localhost:8080/find/getUser/${id}`,
+      dataType: "json",
+      async: true,
+      success: user => {
+        this.setState({
+          user
+        });
+      },
+      error: error => {
+        this.props.history.push("/");
+      }
+    });
+  };
 
   hideModal = () => {
     $("#sessionModal").modal("hide");
   };
 
   showModal = day => {
+    const { id } = this.props.match.params;
     let dayToString = day.toString();
 
     if (day < 10) {
       dayToString = "0" + dayToString;
     }
-    let date = "2019-" + this.state.month + "-" + dayToString;
-    let user = this.state.user;
-    let url;
-    if (user.role.id == 2) {
-      url = `http://localhost:8080/session/trainer-sessions-date/${date}`;
-    } else {
-      url = `http://localhost:8080/session/client-sessions-date/${date}`;
+    let monthToString = this.state.month.toString();
+
+    if (this.state.month < 10) {
+      monthToString = "0" + monthToString;
     }
 
+    let date = "2019-" + monthToString + "-" + dayToString;
+    let token = localStorage.getItem("token");
     $.ajax({
       type: "GET",
-      url: url,
-      headers: { "X-MSG-AUTH": localStorage.getItem("token") },
+      url: `http://localhost:8080/session/trainer-sessions-date/${date}/${id}`,
+      headers: { "X-MSG-AUTH": token },
       dataType: "json",
       async: true,
       success: modalSessions => {
+        console.log("ta modal esessions einai");
+        console.log(modalSessions);
         this.setState({
           modalSessions: modalSessions,
           dateOfModal: date
@@ -83,6 +91,48 @@ export class Calendar extends Component {
       error: () => {}
     });
     $("#sessionModal").modal("show");
+  };
+
+  generateModalAvailableHours = dayOfModal => {
+    const { id } = this.props.match.params;
+    let availableHours = [
+      "10:00:00",
+      "11:00:00",
+      "12:00:00",
+      "13:00:00",
+      "14:00:00",
+      "15:00:00",
+      "16:00:00",
+      "17:00:00",
+      "18:00:00",
+      "19:00:00",
+      "20:00:00"
+    ];
+
+    let closedHours = this.state.modalSessions.map(session => {
+      return session.time;
+    });
+
+    availableHours = availableHours.filter(hour => {
+      return !(closedHours.indexOf(hour) > -1);
+    });
+
+    let timeSlots = [];
+    availableHours.forEach(hour => {
+      timeSlots.push(
+        <Link
+          class="list-group-item"
+          to={{
+            pathname: "/bookTrainingSession",
+            state: { day: dayOfModal, hour: hour, trainersId: id }
+          }}
+          onClick={this.hideModal}
+        >
+          {"Hour: " + hour + " , Click to Book"}
+        </Link>
+      );
+    });
+    return timeSlots;
   };
 
   generateDays = () => {
@@ -94,29 +144,15 @@ export class Calendar extends Component {
     } else {
       monthToString = month.toString();
     }
-    let daysWithSession = this.state.sessions.map(session => {
-      if (session.date.slice(5, 7) == monthToString) {
-        return parseInt(session.date.slice(8, 10));
-      }
-    });
 
     for (var i = 1; i <= 31; i++) {
-      if (daysWithSession.includes(i)) {
-        days.push(
-          <DayWithSession
-            key={i}
-            month={this.state.month}
-            day={i}
-            showModal={this.showModal}
-          />
-        );
-      } else {
-        days.push(
-          <div class="day">
-            <span class="date">{i}</span>
-          </div>
-        );
-      }
+      days.push(
+        <CalendarDay
+          month={this.state.month}
+          day={i}
+          showModal={this.showModal}
+        />
+      );
     }
     return days;
   };
@@ -148,14 +184,13 @@ export class Calendar extends Component {
   };
 
   render() {
+    const { user } = this.state;
     return (
       <React.Fragment>
         <div class="bodyDivCalendar">
-          <h1 class="h1Calendar">
-            {this.state.month + "/ 2019  Your Calendar "}
-            {this.state.user.role.id == 2 ? " (Trainer)" : null}
-          </h1>
+          <h1 class="h1Calendar">{this.state.month + "/ 2019 "}</h1>
           <div class="h1Calendar">
+            <h2>Available dates of {user.firstName + " " + user.lastName}</h2>
             <button class="btn btn-warning" onClick={this.previousMonth}>
               Previous Month
             </button>
@@ -208,26 +243,10 @@ export class Calendar extends Component {
                   </button>
                 </div>
                 <div class="modal-body">
-                  <h6>Your sessions for {this.state.dateOfModal}</h6>
+                  <h6>Available hours for {this.state.dateOfModal}</h6>
                   <hr />
                   <ul class="list-group">
-                    {this.state.modalSessions.map(session => (
-                      <Link
-                        class="list-group-item"
-                        to={{
-                          pathname: "/trainingSession",
-                          state: { session: session }
-                        }}
-                        onClick={this.hideModal}
-                      >
-                        {"Time: " +
-                          session.time +
-                          " , Area: " +
-                          session.area.city +
-                          " ,Type: " +
-                          session.trainingType.title}
-                      </Link>
-                    ))}
+                    {this.generateModalAvailableHours(this.state.dateOfModal)}
                   </ul>
                 </div>
                 <div class="modal-footer">
@@ -248,4 +267,4 @@ export class Calendar extends Component {
   }
 }
 
-export default withRouter(Calendar);
+export default withRouter(TrainersCalendar);

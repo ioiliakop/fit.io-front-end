@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Role from '../Role';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-// Returns rating left as 5 stars with respective filled or empty status depending on rating number
+// Returns rating left as 5 stars with respective filled/empty status depending on rating number
 function Rating (props) {
     return (
         <React.Fragment>
          {Array.from({ length: 5 }, (v, i) => {
-         return ((i + 1) <= props.rating) ? <i key={i} className="fas fa-star" style={{color: '#EEBD01'}}></i> : <i key={i} className="far fa-star" style={{color: '#EEBD01'}}></i>;
+         return ((i + 1) <= props.rating) ? <FontAwesomeIcon key={i} icon="star" style={{color: '#EEBD01'}} /> : <FontAwesomeIcon key={i} icon={["far", "star"]} style={{color: '#EEBD01'}} />;
         })}
         </React.Fragment>
     );
@@ -41,13 +42,13 @@ class ReviewedModalButton extends Component {
                                 {/* <div className="col-md-8 mx-auto">You have already left a review for your {this.props.trsData.trainingType.title} training session with {this.props.trsData.trainer.firstName} {this.props.trsData.trainer.lastName}</div> */}
                             </div>
                             <div className="col-8 col-sm-6 mx-auto">
-                                <i className="far fa-calendar-alt"></i> &nbsp;{this.props.trsData.date}, {this.props.trsData.time}
+                                <FontAwesomeIcon icon={["far", "calendar-alt"]} /> &nbsp;{this.props.trsData.date}, {this.props.trsData.time}
                             </div>
                             <div className="col-8 col-sm-6 mx-auto">
-                                <i className="fas fa-map-marked-alt"></i> &nbsp;{this.props.trsData.area.address}, {this.props.trsData.area.city}
+                                <FontAwesomeIcon icon="map-marked-alt" /> &nbsp;{this.props.trsData.area.address}, {this.props.trsData.area.city}
                             </div>
                             <div className="col-8 col-sm-6 mx-auto">
-                                <i className="fas fa-wallet"></i> &nbsp;{this.props.trsData.trainer.price}&euro;
+                                <FontAwesomeIcon icon="wallet" /> &nbsp;{this.props.trsData.trainer.price}&euro;
                             </div>
                             <hr></hr>
                             <div className="mt-3 text-center">

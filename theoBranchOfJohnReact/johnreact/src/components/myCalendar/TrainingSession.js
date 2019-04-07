@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+import $ from "jquery";
 
 class TrainingSession extends Component {
   cancelSession = session => {
     console.log(session);
-    window.$.ajax({
+    $.ajax({
       type: "POST",
       url: `http://localhost:8080/session/cancel-session/${session.id}`,
       headers: { "X-MSG-AUTH": localStorage.getItem("token") },

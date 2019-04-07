@@ -27,9 +27,10 @@ class TrainersSearch extends Component {
         this.fetchAreas = this.fetchAreas.bind(this);
         this.fetchTrainingTypes = this.fetchTrainingTypes.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
+        this.validateInputArea = this.validateInputArea.bind(this);
     }
 
-    // We get areas and trainingTypes to populate our state and our datalists
+    // We get areas and trainingTypes from db to populate our state and our datalists
     componentDidMount() {
         console.log('Search component did mount');
         this.fetchAreas();
@@ -91,8 +92,8 @@ class TrainersSearch extends Component {
                 if (inputAreaId !== -1) {
                     url = "http://localhost:8080/find/trainers-area/" + inputAreaId;
                 }
-            }
-            // else url = "get all trainers url";
+            } // find all trainers url - this works with pagination - unimplemented atm
+            // else url = "http://localhost:8080/find/all-trainers" + '?start=' + '0' + '&end=' + '100';
         } else if (this.inputArea.current.value === "") {
             url = "http://localhost:8080/find/trainer-type/" + this.inputTrainingType.current.value;
         } else {
@@ -117,13 +118,13 @@ class TrainersSearch extends Component {
                 method: 'GET',
             }).then((response) => {
                 console.log('Sent. Response status:', response.status);
-                if (response.status == 200) {
+                if (response.status === 200) {
                     response.json().then( trainersList => {
-                        console.log(trainersList);
+                        console.log('Search results fetched:', trainersList);
                         console.log('search results in state before setState:', this.state.searchResults);
                         this.setState({
                             searchResults: trainersList
-                        });
+                        }, () => console.log('search results in state after setState:', this.state.searchResults));
                     })
                 }
                 console.log('search results in state:', this.state.searchResults);

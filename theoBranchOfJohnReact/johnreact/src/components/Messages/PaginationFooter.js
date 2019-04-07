@@ -1,20 +1,26 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+/**
+ * Props needed for PaginationFooter
+ * @param {Number} props.activePage
+ * @param {Number} props.totalPages
+ * @param {Function} props.handle to set active page
+ */
 
 // The Button of our pagination bar that redirects to the previous page
 function Previous(props) {
     if (props.activePage === 1) return (
         <li className="page-item active" aria-current="page">
             <span className="page-link">
-                {/* <span aria-hidden="true"><i className="fas fa-angle-left"></i></span> */}
-                <span aria-hidden="true">&laquo;</span>
+                <span aria-hidden="true"><FontAwesomeIcon icon="angle-left" /></span>
                 <span className="sr-only">(current)</span>
             </span>
         </li>);
     else return (
         <li className="page-item">
             <a className="page-link" href="#" aria-label="Previous" onClick={() => props.setActivePage(props.activePage - 1)}>
-                {/* <span aria-hidden="true"><i className="fas fa-angle-left"></i></span> */}
-                <span aria-hidden="true">&laquo;</span>
+                <span aria-hidden="true"><FontAwesomeIcon icon="angle-left" /></span>
             </a>
         </li>
     );
@@ -25,17 +31,14 @@ function Next(props) {
     if (props.activePage === props.lastPage) return (
         <li className="page-item active" aria-current="page">
             <span className="page-link">
-                {/* <span aria-hidden="true"><i className="fas fa-angle-right"></i></span> */}
-                <span aria-hidden="true">&raquo;</span>
+                <span aria-hidden="true"><FontAwesomeIcon icon="angle-right" /></span>
                 <span className="sr-only">(current)</span>
             </span>
         </li>);
     else return (
         <li className="page-item">
             <a className="page-link" href="#" aria-label="Next" onClick={() => props.setActivePage(props.activePage + 1)}>
-                {/* <span aria-hidden="true"><i className="fas fa-angle-right"></i></span> */}
-                <span aria-hidden="true">&raquo;</span>
-
+                <span aria-hidden="true"><FontAwesomeIcon icon="angle-right" /></span>
             </a>
         </li>
     );
@@ -72,18 +75,6 @@ function PageNumberIcon(props) {
     }
     // we don't want to render anything for all the other pages
     return null;
-
-    // Legacy Pagination without dots
-    // if (props.activePage !== props.pageNumber)
-    //     return (
-    //         <li className="page-item" onClick={() => props.setActivePage(props.pageNumber)}><a className="page-link" href="#">{props.pageNumber}</a></li>
-    //     ); else return (
-    //         <li className="page-item active" aria-current="page">
-    //             <span className="page-link">
-    //                 {props.pageNumber}
-    //                 <span className="sr-only">(current)</span>
-    //             </span>
-    //         </li>);
 }
 
 class PaginationFooter extends Component {
