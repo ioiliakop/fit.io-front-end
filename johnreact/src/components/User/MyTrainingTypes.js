@@ -55,6 +55,7 @@ class MyTrainingTypes extends Component {
         this.fetchTrainersTrainingTypes();
         this.fetchAllAreas();
         this.fetchTrainersAreas();
+        console.log('context:', this.context);
     }
 
     // fetches all areas from db to populate our datalist
@@ -112,7 +113,7 @@ class MyTrainingTypes extends Component {
             fetch(url, {
                 method: 'POST',
                 headers: {
-                    'X-MSG-AUTH': localStorage.getItem('token'),
+                    'X-MSG-AUTH': this.context.token
                 }
             }).then(response => {
                 console.log('Response status:', response.status);
@@ -132,7 +133,7 @@ class MyTrainingTypes extends Component {
         fetch(url, {
             method: 'POST',
             headers: {
-                'X-MSG-AUTH': localStorage.getItem('token'),
+                'X-MSG-AUTH': this.context.token
             }
         }).then(response => {
             console.log('Response status:', response.status);
@@ -198,7 +199,7 @@ class MyTrainingTypes extends Component {
             fetch(url, {
                 method: 'POST',
                 headers: {
-                    'X-MSG-AUTH': localStorage.getItem('token'),
+                    'X-MSG-AUTH': this.context.token
                 }
             }).then(response => {
                 console.log('Response status:', response.status);
@@ -221,7 +222,7 @@ class MyTrainingTypes extends Component {
             fetch(url, {
                 method: 'POST',
                 headers: {
-                    'X-MSG-AUTH': localStorage.getItem('token'),
+                    'X-MSG-AUTH': this.context.token
                 }
             }).then(response => {
                 console.log('Response status:', response.status);
@@ -241,7 +242,7 @@ class MyTrainingTypes extends Component {
         fetch(url, {
             method: 'POST',
             headers: {
-                'X-MSG-AUTH': localStorage.getItem('token'),
+                'X-MSG-AUTH': this.context.token
             }
         }).then(response => {
             console.log('Response status:', response.status);

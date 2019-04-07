@@ -83,7 +83,7 @@ class Messages extends Component {
         fetch(url, {
             method: 'GET',
             headers: {
-                'X-MSG-AUTH': localStorage.getItem('token'),
+                'X-MSG-AUTH': this.context.token,
                 'Accept': 'application/json',
             }
         }).then(response => {

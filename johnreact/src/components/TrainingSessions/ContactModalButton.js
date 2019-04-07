@@ -30,7 +30,7 @@ class ContactModalButton extends Component {
         fetch(url, {
             method: 'POST',
             headers: {
-                'X-MSG-AUTH': localStorage.getItem('token'),
+                'X-MSG-AUTH': this.context.token
             },
             body: this.message.current.value
         }).then(response => {

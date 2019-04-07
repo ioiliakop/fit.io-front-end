@@ -33,6 +33,7 @@ class App extends Component {
 
         // decided to update state directly from localstorage (we consider it the single source of truth)
         // looks like there could be issues. db is single source of truth
+        // will revisit this. makes it complicated to update attributes in memory
         isLoggedIn: localStorage.getItem('token') ? true : false,
         token: localStorage.getItem('token') && localStorage.getItem('token'),
         userInfo: localStorage.getItem('token') && JSON.parse(localStorage.getItem('userInfo')),
