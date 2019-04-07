@@ -33,7 +33,7 @@ export class TrainersCalendar extends Component {
           sessions: sessions
         });
       },
-      error: () => {}
+      error: () => { }
     });
     this.getUser(id);
   }
@@ -88,7 +88,7 @@ export class TrainersCalendar extends Component {
           dateOfModal: date
         });
       },
-      error: () => {}
+      error: () => { }
     });
     $("#sessionModal").modal("show");
   };
@@ -137,22 +137,39 @@ export class TrainersCalendar extends Component {
 
   generateDays = () => {
     let days = [];
-    let month = this.state.month;
-    let monthToString;
-    if (month < 10) {
-      monthToString = "0" + month.toString();
-    } else {
-      monthToString = month.toString();
-    }
+    let stateMonth = this.state.month;
+    // let monthToString;
+    // if (stateMonth < 10) {
+    //   monthToString = "0" + stateMonth.toString();
+    // } else {
+    //   monthToString = stateMonth.toString();
+    // }
 
-    for (var i = 1; i <= 31; i++) {
-      days.push(
-        <CalendarDay
-          month={this.state.month}
-          day={i}
-          showModal={this.showModal}
-        />
-      );
+    let date = new Date();
+    let currentDayOfMonth = date.getDate();
+    let currentMonth = date.getMonth() + 1;
+
+    if (currentMonth <= stateMonth) {
+      for (var i = 1; i <= currentDayOfMonth; i++) {
+        days.push(
+          <div class="day">
+            <span class="date"> {i} </span>
+          </div>
+        );
+      }
+      for (var i = currentDayOfMonth + 1; i <= 31; i++) {
+        days.push(
+          <CalendarDay month={this.state.month} day={i} showModal={this.showModal} />
+        );
+      }
+    } else {
+      for (var i = 1; i <= 31; i++) {
+        days.push(
+          <div class="day">
+            <span class="date"> {i} </span>
+          </div>
+        );
+      }
     }
     return days;
   };
@@ -233,12 +250,7 @@ export class TrainersCalendar extends Component {
                   <h5 class="modal-title" id="exampleModalLabel">
                     Training sessions
                   </h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -250,11 +262,7 @@ export class TrainersCalendar extends Component {
                   </ul>
                 </div>
                 <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-dismiss="modal"
-                  >
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">
                     Close
                   </button>
                 </div>

@@ -1,7 +1,59 @@
 import React, { Component } from "react";
+import RatingModal from "./RatingModal";
 import $ from "jquery";
 
 class TrainingSession extends Component {
+
+  state = {
+    session:
+      this.props.location.state != null
+        ? this.props.location.state.session
+        : null,
+    pastSession: false
+  };
+
+  componentDidMount() {
+    if (this.state.session != null) {
+      // const script = document.createElement("script");
+      // script.src = "../../../public/javascript/rating.js";
+      // script.async = true;
+      // this.instance.appendChild(script);
+      const { session } = this.state;
+      let date = new Date();
+      let day = date.getDay();
+      let month = date.getMonth() + 1;
+
+      let year = date.getFullYear();
+      let hour = date.getHours();
+      console.log(day);
+      if (day < 10) {
+        day = "0" + day;
+      }
+      if (month < 10) {
+        month = "0" + month;
+      }
+      if (hour < 10) {
+        hour = "0" + hour;
+      }
+      let currentDate = year + "-" + month + "-" + day;
+
+      if (session.date < currentDate) {
+        this.setState({
+          pastSession: true
+        });
+        console.log("einai paliooo");
+      }
+      if (session.date == currentDate) {
+        let sessionTime = session.time.slice(0, 2);
+        if (sessionTime < hour) {
+          this.setState({
+            pastSession: true
+          });
+        }
+      }
+    }
+  }
+
   cancelSession = session => {
     console.log(session);
     $.ajax({
@@ -13,7 +65,28 @@ class TrainingSession extends Component {
         alert("Succesfuly Canceled");
         this.props.history.push("/myaccount");
       },
-      error: () => {}
+      error: () => { }
+    });
+  };
+
+  addReview = rating => {
+    // let rating = document.getElementById("ratingVathmos").innerText;
+    let review = document.getElementById("typedReview").value;
+    console.log(review);
+    console.log(rating);
+    $.ajax({
+      type: "POST",
+      contentType: "text/plain",
+      url: `http://localhost:8080/session/add-comment/${this.state.session.id}/${rating}`,
+      headers: { "X-MSG-AUTH": localStorage.getItem("token") },
+      data: review,
+      async: true,
+      success: () => {
+        alert("Succesfuly Reviewed");
+        $("#exampleModal").modal("hide");
+        this.props.history.push("/myaccount");
+      },
+      error: () => { }
     });
   };
 
@@ -22,14 +95,8 @@ class TrainingSession extends Component {
     if (state == null) {
       this.props.history.push("/calendar");
     } else {
-      const {
-        area,
-        client,
-        date,
-        time,
-        trainer,
-        trainingType
-      } = this.props.location.state.session;
+      const { area, client, date, time, trainer, trainingType } = this.props.location.state.session;
+      const { pastSession } = this.state;
       return (
         <React.Fragment>
           <br />
@@ -53,18 +120,13 @@ class TrainingSession extends Component {
               <li class="list-group-item">{"Price: " + trainer.price}</li>
             </ul>
             <div class="card-body">
-              <button
-                onClick={this.cancelSession.bind(
-                  this,
-                  this.props.location.state.session
-                )}
-                class="btn btn-danger"
-              >
-                Cancel Training
-              </button>
+              {pastSession ?
+                (<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal"> Review Session </button>) :
+                (<button onClick={this.cancelSession.bind(this, this.props.location.state.session)} class="btn btn-danger" > Cancel Training </button>)}
             </div>
           </div>
           <br />
+          <RatingModal addReview={this.addReview} />
         </React.Fragment>
       );
     }

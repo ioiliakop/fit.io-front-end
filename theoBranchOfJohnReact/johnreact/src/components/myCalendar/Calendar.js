@@ -44,7 +44,7 @@ export class Calendar extends Component {
             sessions: sessions
           });
         },
-        error: () => {}
+        error: () => { }
       });
     }
   }
@@ -80,7 +80,7 @@ export class Calendar extends Component {
           dateOfModal: date
         });
       },
-      error: () => {}
+      error: () => { }
     });
     $("#sessionModal").modal("show");
   };
@@ -103,12 +103,7 @@ export class Calendar extends Component {
     for (var i = 1; i <= 31; i++) {
       if (daysWithSession.includes(i)) {
         days.push(
-          <DayWithSession
-            key={i}
-            month={this.state.month}
-            day={i}
-            showModal={this.showModal}
-          />
+          <DayWithSession key={i} month={this.state.month} day={i} showModal={this.showModal} />
         );
       } else {
         days.push(
@@ -198,12 +193,7 @@ export class Calendar extends Component {
                   <h5 class="modal-title" id="exampleModalLabel">
                     Training sessions
                   </h5>
-                  <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                  >
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
@@ -212,30 +202,17 @@ export class Calendar extends Component {
                   <hr />
                   <ul class="list-group">
                     {this.state.modalSessions.map(session => (
-                      <Link
-                        class="list-group-item"
-                        to={{
-                          pathname: "/trainingSession",
-                          state: { session: session }
-                        }}
-                        onClick={this.hideModal}
-                      >
-                        {"Time: " +
-                          session.time +
-                          " , Area: " +
-                          session.area.city +
-                          " ,Type: " +
-                          session.trainingType.title}
+                      <Link class="list-group-item" to={{
+                        pathname: "/trainingSession",
+                        state: { session: session }
+                      }} onClick={this.hideModal}  >
+                        {"Time: " + session.time + " , Area: " + session.area.city + " ,Type: " + session.trainingType.title}
                       </Link>
                     ))}
                   </ul>
                 </div>
                 <div class="modal-footer">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-dismiss="modal"
-                  >
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal" >
                     Close
                   </button>
                 </div>

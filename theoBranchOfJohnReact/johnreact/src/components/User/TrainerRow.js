@@ -127,15 +127,11 @@ class TrainerRow extends Component {
               </p>
             </div>
             <div className="col-lg-3 p-5">
-              <Link
-                to={`/trainerProfile/${this.props.trainer.id}`}
-                className="btn btn-info btn-block"
-              >
-                PROFILE
-              </Link>
-              <button type="button" className="btn btn-warning btn-block">
+              <Link to={`/trainerProfile/${this.props.trainer.id}`} className="btn btn-info btn-block"> PROFILE </Link>
+              <Link to={`/trainersCalendar/${this.props.trainer.id}`} className="btn btn-warning btn-block"> APPOINTMENT </Link>
+              {/* <button type="button" className="btn btn-warning btn-block">
                 APPOINTMENT
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

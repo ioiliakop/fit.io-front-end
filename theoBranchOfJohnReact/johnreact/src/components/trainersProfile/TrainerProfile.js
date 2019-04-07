@@ -102,7 +102,7 @@ class TrainerProfile extends Component {
 
                       <div class="profile-info-row">
                         <div class="profile-info-name">
-                          <i class="fal fa-calendar-alt" />
+                          <i class="fas fa-calendar-alt"></i>
                         </div>
 
                         <div class="profile-info-value">
@@ -114,7 +114,7 @@ class TrainerProfile extends Component {
 
                       <div class="profile-info-row">
                         <div class="profile-info-name">
-                          <i class="middle ace-icon fa fa-twitter-square bigger-150 light-blue" />
+                          <i class="fas fa-star-half"></i>
                         </div>
 
                         <div class="profile-info-value">
