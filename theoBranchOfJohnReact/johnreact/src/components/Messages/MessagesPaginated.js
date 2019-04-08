@@ -77,7 +77,7 @@ class Messages extends Component {
     // fetches messages based on current state
     fetchPageMessages() {
         const startIndex = (this.state.currentPage - 1) * this.state.messagesPerPage;
-        const url = this.fetchUrl + '?start=' + startIndex + '&end=' + this.state.messagesPerPage;
+        const url = this.fetchUrl + '?start=' + startIndex + '&size=' + this.state.messagesPerPage;
         console.log('url for messages fetch:', url);
 
         fetch(url, {
@@ -89,17 +89,17 @@ class Messages extends Component {
         }).then(response => {
             console.log('Response status:', response.status);
             if (response.status === 200) {
-                response.json().then( data => {
-                console.log(data);
-                console.log('Saving fetched messages to state');
-                const lastPageMessages = data.count % this.state.messagesPerPage;
-                const pagesNumber = (lastPageMessages > 0) ? (((data.count - lastPageMessages) / this.state.messagesPerPage) + 1) : (data.count / this.state.messagesPerPage);
-                this.setState({
-                    totalPages: pagesNumber,
-                    totalMessages: data.count,
-                    messages: data.results
-                });
-                console.log('Messages in state:', this.state.messages);
+                response.json().then(data => {
+                    console.log(data);
+                    console.log('Saving fetched messages to state');
+                    const lastPageMessages = data.count % this.state.messagesPerPage;
+                    const pagesNumber = (lastPageMessages > 0) ? (((data.count - lastPageMessages) / this.state.messagesPerPage) + 1) : (data.count / this.state.messagesPerPage);
+                    this.setState({
+                        totalPages: pagesNumber,
+                        totalMessages: data.count,
+                        messages: data.results
+                    });
+                    console.log('Messages in state:', this.state.messages);
                 })
             }
         }).catch(error => console.error('Error:', error));
