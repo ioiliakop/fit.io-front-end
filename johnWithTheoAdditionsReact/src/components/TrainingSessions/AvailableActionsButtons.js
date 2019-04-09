@@ -4,6 +4,7 @@ import ReviewModalButton from './ReviewModalButton';
 import ReviewedModalButton from './ReviewedModalButton';
 import ContactModalButton from './ContactModalButton';
 import Role from '../Role';
+import CancelTrainingSessionModalBody from './CancelTrainingSessionModalButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /**
@@ -12,6 +13,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
  * 
  * @property {String} timeStatus - 'PAST' or 'FUTURE' only accepted input - indicates if it's a past or future training session
  * @property {Object} trsData - The trainining session object passed with relative data
+ * @property {Function} handle - pass to CancelTrainingSessionModalBody
  */
 class AvailableActionsButtons extends Component {
 
@@ -83,7 +85,8 @@ class AvailableActionsButtons extends Component {
                 return (
                     <React.Fragment>
                         <ContactModalButton trsData={this.props.trsData} userRole={this.props.userRole} />
-                        <button type="button" className="btn btn-danger btn-block">CANCEL</button>
+                        {/* <button type="button" className="btn btn-danger btn-block">CANCEL</button> */}
+                        <CancelTrainingSessionModalBody trsData={this.props.trsData} handle={this.props.handle} />
                     </React.Fragment>
                 );
             } else {
@@ -101,7 +104,8 @@ class AvailableActionsButtons extends Component {
                 return (
                     <React.Fragment>
                         <ContactModalButton trsData={this.props.trsData} userRole={this.props.userRole} />
-                        <button type="button" className="btn btn-danger btn-block">CANCEL</button>
+                        {/* <button type="button" className="btn btn-danger btn-block">CANCEL</button> */}
+                        <CancelTrainingSessionModalBody trsData={this.props.trsData} handle={this.props.handle} />
                     </React.Fragment>
                 );
             } else {

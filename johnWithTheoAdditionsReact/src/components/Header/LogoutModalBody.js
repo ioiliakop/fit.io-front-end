@@ -3,8 +3,7 @@ import UserContext from '../../context/user-context'
 
 class LogoutModalBody extends Component {
 
-    static contextType = UserContext;
-    
+    static contextType = UserContext;  
 
     handleLogout = () => {
         const url = 'http://localhost:8080/login/logout';
@@ -23,7 +22,7 @@ class LogoutModalBody extends Component {
                 localStorage.clear();
                 this.context.updateUserContext();
             }
-        }).catch(error => console.error('Error:', error));
+        }).catch(error => console.error('Error on handleLogout():', error));
     }
     
     render() {

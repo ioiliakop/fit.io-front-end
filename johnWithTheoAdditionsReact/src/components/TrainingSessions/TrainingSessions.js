@@ -12,6 +12,7 @@ class TrainingSessions extends Component {
         this.state = {
             trainingSessions: [],
         };
+        this.fetchTrainingSessions = this.fetchTrainingSessions.bind(this);
 
         // Depending on props will get respective training sessions
         if (this.props.folderType === 'FUTURE') {
@@ -29,15 +30,17 @@ class TrainingSessions extends Component {
     componentDidMount() {
         console.log('TrainingSessions component did mount');
         // const url = 'http://localhost:8080/session/client-sessions';
-        let url;
+        // let url;
 
-        // Making this element
-        console.log('User Role: ', this.context.userInfo.role.name);
-        if (this.context.userInfo.role.name === Role.User) {
-            url = 'http://localhost:8080/session/client-sessions';
-        } else if (this.context.userInfo.role.name === Role.Trainer) {
-            url = 'http://localhost:8080/session/trainer-sessions';
-        } else console.error('Invalid role for training session:', this.context.userInfo.role.name);
+        // // Making this element
+        // console.log('User Role: ', this.context.userInfo.role.name);
+        // if (this.context.userInfo.role.name === Role.User) {
+        //     url = 'http://localhost:8080/session/client-sessions';
+        // } else if (this.context.userInfo.role.name === Role.Trainer) {
+        //     url = 'http://localhost:8080/session/trainer-sessions';
+        // } else console.error('Invalid role for training session:', this.context.userInfo.role.name);
+
+        this.fetchTrainingSessions();
 
         // Testing datetimes
         // const now = new Date();
@@ -52,6 +55,40 @@ class TrainingSessions extends Component {
         // console.log('Other date:', otherdate)
         // console.log('valueOf', otherdate.valueOf());
 
+        // fetch(url, {
+        //     method: 'GET',
+        //     headers: {
+        //         'X-MSG-AUTH': this.context.token,
+        //         'Accept': 'application/json',
+        //     }
+        // }).then(response => {
+        //     response.json().then(data => {
+        //         console.log('Response status:', response.status);
+        //         console.log(data);
+        //         // if (response.status === 200) {
+        //         console.log('Saving fetched training sessions to state');
+        //         this.setState({
+        //             trainingSessions: data
+        //         });
+        //         console.log('Training Sessions in state:', this.state.trainingSessions);
+        //         // }
+        //     })
+        // }).catch(error => console.error('Error:', error));
+
+        // console.log('End of fetch');
+    }
+
+    fetchTrainingSessions() {
+        let url;
+
+        // Making this element
+        console.log('User Role: ', this.context.userInfo.role.name);
+        if (this.context.userInfo.role.name === Role.User) {
+            url = 'http://localhost:8080/session/client-sessions';
+        } else if (this.context.userInfo.role.name === Role.Trainer) {
+            url = 'http://localhost:8080/session/trainer-sessions';
+        } else console.error('Invalid role for training session:', this.context.userInfo.role.name);
+
         fetch(url, {
             method: 'GET',
             headers: {
@@ -59,22 +96,21 @@ class TrainingSessions extends Component {
                 'Accept': 'application/json',
             }
         }).then(response => {
-            response.json().then(data => {
-                console.log('Response status:', response.status);
-                console.log(data);
-                // if (response.status === 200) {
-                console.log('Saving fetched training sessions to state');
-                this.setState({
-                    trainingSessions: data
-                });
-                console.log('Training Sessions in state:', this.state.trainingSessions);
-                // }
-            })
+            console.log('Response status:', response.status);
+            if (response.status === 200) {
+                response.json().then(data => {
+                    console.log(data);
+                    console.log('Saving fetched training sessions to state');
+                    this.setState({
+                        trainingSessions: data
+                    });
+                    console.log('Training Sessions in state:', this.state.trainingSessions);
+                })
+            }
         }).catch(error => console.error('Error:', error));
 
-        console.log('End of fetch');
+        console.log('End of fetchTrainingSessions');
     }
-
 
     render() {
         if (!this.context.isLoggedIn) {
@@ -117,8 +153,9 @@ class TrainingSessions extends Component {
                         if (now.valueOf() > trsDate.valueOf() && this.props.folderType === 'PAST') {
                             return <TrainingSession key={t.id} trs={t} timeStatus="PAST" userRole={this.context.userInfo.role.name} />
                         } else if (now.valueOf() < trsDate.valueOf() && this.props.folderType === 'FUTURE') {
-                            return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" userRole={this.context.userInfo.role.name} />
-                        } return console.error('Training Sessions return unknown Error');
+                            return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" userRole={this.context.userInfo.role.name} handle={this.fetchTrainingSessions}/>
+                        }
+                        // return console.error('Training Sessions return unknown Error');
                     })}
                 </React.Fragment>
             );

@@ -3,6 +3,9 @@ import Rating from 'react-rating';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UserContext from '../../context/user-context';
 
+/**
+ * @property {Object} trsData - training session object with relative data
+ */
 class ReviewModalButton extends Component {
 
     constructor(props) {
