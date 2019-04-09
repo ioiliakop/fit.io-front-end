@@ -11,4 +11,4 @@ class FutureTrainingSessions extends Component {
     }
 }
 
-export default withAuthorization(FutureTrainingSessions, [Role.User, Role.Trainer, Role.Admin], true);
+export default withAuthorization(FutureTrainingSessions, [Role.User, Role.Trainer], true);

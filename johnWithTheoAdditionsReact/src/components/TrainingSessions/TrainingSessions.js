@@ -4,6 +4,7 @@ import UserContext from '../../context/user-context';
 import TrainingSession from '../TrainingSessions/TrainingSession';
 import ButtonLink from '../../components/Utils/ButtonLink';
 import Role from '../Role';
+import withAuthorization from '../../hoc/withAuthorization';
 
 class TrainingSessions extends Component {
 
@@ -12,6 +13,7 @@ class TrainingSessions extends Component {
         this.state = {
             trainingSessions: [],
         };
+        this.fetchTrainingSessionsUrl = '';
         this.fetchTrainingSessions = this.fetchTrainingSessions.bind(this);
 
         // Depending on props will get respective training sessions
@@ -39,6 +41,14 @@ class TrainingSessions extends Component {
         // } else if (this.context.userInfo.role.name === Role.Trainer) {
         //     url = 'http://localhost:8080/session/trainer-sessions';
         // } else console.error('Invalid role for training session:', this.context.userInfo.role.name);
+
+        // Making this element
+        console.log('User Role: ', this.context.userInfo.role.name);
+        if (this.context.userInfo.role.name === Role.User) {
+            this.fetchTrainingSessionsUrl = 'http://localhost:8080/session/client-sessions';
+        } else if (this.context.userInfo.role.name === Role.Trainer) {
+            this.fetchTrainingSessionsUrl = 'http://localhost:8080/session/trainer-sessions';
+        } else console.error('Invalid role for training session:', this.context.userInfo.role.name);
 
         this.fetchTrainingSessions();
 
@@ -79,17 +89,17 @@ class TrainingSessions extends Component {
     }
 
     fetchTrainingSessions() {
-        let url;
+        // let url;
 
-        // Making this element
-        console.log('User Role: ', this.context.userInfo.role.name);
-        if (this.context.userInfo.role.name === Role.User) {
-            url = 'http://localhost:8080/session/client-sessions';
-        } else if (this.context.userInfo.role.name === Role.Trainer) {
-            url = 'http://localhost:8080/session/trainer-sessions';
-        } else console.error('Invalid role for training session:', this.context.userInfo.role.name);
+        // // Making this element
+        // console.log('User Role: ', this.context.userInfo.role.name);
+        // if (this.context.userInfo.role.name === Role.User) {
+        //     url = 'http://localhost:8080/session/client-sessions';
+        // } else if (this.context.userInfo.role.name === Role.Trainer) {
+        //     url = 'http://localhost:8080/session/trainer-sessions';
+        // } else console.error('Invalid role for training session:', this.context.userInfo.role.name);
 
-        fetch(url, {
+        fetch(this.fetchTrainingSessionsUrl, {
             method: 'GET',
             headers: {
                 'X-MSG-AUTH': this.context.token,
@@ -113,12 +123,12 @@ class TrainingSessions extends Component {
     }
 
     render() {
-        if (!this.context.isLoggedIn) {
-            // Redirect to Landing
-            return (
-                <Redirect to='/' />
-            );
-        } else {
+        // if (!this.context.isLoggedIn) {
+        //     // Redirect to Landing
+        //     return (
+        //         <Redirect to='/' />
+        //     );
+        // } else {
             return (
                 <React.Fragment>
                     <nav className="navbar navbar-light navbar-expand-md">
@@ -159,9 +169,9 @@ class TrainingSessions extends Component {
                     })}
                 </React.Fragment>
             );
-        }
+        // }
     }
 
 }
 
-export default withRouter(TrainingSessions);
+export default withAuthorization(withRouter(TrainingSessions), [Role.User, Role.Trainer], true);

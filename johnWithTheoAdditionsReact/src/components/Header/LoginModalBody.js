@@ -29,11 +29,12 @@ class LoginModalBody extends Component {
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            response.json().then(data => {
-                console.log('Response status:', response.status);
-                console.log(data);
-                // Handle login response to localStorage
-                if (response.status === 200) {
+            console.log('Login Response status:', response.status);
+            console.log('Login Response', response);
+            if (response.status === 200) {
+                response.json().then(data => {
+                    console.log(data);
+                    // Handle login response to localStorage
                     console.log('Saving token to localstorage', data.alphanumeric);
                     localStorage.setItem('token', data.alphanumeric);
                     console.log('Saving userInfo to localstorage', data.user);
@@ -48,8 +49,8 @@ class LoginModalBody extends Component {
                     // });
                     this.context.updateUserContext();
                     console.log('Changed context after login. New context', this.context);
-                }
-            })
+                })
+            }
         }).catch(error => console.error('Error:', error));
 
         event.preventDefault();

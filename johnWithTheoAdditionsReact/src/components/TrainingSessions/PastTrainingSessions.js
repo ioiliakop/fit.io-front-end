@@ -11,4 +11,4 @@ class PastTrainingSessions extends Component {
     }
 }
 
-export default withAuthorization(PastTrainingSessions, [Role.User, Role.Trainer, Role.Admin], true);
+export default withAuthorization(PastTrainingSessions, [Role.User, Role.Trainer], true);
