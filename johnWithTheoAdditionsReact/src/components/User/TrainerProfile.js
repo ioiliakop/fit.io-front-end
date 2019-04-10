@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UserContext from '../../context/user-context';
 import withAuthorization from '../../hoc/withAuthorization';
 import Role from '../Role';
@@ -137,13 +138,13 @@ class TrainerProfile extends Component {
         // We pass trainer, trainerAreas, trainerTypes as props to the redirected TrainerProfile component/route
         if (this.state.redirect) {
             return <Redirect to={'/trainersCalendar/' + this.trainerId} />
-        // }
-        //         state: {
-        //             trainer: this.state.trainer,
-        //             trainerAreas: this.state.trainerAreas,
-        //             trainerTypes: this.state.trainerTypes
-        //          }
-        //     }} />
+            // }
+            //         state: {
+            //             trainer: this.state.trainer,
+            //             trainerAreas: this.state.trainerAreas,
+            //             trainerTypes: this.state.trainerTypes
+            //          }
+            //     }} />
         }
     }
 
@@ -152,11 +153,15 @@ class TrainerProfile extends Component {
         const trainerAreas = this.state.trainerAreas;
         return (
             <div className="container complete-profile">
-            {this.renderRedirect()}
+                {this.renderRedirect()}
                 <div className="container mb-4 p-4 col-9 bg-light shadow profile">
                     <div className="row mx-auto profile-header-info">
-                        <div className="container photo col-md-3"><img src="../img/sample_trainer_1.jpg" alt="trainer"
-                            className="img-thumbnail" /></div>
+                        <div className="container col-md-3 photo">
+                            {this.state.trainer.photoLink ?
+                                <img src={this.state.trainer.photoLink} alt="trainer" className="img-thumbnail" /> :
+                                <FontAwesomeIcon icon={["far", "user-circle"]} size="10x" style={{opacity: 0.4}}/>
+                            }
+                        </div>
                         <div className="container col-md-4 text-center trainer-info">
                             <h3 className="text-primary">{this.state.trainer.firstName + ' ' + this.state.trainer.lastName}</h3>
                             <h5 className="mt-3">Specializes in:</h5>
