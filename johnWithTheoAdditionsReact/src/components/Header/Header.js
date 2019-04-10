@@ -22,13 +22,18 @@ class Header extends Component {
 
                 <HeaderNavBar>
                     <TrainersNav />
-                    {this.context.isLoggedIn ? <UserNav /> : <React.Fragment><LoginNav /><RegisterNav /></React.Fragment>}
+                    {/* {this.context.isLoggedIn ? <UserNav /> : <React.Fragment><LoginNav /><RegisterNav /></React.Fragment>} */}
+                    <UserNav />
+                    <LoginNav />
+                    <RegisterNav />
                     <ContactNav />
                     <LanguageNav />
                 </HeaderNavBar>
 
                 {/* LOGIN OR LOGOUT Modal Body needed for corresponding navs above depending on context */}
-                {this.context.isLoggedIn ? <LogoutModalBody /> : <LoginModalBody />}
+                {/* {this.context.isLoggedIn ? <LogoutModalBody /> : <LoginModalBody />} */}
+                <LogoutModalBody />
+                <LoginModalBody />
             </React.Fragment>
         );
     }

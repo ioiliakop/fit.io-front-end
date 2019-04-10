@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import UserContext from '../../context/user-context';
+import withAuthorization from '../../hoc/withAuthorization';
+import Role from '../Role';
 
 class UserNav extends Component {
 
@@ -27,4 +29,4 @@ class UserNav extends Component {
 
 }
 
-export default UserNav;
+export default withAuthorization(UserNav, [Role.User, Role.Trainer]);

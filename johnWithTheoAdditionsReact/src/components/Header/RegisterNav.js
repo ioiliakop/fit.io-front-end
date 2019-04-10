@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import withAuthorization from '../../hoc/withAuthorization';
+import Role from '../Role';
 
 class RegisterNav extends Component {
     render() {
@@ -18,4 +20,4 @@ class RegisterNav extends Component {
     }
 }
 
-export default RegisterNav;
+export default withAuthorization(RegisterNav, [Role.Guest]);

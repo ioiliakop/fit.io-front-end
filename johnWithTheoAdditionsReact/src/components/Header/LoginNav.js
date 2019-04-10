@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import withAuthorization from '../../hoc/withAuthorization';
+import Role from '../Role';
 
 class LoginNav extends Component {
     render() {
@@ -10,4 +12,4 @@ class LoginNav extends Component {
     }
 }
 
-export default LoginNav;
+export default withAuthorization(LoginNav, [Role.Guest]);

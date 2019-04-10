@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import UserContext from '../../context/user-context';
+import withAuthorization from '../../hoc/withAuthorization';
+import Role from '../Role';
 
 class LoginModalBody extends Component {
 
@@ -87,4 +89,4 @@ class LoginModalBody extends Component {
     }
 }
 
-export default LoginModalBody;
+export default withAuthorization(LoginModalBody, [Role.Guest]);

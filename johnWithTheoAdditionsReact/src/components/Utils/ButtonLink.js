@@ -2,14 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 /**
- * General use ButtonLink that has style adjusted dynamically as active or not dependind on current location
- * 
- * Takes as props:
- * label -> text that will be rendered inside button body
- * to -> router location it will redirect
- * location -> current location
- * 
+ * General use ButtonLink that has style adjusted dynamically as active or not depending on current location
+ * currently used as sub-options buttons for inbox/sentbox messages, future/past training sessions
  * Maybe will be adjusted in the future to also set style/color dynamically through props
+ * 
+ * @property {String} props.label - text that will be rendered inside button body
+ * @property {String} props.to - router location it will redirect to
+ * @property {String} props.location - current location
  */
 class ButtonLink extends Component {
     render() {

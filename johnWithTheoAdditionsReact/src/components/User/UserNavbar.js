@@ -38,4 +38,4 @@ class UserNavbar extends Component {
     }
 }
 
-export default withRouter(UserNavbar);
+export default withAuthorization(withRouter(UserNavbar), [Role.User, Role.Trainer]);

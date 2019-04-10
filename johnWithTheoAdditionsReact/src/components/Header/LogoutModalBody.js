@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import UserContext from '../../context/user-context'
+import UserContext from '../../context/user-context';
+import withAuthorization from '../../hoc/withAuthorization';
+import Role from '../Role';
 
 class LogoutModalBody extends Component {
 
@@ -49,4 +51,4 @@ class LogoutModalBody extends Component {
     }
 }
 
-export default LogoutModalBody;
+export default withAuthorization(LogoutModalBody, [Role.User, Role.Trainer, Role.Admin]);

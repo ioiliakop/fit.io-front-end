@@ -4,6 +4,8 @@ import CalendarDay from "./CalendarDay";
 import { withRouter, Link } from "react-router-dom";
 import $ from "jquery";
 import UserContext from "../../context/user-context";
+import withAuthorization from '../../hoc/withAuthorization';
+import Role from '../Role';
 
 export class TrainersCalendar extends Component {
   state = {
@@ -278,4 +280,4 @@ export class TrainersCalendar extends Component {
   }
 }
 
-export default withRouter(TrainersCalendar);
+export default withAuthorization(withRouter(TrainersCalendar), [Role.User], true);
