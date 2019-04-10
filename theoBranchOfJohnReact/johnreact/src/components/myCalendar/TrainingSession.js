@@ -5,27 +5,38 @@ import $ from "jquery";
 class TrainingSession extends Component {
 
   state = {
-    session:
-      this.props.location.state != null
-        ? this.props.location.state.session
-        : null,
+    session: {},
     pastSession: false
   };
 
-  componentDidMount() {
+  componentWillMount() {
+    if (this.props.location.state != null) {
+      this.setState({
+        session: this.props.location.state.session
+      }, function () {
+        this.checkIfPastOrFutureSession();
+      })
+    }
+  }
+
+  componentWillReceiveProps(nextProps, nextState) {
+    let newSession = nextProps.location.state.session;
+    this.setState({
+      session: newSession
+    }, function () {
+      this.checkIfPastOrFutureSession();
+    })
+  }
+
+  checkIfPastOrFutureSession = () => {
     if (this.state.session != null) {
-      // const script = document.createElement("script");
-      // script.src = "../../../public/javascript/rating.js";
-      // script.async = true;
-      // this.instance.appendChild(script);
       const { session } = this.state;
       let date = new Date();
-      let day = date.getDay();
+      let day = date.getDate();
       let month = date.getMonth() + 1;
 
       let year = date.getFullYear();
       let hour = date.getHours();
-      console.log(day);
       if (day < 10) {
         day = "0" + day;
       }
@@ -41,7 +52,11 @@ class TrainingSession extends Component {
         this.setState({
           pastSession: true
         });
-        console.log("einai paliooo");
+      }
+      if (session.date > currentDate) {
+        this.setState({
+          pastSession: false
+        })
       }
       if (session.date == currentDate) {
         let sessionTime = session.time.slice(0, 2);
@@ -49,8 +64,14 @@ class TrainingSession extends Component {
           this.setState({
             pastSession: true
           });
+        } else {
+          this.setState({
+            pastSession: false
+          })
         }
       }
+
+
     }
   }
 
@@ -95,7 +116,7 @@ class TrainingSession extends Component {
     if (state == null) {
       this.props.history.push("/calendar");
     } else {
-      const { area, client, date, time, trainer, trainingType } = this.props.location.state.session;
+      const { area, client, date, time, trainer, trainingType } = this.state.session;
       const { pastSession } = this.state;
       return (
         <React.Fragment>
