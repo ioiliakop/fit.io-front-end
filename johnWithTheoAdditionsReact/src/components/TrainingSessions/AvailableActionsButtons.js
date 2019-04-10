@@ -8,7 +8,7 @@ import CancelTrainingSessionModalBody from './CancelTrainingSessionModalButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /**
- * Different Actions available to each training session
+ * Different Actions available for each training session
  * Depending on time status (future/past) and user Role (user/trainer)
  * 
  * @property {String} timeStatus - 'PAST' or 'FUTURE' only accepted input - indicates if it's a past or future training session

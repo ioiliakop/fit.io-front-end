@@ -3,7 +3,12 @@ import Role from '../Role';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import StarRating from './StarRating';
 
-// Appears when training session has already been reviewed
+/**
+ *  Appears when training session has already been reviewed
+ * 
+ * @property {Object} props.trsData - the training session object passed with relative data
+ * @property {String} props.userRole - the user role
+ */
 class ReviewedModalButton extends Component {
 
     render() {

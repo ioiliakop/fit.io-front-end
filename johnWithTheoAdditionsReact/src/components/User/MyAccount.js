@@ -92,4 +92,4 @@ class MyAccount extends Component {
     }
 }
 
-export default withAuthorization(MyAccount, [Role.User, Role.Trainer, Role.Admin], true);
+export default withAuthorization(MyAccount, [Role.User, Role.Trainer], true);

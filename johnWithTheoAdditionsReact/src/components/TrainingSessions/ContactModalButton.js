@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Role from '../Role';
 
+/**
+ * @property {Object} props.trsData - The training session object passed with relative data
+ */
 class ContactModalButton extends Component {
 
     constructor(props) {

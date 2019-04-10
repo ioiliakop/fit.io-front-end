@@ -13,4 +13,4 @@ class TrainersNav extends Component {
     }
 }
 
-export default withAuthorization(TrainersNav, Role.User);
+export default withAuthorization(TrainersNav, [Role.User]);

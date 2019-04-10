@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
-// Passed props needed are msg={} folderType={}
+/**
+ * @property {Object} props.msg - message object with relative info
+ * @property {String} props.folderType - INBOX or SENTBOX
+ */
 class ReplyModalButton extends Component {
 
     constructor(props) {

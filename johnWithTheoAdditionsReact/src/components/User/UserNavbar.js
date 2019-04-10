@@ -14,6 +14,7 @@ function NavLink(props) {
     }
 }
 
+// We set appropriate authorization for TrainingTypesNavLink
 const MyTrainingTypesNavLink = withAuthorization(((props) => {
     return (
         <NavLink label="My Training Types" to="/my-training-types" location={props.location} />
