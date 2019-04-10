@@ -192,7 +192,6 @@ class MyTrainingTypes extends Component {
         console.log('End of fetch trainers training types');
     }
 
-    // TODO: properly update placeholder. Maybe revisit state
     handleUpdateCost() {
         const newCost = this.inputPrice.current.value;
         if ((newCost !== "") && (newCost !== this.context.userInfo.price)) {
@@ -207,7 +206,13 @@ class MyTrainingTypes extends Component {
             }).then(response => {
                 console.log('Response status:', response.status);
                 if (response.status === 200) {
+                    // We update user context with new info
                     console.log('Set new cost:', newCost);
+                    let updatedUser = this.context.userInfo;
+                    updatedUser.price = newCost;
+                    localStorage.setItem("userInfo", JSON.stringify(updatedUser));
+                    this.context.updateUserContext();
+                    this.setState({ price: newCost});
                 }
             }).catch(error => console.error('Error:', error));
             console.log('End of update cost');
