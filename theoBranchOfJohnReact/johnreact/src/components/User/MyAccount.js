@@ -3,14 +3,75 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UserContext from '../../context/user-context';
 import withAuthorization from '../../hoc/withAuthorization';
 import Role from '../Role';
+import $ from "jquery";
 
 // UNFINISHED
 class MyAccount extends Component {
 
     static contextType = UserContext;
 
-    //TODO
-    handleImageUpload(){};
+    state = {
+        photoLink: ""
+    }
+
+
+    componentWillMount() {
+        let user = JSON.parse(localStorage.getItem("userInfo"));
+        this.setState({
+            photoLink: user.photoLink
+        })
+    }
+
+
+    uploadPic = () => {
+        let profilePicInput = document.getElementById("profilePicInput");
+        let files = profilePicInput.files;
+        if (files.length === 0) {
+            alert("Please select a file");
+        } else {
+            var formData = new FormData();
+            formData.append("file", files[0]);
+            $.ajax({
+                type: "POST",
+                enctype: 'multipart/form-data',
+                url: "http://localhost:8080/files/uploadFile",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: (response) => {
+                    this.savePhotoLink(response.fileDownloadUri);
+                },
+                error: (error) => {
+                    console.log(error);
+                    // process error
+                }
+            });
+        }
+
+    }
+
+    savePhotoLink = (link) => {
+        let user = JSON.parse(localStorage.getItem("userInfo"));
+        $.ajax({
+            type: "POST",
+            contentType: "text/plain",
+            url: `http://localhost:8080/files/savePhotoLink/${user.id}`,
+            // headers: { "X-MSG-AUTH": token },
+            data: link,
+            async: true,
+            success: () => {
+                user.photoLink = link;
+                localStorage.setItem("userInfo", JSON.stringify(user));
+                this.setState({
+                    photoLink: link
+                })
+                alert("SUCCESFULLY UPLOADED");
+
+            },
+            error: () => { }
+        });
+    };
+
 
     render() {
         return (
@@ -73,17 +134,17 @@ class MyAccount extends Component {
                             <button type="submit" className="btn btn-primary">Save Changes</button>
                         </form>
                     </div>
-                    
+
                     {/* <!-- Right Section --> */}
                     <div className="container col-md-4 text-center p-5">
-                        <div><FontAwesomeIcon icon={["far", "user-circle"]} size="8x" /></div>
-                        <div className="my-2">{this.context.userInfo.firstName + ' ' + this.context.userInfo.lastName}<div className="text-muted">({this.context.userInfo.role.name})</div></div>                       
+                        <div>  <img src={this.state.photoLink} alt="Upload a Picture" style={{ width: "200px" }} /></div>
+                        <div className="my-2">{this.context.userInfo.firstName + ' ' + this.context.userInfo.lastName}<div className="text-muted">({this.context.userInfo.role.name})</div></div>
                         <div className="custom-file text-left">
-                            <input type="file" className="custom-file-input" id="profilePic" accept=".jpg, .png, .gif" />
-                            <label className="custom-file-label" htmlFor="profilePic">Upload Picture</label>
+                            <input type="file" className="custom-file-input" id="profilePicInput" accept=".jpg, .png, .gif" />
+                            <label className="custom-file-label" htmlFor="profilePicInput">Upload Picture</label>
                         </div>
-                        <img src="../../../userimages/user1.jpg"/> {/* left for testing - still considering where to upload */}
-                        <button type="button" className="btn btn-primary btn-block my-3">Save Picture</button>
+
+                        <button type="button" className="btn btn-primary btn-block my-3" onClick={this.uploadPic}>Save Picture</button>
                     </div>
 
                 </div>
