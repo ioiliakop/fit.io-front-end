@@ -55,7 +55,7 @@ export class TrainersCalendar extends Component {
         });
       },
       error: error => {
-        console.error('Error on getUser():',error)
+        console.error('Error on getUser():', error)
         this.props.history.push("/");
       }
     });
@@ -210,7 +210,7 @@ export class TrainersCalendar extends Component {
     return (
       <React.Fragment>
         <div className="bodyDivCalendar">
-          <h1 className="h1Calendar">{this.state.month + "/ 2019 "}</h1>
+
           <div className="h1Calendar">
             <h2>Available dates of {user.firstName + " " + user.lastName}</h2>
             <button className="btn btn-warning" onClick={this.previousMonth}>
@@ -219,6 +219,7 @@ export class TrainersCalendar extends Component {
             <button className="btn btn-warning" onClick={this.nextMonth}>
               Next Month
             </button>
+            <h3>{this.state.month + "/ 2019 "}</h3>
           </div>
 
           <section id="calendar" className="collectonme">
