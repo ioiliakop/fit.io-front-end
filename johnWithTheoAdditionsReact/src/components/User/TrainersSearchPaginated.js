@@ -100,7 +100,7 @@ class TrainersSearch extends Component {
         } else {
             let inputAreaId = this.validateInputArea();
             if (inputAreaId !== -1) {
-                url = "http://localhost:8080/find/trainer/" + this.inputTrainingType.current.value + "/" + inputAreaId;
+                url = "http://localhost:8080/find/trainer2/" + this.inputTrainingType.current.value + "/" + inputAreaId +  '?page=1' + '&size=10';
             }
         }
 
@@ -157,11 +157,7 @@ class TrainersSearch extends Component {
     render() {
         return (
             <React.Fragment>
-            {/* // <form className="form-inline row justify-content-between">
-            //     <input type="text" id="username" className="form-control form-control-lg mr-0 col-sm-5" placeholder="Choose area" />
-            //     <input type="text" id="password" className="form-control form-control-lg mr-0 col-sm-5" placeholder="Or choose workout style" />
-            //     <button className="btn btn-primary btn-lg col-sm-2" type="submit">Search</button>
-            // </form> */}
+
             <div className="container my-4 py-5 mx-auto col-8">
 
             {/* // datalist implementation */}

@@ -51,23 +51,7 @@ class Messages extends Component {
 
     // handle passed to PaginationHeader child
     setMessagesPerPage(option) {
-        // We check if after the update we have at least the same number of pages in order to remain at the same
-        // if (option > this.state.messagesPerPage) {
-        //     let lastPageMessagesAfterUpdate = this.state.totalMessages % option;
-        //     let totalPagesAfterUpdate = ((this.state.totalMessages - lastPageMessagesAfterUpdate) / option) + 1;
-        //     if (totalPagesAfterUpdate < this.state.currentPage) {
-        //         this.setState({
-        //             messagesPerPage: option,
-        //             currentPage: totalPagesAfterUpdate
-        //         } , () => this.fetchPageMessages());
-        //     }
-        // } else // otherwise we just update and remain at the same pagenumber as before
-        // this.setState({
-        //     messagesPerPage: option
-        // } , () => this.fetchPageMessages());
-
-        // we could also just reset the currentPage to the first one after each update and
-        // this seems better and simpler for the time being
+        // we also reset the currentPage to the first one after each update
         this.setState({
             currentPage: 1,
             messagesPerPage: option

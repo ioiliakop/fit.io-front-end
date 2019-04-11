@@ -3,7 +3,6 @@ import { Redirect, withRouter } from 'react-router-dom';
 import UserContext from '../../context/user-context';
 import MessageRow from './MessageRow';
 import ButtonLink from '../Utils/ButtonLink';
-// import './dataTables.js';
 
 class Messages extends Component {
 
