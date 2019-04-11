@@ -9,10 +9,11 @@ import React, { Component } from 'react';
  */
 class PaginationHeader extends Component {
     render() {
+        if (!this.props.count) return null; // we don't render header if no items are present
         return (
             <div className="container">
                 <div className="row px-3">
-                    <small className="text-muted">{this.props.count} messages</small>
+                    <small className="text-muted">{this.props.count} items</small>
                     <div className="dropdown ml-auto">
                         <button className="btn btn-outline-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Items Per Page

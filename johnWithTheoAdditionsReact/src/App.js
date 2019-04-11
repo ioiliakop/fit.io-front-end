@@ -16,6 +16,7 @@ import AdminPage from './components/Admin/AdminPage';
 import AllUsers from './components/Admin/AllUsers';
 import MyTrainingTypes from './components/User/MyTrainingTypes';
 import TrainersSearch from './components/User/TrainersSearch';
+import TrainersSearchPaginated from './components/User/TrainersSearchPaginated';
 import TrainerProfile from './components/User/TrainerProfile';
 import TrainersCalendar from './components/User/TrainersCalendar';
 import BookTrainingSession from './components/TrainingSessions/BookTrainingSession';
@@ -75,6 +76,7 @@ class App extends Component {
             <Route path="/myaccount" exact component={MyAccount} />
             <Route path="/my-training-types" exact component={MyTrainingTypes} />
             <Route path="/trainers" exact component={TrainersSearch} />
+            <Route path="/trainers2" exact component={TrainersSearchPaginated} />
             <Route path="/trainer-profile/:trainerId" exact component={TrainerProfile} />
             <Route path="/trainersCalendar/:id" component={TrainersCalendar} />
             <Route path="/bookTrainingSession" component={BookTrainingSession} />

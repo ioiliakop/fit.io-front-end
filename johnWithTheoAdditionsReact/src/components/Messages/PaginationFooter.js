@@ -37,14 +37,10 @@ function Next(props) {
     );
 }
 
-/**
- * Decides what page navigation icon to render based on props
- * e.g. active with number or clickable link with page number or 3 dots disabled or ommit page number button entirely
- * 
- * @property {Number} activePage - indicates the currently active page
- * @property {Number} totalPages
- * @property {Function} handle - to set a new active page
- */
+// Will return either
+// - a "selected" icon number if it is the active page
+// - an icon number with the responding link to redirect to that page
+// - an inactive icon with 3 dots to indicate a group of pages, far from the active page (can be adjusted with numberofSideButtons below)
 function PageNumberIcon(props) {
     const numberOfSideButtons = 2; // We can adjust this. Number of navigation buttons on both sides of active one, first and last page exclusive
     const leftBreakPoint = props.activePage - (numberOfSideButtons + 1);
@@ -76,6 +72,14 @@ function PageNumberIcon(props) {
     return null;
 }
 
+/**
+ * Decides what page navigation icon to render based on props
+ * e.g. active with number or clickable link with page number or 3 dots disabled or ommit page number button entirely
+ * 
+ * @property {Number} activePage - indicates the currently active page
+ * @property {Number} totalPages
+ * @property {Function} handle - to set a new active page
+ */
 class PaginationFooter extends Component {
     render() {
         // we don't render anything for pagination bar if there is only one page
