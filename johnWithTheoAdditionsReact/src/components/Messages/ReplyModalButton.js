@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UserContext from '../../context/user-context';
 
 /**
  * @property {Object} props.msg - message object with relative info
@@ -12,6 +13,8 @@ class ReplyModalButton extends Component {
         this.receiver = (this.props.folderType === 'INBOX') ? this.props.msg.sender.username : this.props.msg.receiver.username;
         this.handleSendMessage = this.handleSendMessage.bind(this);
     }
+
+    static contextType = UserContext;
 
     componentDidMount() {
         console.log('msg:', this.props.msg);

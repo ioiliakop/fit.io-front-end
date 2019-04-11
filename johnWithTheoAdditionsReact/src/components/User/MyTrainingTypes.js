@@ -265,7 +265,7 @@ class MyTrainingTypes extends Component {
 
     render() {
         return (
-            <div className="container py-3 mt-3 text-center">
+            <div className="container py-3 mt-3 text-center" style={{minHeight: '75vh'}}>
                 <div className="col-12 mx-auto">
                     <div className="form-group col-md-4 mx-auto">
                         <label htmlFor="inputEmail"><h5>Cost (&euro;/hour)</h5></label>

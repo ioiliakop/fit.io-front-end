@@ -57,7 +57,7 @@ class BookTrainingSession extends Component {
         async: true,
         success: () => {
           alert("Succesfully Booked");
-          this.props.history.push("/");
+          this.props.history.push("/training-sessions");
         },
         error: () => {
           alert("Something went Wrong");

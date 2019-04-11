@@ -63,15 +63,13 @@ class App extends Component {
       <Router>
         <UserContext.Provider value={this.state}> {/* Passing this state as UserContext value */}
           <Header />
-          {/* {this.state.isLoggedIn && <UserNavbar />} */}
           <UserNavbar />
           <Switch>
-            <Route path="/admin" exact component={AdminPage} />  {/* Testing withAuthorization HOC - OK */}
+            <Route path="/admin" exact component={AdminPage} />
             <Route path="/allUsers" component={AllUsers} />
             <Route path="/register/:rolename" exact component={Register} /> {/*perhaps needs consideration to restrain possible values/routes*/}
             <Route path="/messages/out" exact component={OutboxMessages} />
             <Route path="/messages/" exact component={InboxMessages} />
-            {/* <Route path="/messages/out" exact render={() => <Messages folderType='outbox' />} /> */}
             <Route path="/training-sessions/cancelled" exact component={CancelledTrainingSessions} />
             <Route path="/training-sessions/past" exact component={PastTrainingSessions} />
             <Route path="/training-sessions" exact component={FutureTrainingSessions} />
@@ -84,7 +82,6 @@ class App extends Component {
             <Route path="/myCalendar" component={Calendar} />
             <Route path="/trainingSession" component={TrainingSession} />
             <Route path="/bookTrainingSession" component={BookTrainingSession} />
-            {/* <Route path="/login" exact component={TempLogin} /> */}
             <Route path="/" component={Landing} />
           </Switch>
           <Footer />

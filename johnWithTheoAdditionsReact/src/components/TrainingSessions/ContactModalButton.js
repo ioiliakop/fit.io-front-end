@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Role from '../../hoc/Role';
+import UserContext from '../../context/user-context';
 
 /**
  * @property {Object} props.trsData - The training session object passed with relative data
@@ -20,6 +21,8 @@ class ContactModalButton extends Component {
         } else console.error('Unknown role for training session contact modal:', props.userRole);
     }
 
+    static contextType = UserContext;
+
     componentDidMount() {
         console.log('trsData:', this.props.trsData);
         console.log('cm_' + this.props.trsData.id);
@@ -38,6 +41,7 @@ class ContactModalButton extends Component {
             body: this.message.current.value
         }).then(response => {
             console.log('Response status:', response.status);
+            console.log('token:', this.context.token);
             if (response.status === 200) {
                 console.log('Message sent.');
             }
@@ -45,12 +49,6 @@ class ContactModalButton extends Component {
     }
 
     render() {
-        // let othersInfo;
-        // if (this.props.userRole === Role.User) {
-        //     othersInfo = this.props.trsData.trainer;
-        // } else {
-        //     othersInfo = this.props.trsData.client;
-        // }
         return (
             <React.Fragment>
                 <button type="button" className="btn btn-primary btn-block" data-toggle="modal" data-target={'#cm_' + this.props.trsData.id}>CONTACT</button>

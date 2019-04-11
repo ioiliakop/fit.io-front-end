@@ -136,7 +136,8 @@ class TrainingSessions extends Component {
                     <h2>{this.trainingSessionsTitle} Training Sessions</h2>
                     {console.log(this.state.trainingSessions)}
                 </div>
-
+                
+                <div style={{minHeight: '60vh'}}>
                 {this.state.trainingSessions.map((t, index) => {
                     if (this.props.folderType === 'CANCELLED') {
                         return <TrainingSession key={t.id} trs={t} timeStatus="CANCELLED" userRole={this.context.userInfo.role.name} updateSessions={this.fetchTrainingSessions} />
@@ -157,6 +158,7 @@ class TrainingSessions extends Component {
                     }
                     // return console.error('Training Sessions return unknown Error');
                 })}
+                </div>
             </React.Fragment>
         );
 

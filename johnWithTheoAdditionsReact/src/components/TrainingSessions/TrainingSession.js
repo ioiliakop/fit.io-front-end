@@ -28,7 +28,7 @@ class TrainingSession extends Component {
             <div className="container my-2 shadow-sm">
                 <div className="row bg-light border">
                     {/* We display fontawesome default icon if trainer hasn't uploaded a photo */}
-                    {othersPhotoLink === '' ?
+                    {othersPhotoLink === '' || othersPhotoLink === null ?
                         (<div className="col-md-3 border-right text-center pt-5 pb-2">
                             <FontAwesomeIcon icon={["far", "user-circle"]} size="5x" />
                         </div>) :

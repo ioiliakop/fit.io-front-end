@@ -7,7 +7,7 @@ function SearchResults(props) {
     if (props.results) {
         return (
             props.results.map((trainer, index) => {
-                return <TrainerRow key={index} trainer={trainer}/>;
+                return <TrainerRow key={index} trainer={trainer} />;
             })
         );
     }
@@ -84,7 +84,7 @@ class TrainersSearch extends Component {
     // depending on input values we build the respective url for ajax call
     // search by area only, training type only, or by area and type
     handleSearch(event) {
-        let url;       
+        let url;
         if (this.inputTrainingType.current.value === "") {
             console.log('trainingType left empty');
             if (this.inputArea.current.value !== "") {
@@ -120,7 +120,7 @@ class TrainersSearch extends Component {
             }).then((response) => {
                 console.log('Sent. Response status:', response.status);
                 if (response.status === 200) {
-                    response.json().then( trainersList => {
+                    response.json().then(trainersList => {
                         console.log('Search results fetched:', trainersList);
                         console.log('search results in state before setState:', this.state.searchResults);
                         this.setState({
@@ -157,32 +157,34 @@ class TrainersSearch extends Component {
     render() {
         return (
             <React.Fragment>
-            {/* // <form className="form-inline row justify-content-between">
+                {/* // <form className="form-inline row justify-content-between">
             //     <input type="text" id="username" className="form-control form-control-lg mr-0 col-sm-5" placeholder="Choose area" />
             //     <input type="text" id="password" className="form-control form-control-lg mr-0 col-sm-5" placeholder="Or choose workout style" />
             //     <button className="btn btn-primary btn-lg col-sm-2" type="submit">Search</button>
             // </form> */}
-            <div className="container my-4 py-5 mx-auto col-8">
+                <div style={{ minHeight: '70vh' }}>
+                    <div className="container my-4 py-5 mx-auto col-8">
 
-            {/* // datalist implementation */}
-            <form className="form-inline row justify-content-between" onSubmit={this.handleSearch}>
-                <input list="areas" className="form-control form-control-lg mr-0 col-sm-5 custom-form" placeholder="&#8597; Choose area" ref={this.inputArea} />
-                <datalist id="areas">
-                    {this.state.areas.map((area, index) => {
-                        return <option key={index} value={area.city} />;
-                    })}
-                </datalist>
-                <select className="custom-select custom-select-lg form-control form-control-lg mr-0 col-sm-5" ref={this.inputTrainingType}>
-                    <option value="">Or choose workout style</option>
-                    {this.state.trainingTypes.map((trainingType, index) => {
-                        return <option key={index} value={trainingType.id}>{trainingType.title}</option>
-                    })}
-                </select>
-                <button className="btn btn-primary btn-lg col-sm-2" type="submit">Search</button>
-            </form>
-            </div>
+                        {/* // datalist implementation */}
+                        <form className="form-inline row justify-content-between" onSubmit={this.handleSearch}>
+                            <input list="areas" className="form-control form-control-lg mr-0 col-sm-5 custom-form" placeholder="&#8597; Choose area" ref={this.inputArea} />
+                            <datalist id="areas">
+                                {this.state.areas.map((area, index) => {
+                                    return <option key={index} value={area.city} />;
+                                })}
+                            </datalist>
+                            <select className="custom-select custom-select-lg form-control form-control-lg mr-0 col-sm-5" ref={this.inputTrainingType}>
+                                <option value="">Or choose workout style</option>
+                                {this.state.trainingTypes.map((trainingType, index) => {
+                                    return <option key={index} value={trainingType.id}>{trainingType.title}</option>
+                                })}
+                            </select>
+                            <button className="btn btn-primary btn-lg col-sm-2" type="submit">Search</button>
+                        </form>
+                    </div>
 
-            <SearchResults results={this.state.searchResults} />
+                    <SearchResults results={this.state.searchResults} />
+                </div>
 
             </React.Fragment>
         );
