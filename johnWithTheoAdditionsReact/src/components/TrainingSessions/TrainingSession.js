@@ -47,7 +47,7 @@ class TrainingSession extends Component {
                         <p className="card-text"><FontAwesomeIcon icon="wallet" /> &nbsp;{this.props.trs.trainer.price}&euro;</p>
                     </div>
                     <div className="col-md-3 p-5">
-                        <AvailableActionsButtons timeStatus={this.props.timeStatus} trsData={this.props.trs} userRole={this.props.userRole} handle={this.props.handle} />
+                        <AvailableActionsButtons timeStatus={this.props.timeStatus} trsData={this.props.trs} userRole={this.props.userRole} updateSessions={this.props.updateSessions} />
                     </div>
                 </div>
             </div >

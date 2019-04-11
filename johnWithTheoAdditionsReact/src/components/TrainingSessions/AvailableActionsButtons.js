@@ -5,7 +5,6 @@ import ReviewedModalButton from './ReviewedModalButton';
 import ContactModalButton from './ContactModalButton';
 import Role from '../../hoc/Role';
 import CancelTrainingSessionModalBody from './CancelTrainingSessionModalButton';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DeleteCancelledTrainingSessionModalBody from './DeleteCancelledTrainingSessionModalButton';
 
 /**
@@ -14,7 +13,7 @@ import DeleteCancelledTrainingSessionModalBody from './DeleteCancelledTrainingSe
  * 
  * @property {String} timeStatus - 'PAST' or 'FUTURE' only accepted input - indicates if it's a past or future training session
  * @property {Object} trsData - The trainining session object passed with relative data
- * @property {Function} handle - pass to CancelTrainingSessionModalBody
+ * @property {Function} updateSessions - pass to children
  */
 class AvailableActionsButtons extends Component {
 
@@ -86,7 +85,7 @@ class AvailableActionsButtons extends Component {
                 return (
                     <React.Fragment>
                         <ContactModalButton trsData={this.props.trsData} userRole={this.props.userRole} />
-                        <CancelTrainingSessionModalBody trsData={this.props.trsData} handle={this.props.handle} />
+                        <CancelTrainingSessionModalBody trsData={this.props.trsData} updateSessions={this.props.updateSessions} />
                     </React.Fragment>
                 );
             } else {
@@ -104,12 +103,12 @@ class AvailableActionsButtons extends Component {
                 return (
                     <React.Fragment>
                         <ContactModalButton trsData={this.props.trsData} userRole={this.props.userRole} />
-                        <CancelTrainingSessionModalBody trsData={this.props.trsData} handle={this.props.handle} />
+                        <CancelTrainingSessionModalBody trsData={this.props.trsData} updateSessions={this.props.updateSessions} />
                     </React.Fragment>
                 );
             } else if ((this.props.timeStatus === 'CANCELLED')) {
                 return (
-                    <DeleteCancelledTrainingSessionModalBody trsData={this.props.trsData} handle={this.props.handle} />
+                    <DeleteCancelledTrainingSessionModalBody trsData={this.props.trsData} updateSessions={this.props.updateSessions} />
                 );
             } else {
                 console.error('Unknown timeStatus for Training Session:', this.props.timeStatus);

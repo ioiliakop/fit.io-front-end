@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UserContext from '../../context/user-context';
 
 /**
  * @property {Object} trsData - The trainining session object passed with relative data
- * @property {Function} handle - handle to update training sessions list if a session is deleted
+ * @property {Function} updateSessions - handle to update training sessions list if a session is deleted
  */
 class DeleteCancelledTrainingSessionModalBody extends Component {
 
@@ -25,7 +24,7 @@ class DeleteCancelledTrainingSessionModalBody extends Component {
             console.log('Delete Cancelled Session Response status:', response.status);
             if (response.status === 200) {
                 console.log('Deleted Cancelled training session');
-                this.props.handle();
+                this.props.updateSessions();
             }
         }).catch(error => console.error('Error on handleDeleteCancelledSession:', error));
     }

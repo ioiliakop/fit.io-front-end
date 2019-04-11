@@ -117,7 +117,7 @@ class AllUsers extends Component {
         let text = document.getElementById("typedMessage").value;
         console.log(text);
 
-        window.$.ajax({
+        $.ajax({
             type: "POST",
             contentType: "text/plain",
             url: `http://localhost:8080/messages/save/${this.state.receiverOfMessage.username}`,

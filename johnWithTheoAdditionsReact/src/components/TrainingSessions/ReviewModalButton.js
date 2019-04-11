@@ -79,7 +79,7 @@ class ReviewModalButton extends Component {
                                     <FontAwesomeIcon icon={["far", "calendar-alt"]} /> &nbsp;{this.props.trsData.date}, {this.props.trsData.time}
                                 </div>
                                 <div className="col-8 col-sm-6 mx-auto">
-                                    <FontAwesomeIcon icon="map-marked-alt" /> &nbsp;{this.props.trsData.area.address}, {this.props.trsData.area.city}
+                                    <FontAwesomeIcon icon="map-marked-alt" /> &nbsp;{this.props.trsData.area.city}
                                 </div>
                                 <div className="col-8 col-sm-6 mx-auto">
                                     <FontAwesomeIcon icon="wallet" /> &nbsp;{this.props.trsData.trainer.price}&euro;

@@ -5,7 +5,7 @@ import UserContext from '../../context/user-context';
 
 /**
  * @property {Object} trsData - The trainining session object passed with relative data
- * @property {Function} handle - handle to update training sessions list if a session is cancelled
+ * @property {Function} updateSessions - handle to update training sessions list if a session is cancelled
  */
 class CancelTrainingSessionModalBody extends Component {
 
@@ -25,9 +25,9 @@ class CancelTrainingSessionModalBody extends Component {
             console.log('Cancel Session Response status:', response.status);
             if (response.status === 200) {
                 console.log('Cancelled training session');
-                this.props.handle();
+                this.props.updateSessions();
             }
-        }).catch(error => console.error('Error on handleCancelSession():', error));
+        }).catch(error => console.error('Error on handleCancelSession:', error));
     }
 
     render() {

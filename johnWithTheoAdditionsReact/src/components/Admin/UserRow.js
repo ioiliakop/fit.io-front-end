@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import $ from 'jquery';
 
 class UserRow extends Component {
 
@@ -9,7 +10,7 @@ class UserRow extends Component {
 
     banUser = () => {
         if (window.confirm("Are you sure you want to Ban " + this.state.user.username + " ?")) {
-            window.$.ajax({
+            $.ajax({
                 type: "POST",
                 url: `http://localhost:8080/find/bann-user/${this.state.user.id}`,
                 headers: { "X-MSG-AUTH": localStorage.getItem("token") },
@@ -29,7 +30,7 @@ class UserRow extends Component {
 
     unbanUser = () => {
         if (window.confirm("Are you sure you want to Unban " + this.state.user.username + " ?")) {
-            window.$.ajax({
+            $.ajax({
                 type: "POST",
                 url: `http://localhost:8080/find/unbann-user/${this.state.user.id}`,
                 headers: { "X-MSG-AUTH": localStorage.getItem("token") },

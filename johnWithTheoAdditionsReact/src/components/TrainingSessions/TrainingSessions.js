@@ -139,7 +139,7 @@ class TrainingSessions extends Component {
 
                 {this.state.trainingSessions.map((t, index) => {
                     if (this.props.folderType === 'CANCELLED') {
-                        return <TrainingSession key={t.id} trs={t} timeStatus="CANCELLED" userRole={this.context.userInfo.role.name} handle={this.fetchTrainingSessions} />
+                        return <TrainingSession key={t.id} trs={t} timeStatus="CANCELLED" userRole={this.context.userInfo.role.name} updateSessions={this.fetchTrainingSessions} />
                     }
 
                     console.log('Updating li for training session ' + index);
@@ -153,7 +153,7 @@ class TrainingSessions extends Component {
                     if (now.valueOf() > trsDate.valueOf() && this.props.folderType === 'PAST') {
                         return <TrainingSession key={t.id} trs={t} timeStatus="PAST" userRole={this.context.userInfo.role.name} />
                     } else if (now.valueOf() < trsDate.valueOf() && this.props.folderType === 'FUTURE') {
-                        return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" userRole={this.context.userInfo.role.name} handle={this.fetchTrainingSessions} />
+                        return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" userRole={this.context.userInfo.role.name} updateSessions={this.fetchTrainingSessions} />
                     }
                     // return console.error('Training Sessions return unknown Error');
                 })}
