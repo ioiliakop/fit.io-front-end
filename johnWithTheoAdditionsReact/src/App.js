@@ -20,6 +20,8 @@ import TrainersSearchPaginated from './components/User/TrainersSearchPaginated';
 import TrainerProfile from './components/User/TrainerProfile';
 import TrainersCalendar from './components/User/TrainersCalendar';
 import BookTrainingSession from './components/TrainingSessions/BookTrainingSession';
+import Calendar from './components/MyCalendar/Calendar';
+import TrainingSession from './components/MyCalendar/TrainingSession';
 
 class App extends Component {
 
@@ -79,6 +81,8 @@ class App extends Component {
             <Route path="/trainers2" exact component={TrainersSearchPaginated} />
             <Route path="/trainer-profile/:trainerId" exact component={TrainerProfile} />
             <Route path="/trainersCalendar/:id" component={TrainersCalendar} />
+            <Route path="/myCalendar" component={Calendar} />
+            <Route path="/trainingSession" component={TrainingSession} />
             <Route path="/bookTrainingSession" component={BookTrainingSession} />
             {/* <Route path="/login" exact component={TempLogin} /> */}
             <Route path="/" component={Landing} />

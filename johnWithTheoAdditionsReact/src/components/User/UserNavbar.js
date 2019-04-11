@@ -31,6 +31,7 @@ class UserNavbar extends Component {
                     {/* Without check for user - will revisit authorization */}
                     {/* <NavLink label="My Training Types" to="/my-training-types" location={this.props.location.pathname} /> */}
                     <MyTrainingTypesNavLink location={this.props.location.pathname} />
+                    <NavLink label="My Calendar" to="/myCalendar" location={this.props.location.pathname} />
                     <NavLink label="My Account" to="/myaccount" location={this.props.location.pathname} />
                 </div>
             </div>
