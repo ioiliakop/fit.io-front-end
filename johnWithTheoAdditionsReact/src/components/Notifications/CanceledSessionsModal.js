@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from "react-router-dom";
+import './modals.css';
 
 class CanceledSessionsModal extends Component {
     render() {

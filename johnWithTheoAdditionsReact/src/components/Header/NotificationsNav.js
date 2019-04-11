@@ -145,33 +145,34 @@ class NotificationsNav extends Component {
     render() {
         if (!this.state.visible) return null;
         return (
-            <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle active" id="navbarProfileDropdownMenuLink" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false" style={{ color: 'yellow' }}>
-                    <FontAwesomeIcon icon="bell" />
-                </a>
-                <div className="dropdown-menu" aria-labelledby="navbarProfileDropdownMenuLink" style={{ Color: 'red' }}>
-                    {/* <Link className="dropdown-item">New Training Sessions</Link>
+            <React.Fragment>
+                <li className="nav-item dropdown">
+                    <a className="nav-link dropdown-toggle active" id="navbarProfileDropdownMenuLink" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false" style={{ color: 'yellow' }}>
+                        <FontAwesomeIcon icon="bell" />
+                    </a>
+                    <div className="dropdown-menu" aria-labelledby="navbarProfileDropdownMenuLink" >
+                        {/* <Link className="dropdown-item">New Training Sessions</Link>
                     <Link className="dropdown-item">New Messages</Link>
                     <Link className="dropdown-item">New Cancelled Trainining Sessions</Link> */}
-                    <Link onClick={this.setMessagesSeen.bind(this)} class="dropdown-item" to="/messages">
-                        {"New Messages: " + this.state.newMessagesCount}
-                    </Link>
+                        <Link onClick={this.setMessagesSeen.bind(this)} class="dropdown-item" to="/messages">
+                            {"New Messages: " + this.state.newMessagesCount}
+                        </Link>
 
-                    {this.context.userInfo.role.name === Role.Trainer ? (
-                        <button class="dropdown-item" onClick={this.showNewSessionsModal} >
-                            {"New TrainingSessions: " + this.state.newTrainingSessions.length}
+                        {this.context.userInfo.role.name === Role.Trainer ? (
+                            <button class="dropdown-item" onClick={this.showNewSessionsModal} >
+                                {"New TrainingSessions: " + this.state.newTrainingSessions.length}
+                            </button>
+                        ) : null}
+
+                        <button class="dropdown-item" onClick={this.showCancelledSessionsModal} >
+                            {"Latest Cancelled Sessions: " + this.state.cancelledSessions.length}
                         </button>
-                    ) : null}
-
-                    <button class="dropdown-item" onClick={this.showCancelledSessionsModal} >
-                        {"Latest Cancelled Sessions: " + this.state.cancelledSessions.length}
-                    </button>
-
-                    <CanceledSessionsModal newTrainingSessions={this.state.cancelledSessions} setCanceledSessionThatIsSeenByTrainer={this.setCanceledSessionThatIsSeenByTrainer}></CanceledSessionsModal>
-                    <NewTraininSessionsModal newTrainingSessions={this.state.newTrainingSessions} removeSessionFromNew={this.removeSessionFromNew}></NewTraininSessionsModal>
-                </div>
-            </li>
+                    </div>
+                </li>
+                <CanceledSessionsModal newTrainingSessions={this.state.cancelledSessions} setCanceledSessionThatIsSeenByTrainer={this.setCanceledSessionThatIsSeenByTrainer}></CanceledSessionsModal>
+                <NewTraininSessionsModal newTrainingSessions={this.state.newTrainingSessions} removeSessionFromNew={this.removeSessionFromNew}></NewTraininSessionsModal>
+            </React.Fragment>
         );
     }
 }
