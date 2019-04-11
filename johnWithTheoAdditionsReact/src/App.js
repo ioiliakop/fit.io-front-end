@@ -10,6 +10,7 @@ import UserContext from './context/user-context';
 import UserNavbar from './components/User/UserNavbar';
 import PastTrainingSessions from './components/TrainingSessions/PastTrainingSessions';
 import FutureTrainingSessions from './components/TrainingSessions/FutureTrainingSessions';
+import CancelledTrainingSessions from './components/TrainingSessions/CancelledTrainingSessions';
 import MyAccount from './components/User/MyAccount';
 import AdminPage from './components/Admin/AdminPage';
 import AllUsers from './components/Admin/AllUsers';
@@ -68,6 +69,7 @@ class App extends Component {
             <Route path="/messages/out" exact component={OutboxMessages} />
             <Route path="/messages/" exact component={InboxMessages} />
             {/* <Route path="/messages/out" exact render={() => <Messages folderType='outbox' />} /> */}
+            <Route path="/training-sessions/cancelled" exact component={CancelledTrainingSessions} />
             <Route path="/training-sessions/past" exact component={PastTrainingSessions} />
             <Route path="/training-sessions" exact component={FutureTrainingSessions} />
             <Route path="/myaccount" exact component={MyAccount} />

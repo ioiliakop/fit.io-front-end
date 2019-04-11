@@ -21,8 +21,10 @@ class TrainingSessions extends Component {
             this.trainingSessionsTitle = 'Future';
         } else if (this.props.folderType === 'PAST') {
             this.trainingSessionsTitle = 'Past';
+        } else if (this.props.folderType === 'CANCELLED') {
+            this.trainingSessionsTitle = 'Cancelled';
         } else {
-            console.error('Unknown messages folder type');
+            console.error('Unknown training sessions type');
         }
 
     }
@@ -46,6 +48,8 @@ class TrainingSessions extends Component {
         console.log('User Role: ', this.context.userInfo.role.name);
         if (this.context.userInfo.role.name === Role.User) {
             this.fetchTrainingSessionsUrl = 'http://localhost:8080/session/client-sessions';
+        } else if ((this.context.userInfo.role.name === Role.Trainer) && (this.props.folderType === 'CANCELLED')) {
+            this.fetchTrainingSessionsUrl = 'http://localhost:8080/session/notify-canceled-sessions/' + this.context.userInfo.id;
         } else if (this.context.userInfo.role.name === Role.Trainer) {
             this.fetchTrainingSessionsUrl = 'http://localhost:8080/session/trainer-sessions';
         } else console.error('Invalid role for training session:', this.context.userInfo.role.name);
@@ -64,28 +68,6 @@ class TrainingSessions extends Component {
         // const otherdate = new Date('2019-03-17 16:00:00');
         // console.log('Other date:', otherdate)
         // console.log('valueOf', otherdate.valueOf());
-
-        // fetch(url, {
-        //     method: 'GET',
-        //     headers: {
-        //         'X-MSG-AUTH': this.context.token,
-        //         'Accept': 'application/json',
-        //     }
-        // }).then(response => {
-        //     response.json().then(data => {
-        //         console.log('Response status:', response.status);
-        //         console.log(data);
-        //         // if (response.status === 200) {
-        //         console.log('Saving fetched training sessions to state');
-        //         this.setState({
-        //             trainingSessions: data
-        //         });
-        //         console.log('Training Sessions in state:', this.state.trainingSessions);
-        //         // }
-        //     })
-        // }).catch(error => console.error('Error:', error));
-
-        // console.log('End of fetch');
     }
 
     fetchTrainingSessions() {
@@ -123,53 +105,61 @@ class TrainingSessions extends Component {
     }
 
     render() {
-        // if (!this.context.isLoggedIn) {
-        //     // Redirect to Landing
-        //     return (
-        //         <Redirect to='/' />
-        //     );
-        // } else {
-            return (
-                <React.Fragment>
-                    <nav className="navbar navbar-light navbar-expand-md">
-                        <div className="container col-sm pt-4 pb-0">
-                            <ul className="navbar-nav mx-auto">
-                                <li>
-                                    <ButtonLink label="FUTURE" to="/training-sessions" location={this.props.location.pathname} />
-                                </li>
-                                <li>
-                                    <span className="col-1"> </span>
-                                </li>
-                                <li>
-                                    <ButtonLink label="PAST" to="/training-sessions/past" location={this.props.location.pathname} />
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
 
-                    <div className="container py-3 text-center">
-                        <h2>{this.trainingSessionsTitle} Training Sessions</h2>
+        return (
+            <React.Fragment>
+                <nav className="navbar navbar-light navbar-expand-md">
+                    <div className="container col-sm pt-4 pb-0">
+                        <ul className="navbar-nav mx-auto">
+                            <li>
+                                <ButtonLink label="FUTURE" to="/training-sessions" location={this.props.location.pathname} />
+                            </li>
+                            <li>
+                                <span className="col-1"> </span>
+                            </li>
+                            <li>
+                                <ButtonLink label="PAST" to="/training-sessions/past" location={this.props.location.pathname} />
+                            </li>
+                            <li>
+                                <span className="col-1"> </span>
+                            </li>
+                            {this.context.userInfo.role.name === Role.Trainer && (
+                                <li>
+                                    <ButtonLink label="CANCELLED" to="/training-sessions/cancelled" location={this.props.location.pathname} />
+                                </li>
+                            )}
+                        </ul>
                     </div>
+                </nav>
 
-                    {this.state.trainingSessions.map((t, index) => {
-                        console.log('Updating li for training session ' + index);
-                        let trsDate = new Date(t.date + ' ' + t.time);
-                        console.log('Training session date:', trsDate);
-                        let now = new Date();
-                        console.log('Now value:', now.valueOf());
-                        console.log('Training Session date value:', trsDate.valueOf());
+                <div className="container py-3 text-center">
+                    <h2>{this.trainingSessionsTitle} Training Sessions</h2>
+                    {console.log(this.state.trainingSessions)}
+                </div>
 
-                        // Adds only corresponding training sessions to array returned
-                        if (now.valueOf() > trsDate.valueOf() && this.props.folderType === 'PAST') {
-                            return <TrainingSession key={t.id} trs={t} timeStatus="PAST" userRole={this.context.userInfo.role.name} />
-                        } else if (now.valueOf() < trsDate.valueOf() && this.props.folderType === 'FUTURE') {
-                            return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" userRole={this.context.userInfo.role.name} handle={this.fetchTrainingSessions}/>
-                        }
-                        // return console.error('Training Sessions return unknown Error');
-                    })}
-                </React.Fragment>
-            );
-        // }
+                {this.state.trainingSessions.map((t, index) => {
+                    if (this.props.folderType === 'CANCELLED') {
+                        return <TrainingSession key={t.id} trs={t} timeStatus="CANCELLED" userRole={this.context.userInfo.role.name} handle={this.fetchTrainingSessions} />
+                    }
+
+                    console.log('Updating li for training session ' + index);
+                    let trsDate = new Date(t.date + ' ' + t.time);
+                    console.log('Training session date:', trsDate);
+                    let now = new Date();
+                    console.log('Now value:', now.valueOf());
+                    console.log('Training Session date value:', trsDate.valueOf());
+
+                    // Adds only corresponding training sessions to array returned
+                    if (now.valueOf() > trsDate.valueOf() && this.props.folderType === 'PAST') {
+                        return <TrainingSession key={t.id} trs={t} timeStatus="PAST" userRole={this.context.userInfo.role.name} />
+                    } else if (now.valueOf() < trsDate.valueOf() && this.props.folderType === 'FUTURE') {
+                        return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" userRole={this.context.userInfo.role.name} handle={this.fetchTrainingSessions} />
+                    }
+                    // return console.error('Training Sessions return unknown Error');
+                })}
+            </React.Fragment>
+        );
+
     }
 
 }

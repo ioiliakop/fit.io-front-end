@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 /**
  * @property {Object} props.trs - the training session object, containing relative data
  * @property {String} props.userRole - role of loggedIn user
+ * @property {String} props.timeStatus - passed to AvailableActionsButtons to render only relative buttons/modals
+ * @property {Function} props.handle - passed to AvailableActionsButtons to re-render based on action
  */
 class TrainingSession extends Component {
     render() {
@@ -23,7 +25,6 @@ class TrainingSession extends Component {
             othersPhotoLink = this.props.trs.client.photoLink;
         }
         return (
-            // <div className="container-fluid py-1 ">
             <div className="container my-2 shadow-sm">
                 <div className="row bg-light border">
                     {/* We display fontawesome default icon if trainer hasn't uploaded a photo */}
@@ -50,8 +51,6 @@ class TrainingSession extends Component {
                     </div>
                 </div>
             </div >
-            // </div>
-
         );
     }
 }

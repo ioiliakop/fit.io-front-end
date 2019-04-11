@@ -6,6 +6,7 @@ import ContactModalButton from './ContactModalButton';
 import Role from '../../hoc/Role';
 import CancelTrainingSessionModalBody from './CancelTrainingSessionModalButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import DeleteCancelledTrainingSessionModalBody from './DeleteCancelledTrainingSessionModalButton';
 
 /**
  * Different Actions available for each training session
@@ -85,7 +86,6 @@ class AvailableActionsButtons extends Component {
                 return (
                     <React.Fragment>
                         <ContactModalButton trsData={this.props.trsData} userRole={this.props.userRole} />
-                        {/* <button type="button" className="btn btn-danger btn-block">CANCEL</button> */}
                         <CancelTrainingSessionModalBody trsData={this.props.trsData} handle={this.props.handle} />
                     </React.Fragment>
                 );
@@ -104,9 +104,12 @@ class AvailableActionsButtons extends Component {
                 return (
                     <React.Fragment>
                         <ContactModalButton trsData={this.props.trsData} userRole={this.props.userRole} />
-                        {/* <button type="button" className="btn btn-danger btn-block">CANCEL</button> */}
                         <CancelTrainingSessionModalBody trsData={this.props.trsData} handle={this.props.handle} />
                     </React.Fragment>
+                );
+            } else if ((this.props.timeStatus === 'CANCELLED')) {
+                return (
+                    <DeleteCancelledTrainingSessionModalBody trsData={this.props.trsData} handle={this.props.handle} />
                 );
             } else {
                 console.error('Unknown timeStatus for Training Session:', this.props.timeStatus);
