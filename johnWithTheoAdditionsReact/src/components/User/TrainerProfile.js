@@ -159,7 +159,7 @@ class TrainerProfile extends Component {
                         <div className="container col-md-3 photo">
                             {this.state.trainer.photoLink ?
                                 <img src={this.state.trainer.photoLink} alt="trainer" className="img-thumbnail" /> :
-                                <FontAwesomeIcon icon={["far", "user-circle"]} size="10x" style={{opacity: 0.4}}/>
+                                <FontAwesomeIcon icon={["far", "user-circle"]} size="10x" style={{ opacity: 0.4 }} />
                             }
                         </div>
                         <div className="container col-md-4 text-center trainer-info">
@@ -174,8 +174,15 @@ class TrainerProfile extends Component {
                             })}</h6>
                         </div>
                         <div className="container col-md-3 py-5 book-info">
-                            <button className="btn btn-danger btn-block mt-auto" onClick={this.setRedirect}>Book appointment</button>
-                            <p className="text-middle text-center p-2 rounded mb-auto">Cost: <span className="text-danger">{this.state.trainer.price}&euro;</span></p>
+                        {/* Unregistered users can view profile but not book appointment */}
+                            {this.context.isLoggedIn ? (
+                                <React.Fragment>
+                                    <button className="btn btn-danger btn-block mt-auto" onClick={this.setRedirect}>Book appointment</button>
+                                    <p className="text-middle text-center p-2 rounded mb-auto">Cost: <span className="text-danger">{this.state.trainer.price}&euro;</span></p>
+                                </React.Fragment>
+                            ) : (
+                                    <p className="text-middle text-center p-2 rounded mb-auto bg-danger text-white">Register or Login to Book your Session!!</p>
+                                )}
                         </div>
                     </div>
 
@@ -188,7 +195,7 @@ class TrainerProfile extends Component {
                 {/* Only if the trainer has reviews will this section be rendered */}
                 {(this.state.trainerReviews.length > 0) && (
                     <div className="container mx-auto pt-2 col-md-8 bg-light shadow reviews">
-                        <h3 className="text-danger text-center">Reviews</h3>
+                        <h3 className="text-danger text-center">Latest Reviews</h3>
                         {this.state.trainerReviews.map((review, index) => {
                             console.log('Updating li for review ' + index);
                             return <ReviewRow key={index} review={review} ></ReviewRow>
@@ -201,4 +208,4 @@ class TrainerProfile extends Component {
 
 }
 
-export default withAuthorization(TrainerProfile, [Role.User]);
+export default withAuthorization(TrainerProfile, [Role.Guest, Role.User]);

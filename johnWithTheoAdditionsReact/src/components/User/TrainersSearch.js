@@ -191,4 +191,4 @@ class TrainersSearch extends Component {
 }
 
 // We only want logged in users to be able to search for trainers
-export default withAuthorization(TrainersSearch, [Role.User], true);
+export default withAuthorization(TrainersSearch, [Role.Guest, Role.User], true);

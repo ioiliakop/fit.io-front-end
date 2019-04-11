@@ -13,4 +13,4 @@ class TrainersSearchNav extends Component {
     }
 }
 
-export default withAuthorization(TrainersSearchNav, [Role.User]);
+export default withAuthorization(TrainersSearchNav, [Role.Guest, Role.User]);

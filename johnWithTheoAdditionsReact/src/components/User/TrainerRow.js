@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Redirect, withRouter } from 'react-router-dom';
+import UserContext from '../../context/user-context';
 
 /**
  * 
  * @property {Object} props.trainer - the trainer object containing relative info
  */
-
 class TrainerRow extends Component {
 
     constructor(props) {
@@ -21,6 +21,8 @@ class TrainerRow extends Component {
         this.setTrainersCalendarRedirect = this.setTrainersCalendarRedirect.bind(this);
         this.renderRedirect = this.renderRedirect.bind(this);
     }
+
+    static contextType = UserContext;
 
     componentDidMount() {
         this.fetchTrainerTypes();
@@ -131,9 +133,11 @@ class TrainerRow extends Component {
                             <p className="card-text"><FontAwesomeIcon icon="wallet" /> &nbsp;{this.props.trainer.price}&euro;</p>
                         </div>
                         <div className="col-lg-3 p-5">
-                            {/* <button type="button" className="btn btn-info btn-block" onClick={this.redirectToTrainerProfile}>PROFILE</button> */}
                             <button type="button" className="btn btn-info btn-block" onClick={this.setTrainersProfileRedirect}>PROFILE</button>
-                            <button type="button" className="btn btn-danger btn-block" onClick={this.setTrainersCalendarRedirect}>APPOINTMENT</button>
+                            {/* Unregistered users can view results but not book appointment */}
+                            {this.context.isLoggedIn && (
+                                <button type="button" className="btn btn-danger btn-block" onClick={this.setTrainersCalendarRedirect}>APPOINTMENT</button>
+                            )}
                         </div>
                     </div>
                 </div>

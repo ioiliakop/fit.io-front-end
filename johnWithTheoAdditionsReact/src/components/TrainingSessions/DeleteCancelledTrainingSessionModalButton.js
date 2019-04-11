@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UserContext from '../../context/user-context';
+import withAuthorization from '../../hoc/withAuthorization';
+import Role from '../../hoc/Role';
 
 /**
  * @property {Object} trsData - The trainining session object passed with relative data
@@ -66,4 +68,5 @@ class DeleteCancelledTrainingSessionModalBody extends Component {
     }
 }
 
-export default DeleteCancelledTrainingSessionModalBody;
+// we only want the trainer to be able to delete the cancelled session in our app - needs a bit more revisiting 
+export default withAuthorization(DeleteCancelledTrainingSessionModalBody, [Role.Trainer]);
