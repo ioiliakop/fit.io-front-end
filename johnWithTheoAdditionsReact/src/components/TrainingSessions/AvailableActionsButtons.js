@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import ReviewModalButton from './ReviewModalButton';
 import ReviewedModalButton from './ReviewedModalButton';
 import ContactModalButton from './ContactModalButton';
-import Role from '../Role';
+import Role from '../../hoc/Role';
 import CancelTrainingSessionModalBody from './CancelTrainingSessionModalButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import ButtonLink from './Utils/ButtonLink';
-import Role from './Role';
+import Role from '../hoc/Role';
 import withAuthorization from '../hoc/withAuthorization';
 
 // decides whether item is active or not

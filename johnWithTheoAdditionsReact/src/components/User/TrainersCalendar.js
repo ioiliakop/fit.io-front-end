@@ -5,7 +5,7 @@ import { withRouter, Link } from "react-router-dom";
 import $ from "jquery";
 import UserContext from "../../context/user-context";
 import withAuthorization from '../../hoc/withAuthorization';
-import Role from '../Role';
+import Role from '../../hoc/Role';
 
 export class TrainersCalendar extends Component {
   state = {

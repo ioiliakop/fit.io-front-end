@@ -3,7 +3,7 @@ import { Redirect, withRouter } from 'react-router-dom';
 import UserContext from '../../context/user-context';
 import TrainingSession from '../TrainingSessions/TrainingSession';
 import ButtonLink from '../../components/Utils/ButtonLink';
-import Role from '../Role';
+import Role from '../../hoc/Role';
 import withAuthorization from '../../hoc/withAuthorization';
 
 class TrainingSessions extends Component {

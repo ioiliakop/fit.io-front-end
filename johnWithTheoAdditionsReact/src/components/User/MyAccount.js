@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import $ from "jquery";
 import UserContext from '../../context/user-context';
 import withAuthorization from '../../hoc/withAuthorization';
-import Role from '../Role';
+import Role from '../../hoc/Role';
 
 // UNFINISHED
 class MyAccount extends Component {

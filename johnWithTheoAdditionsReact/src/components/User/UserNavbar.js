@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import withAuthorization from '../../hoc/withAuthorization';
-import Role from '../Role';
+import Role from '../../hoc/Role';
 
 // decides whether item is active or not
 function NavLink(props) {

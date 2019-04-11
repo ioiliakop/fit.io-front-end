@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import withAuthorization from '../../hoc/withAuthorization';
-import Role from '../Role';
+import Role from '../../hoc/Role';
 
-class TrainersNav extends Component {
+class TrainersSearchNav extends Component {
     render() {
         return (
             <li className="nav-item">
@@ -13,4 +13,4 @@ class TrainersNav extends Component {
     }
 }
 
-export default withAuthorization(TrainersNav, [Role.User]);
+export default withAuthorization(TrainersSearchNav, [Role.User]);

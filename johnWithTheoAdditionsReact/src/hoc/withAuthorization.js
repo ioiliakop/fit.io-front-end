@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import UserContext from '../context/user-context';
-import Role from '../components/Role';
+import Role from './Role';
 
 /**
  * This HOC is responsible for implementing authorization throughout our app, where we see fit

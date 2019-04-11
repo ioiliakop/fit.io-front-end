@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Role from '../Role';
+import Role from '../../hoc/Role';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import StarRating from './StarRating';
 

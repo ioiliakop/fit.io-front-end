@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Messages from './Messages-LEGACY';
 import MessagesPaginated from './MessagesPaginated';
 import withAuthorization from '../../hoc/withAuthorization';
-import Role from '../Role';
+import Role from '../../hoc/Role';
 
 class InboxMessages extends Component {
     render() {

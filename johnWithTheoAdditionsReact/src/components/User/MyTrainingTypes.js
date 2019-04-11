@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UserContext from '../../context/user-context';
 import withAuthorization from '../../hoc/withAuthorization';
-import Role from '../Role';
+import Role from '../../hoc/Role';
 
 function TrainingTypeRow(props) {
     return (

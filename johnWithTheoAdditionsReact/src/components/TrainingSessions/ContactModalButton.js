@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Role from '../Role';
+import Role from '../../hoc/Role';
 
 /**
  * @property {Object} props.trsData - The training session object passed with relative data

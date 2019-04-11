@@ -4,7 +4,7 @@ import UserContext from '../../context/user-context';
 import withAuthorization from '../../hoc/withAuthorization';
 import Role from '../../hoc/Role';
 
-class UserNav extends Component {
+class AdminNav extends Component {
 
     static contextType = UserContext;
 
@@ -16,10 +16,8 @@ class UserNav extends Component {
                     {this.context.userInfo.username}
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarProfileDropdownMenuLink">
-                    <Link className="dropdown-item" to="/training-sessions">My Training Sessions</Link>
+                    <Link className="dropdown-item" to="/admin">Admin Page</Link>
                     <Link className="dropdown-item" to="/messages">My Messages</Link>
-                    {/* <a className="dropdown-item" href="#pills-myReviews">My Reviews</a> */}
-                    <Link className="dropdown-item" to="/myaccount">My Account</Link>
                     <a className="dropdown-item" data-toggle="modal" data-target="#logoutModal"
                         href="#logoutModal">Logout</a>
                 </div>
@@ -29,4 +27,4 @@ class UserNav extends Component {
 
 }
 
-export default withAuthorization(UserNav, [Role.User, Role.Trainer]);
+export default withAuthorization(AdminNav, [Role.Admin]);

@@ -11,7 +11,8 @@ import UserNavbar from './components/User/UserNavbar';
 import PastTrainingSessions from './components/TrainingSessions/PastTrainingSessions';
 import FutureTrainingSessions from './components/TrainingSessions/FutureTrainingSessions';
 import MyAccount from './components/User/MyAccount';
-import AdminTestPage from './components/Admin/AdminTestPage';
+import AdminPage from './components/Admin/AdminPage';
+import AllUsers from './components/Admin/AllUsers';
 import MyTrainingTypes from './components/User/MyTrainingTypes';
 import TrainersSearch from './components/User/TrainersSearch';
 import TrainerProfile from './components/User/TrainerProfile';
@@ -61,7 +62,8 @@ class App extends Component {
           {/* {this.state.isLoggedIn && <UserNavbar />} */}
           <UserNavbar />
           <Switch>
-            <Route path="/admin" exact component={AdminTestPage} />  {/* Testing withAuthorization HOC - OK */}
+            <Route path="/admin" exact component={AdminPage} />  {/* Testing withAuthorization HOC - OK */}
+            <Route path="/allUsers" component={AllUsers} />
             <Route path="/register/:rolename" exact component={Register} /> {/*perhaps needs consideration to restrain possible values/routes*/}
             <Route path="/messages/out" exact component={OutboxMessages} />
             <Route path="/messages/" exact component={InboxMessages} />

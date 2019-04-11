@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import withAuthorization from '../../hoc/withAuthorization';
-import Role from '../Role';
+import Role from '../../hoc/Role';
 import TrainerRow from './TrainerRow';
 
 function SearchResults(props) {
