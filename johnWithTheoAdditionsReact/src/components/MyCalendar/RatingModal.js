@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "./rating.css";
 import $ from "jquery";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 class RatingModal extends Component {
   state = {
     rating: 0
@@ -17,7 +19,8 @@ class RatingModal extends Component {
           id="rating-star-5"
           onClick={this.changeRating.bind(this, i + 1)}
         >
-          <i class="fa fa-star" aria-hidden="true" />
+          <i class="fa fa-star" ariaHidden="true" />
+          <FontAwesomeIcon icon="star" ariaHidden="true" />
         </button>
       );
     }
@@ -32,6 +35,7 @@ class RatingModal extends Component {
           onClick={this.changeRating.bind(this, i + 1)}
         >
           <i class="fa fa-star" aria-hidden="true" />
+          <FontAwesomeIcon icon="star" aria-hidden="true" />
         </button>
       );
     }
