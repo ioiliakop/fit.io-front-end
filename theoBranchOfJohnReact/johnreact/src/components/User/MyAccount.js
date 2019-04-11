@@ -11,15 +11,19 @@ class MyAccount extends Component {
     static contextType = UserContext;
 
     state = {
-        photoLink: ""
+        user: {},
+        photoLink: null
     }
 
 
     componentWillMount() {
-        let user = JSON.parse(localStorage.getItem("userInfo"));
-        this.setState({
-            photoLink: user.photoLink
-        })
+        if (localStorage.getItem("userInfo") != null && localStorage.getItem("userInfo") != "") {
+            let user = JSON.parse(localStorage.getItem("userInfo"));
+            this.setState({
+                user: user,
+                photoLink: user.photoLink
+            })
+        }
     }
 
 
@@ -72,6 +76,13 @@ class MyAccount extends Component {
         });
     };
 
+    generateProfilePic = () => {
+        if (this.state.photoLink == null || this.state.photoLink == "") {
+            return (<img src="https://www.chiosstartup.com/1.jpg" alt="Upload a Picture" style={{ width: "200px" }} />)
+        } else {
+            return (<img src={this.state.photoLink} alt="Upload a Picture" style={{ width: "200px" }} />)
+        }
+    }
 
     render() {
         return (
@@ -137,7 +148,7 @@ class MyAccount extends Component {
 
                     {/* <!-- Right Section --> */}
                     <div className="container col-md-4 text-center p-5">
-                        <div>  <img src={this.state.photoLink} alt="Upload a Picture" style={{ width: "200px" }} /></div>
+                        <div>  {this.generateProfilePic()}</div>
                         <div className="my-2">{this.context.userInfo.firstName + ' ' + this.context.userInfo.lastName}<div className="text-muted">({this.context.userInfo.role.name})</div></div>
                         <div className="custom-file text-left">
                             <input type="file" className="custom-file-input" id="profilePicInput" accept=".jpg, .png, .gif" />

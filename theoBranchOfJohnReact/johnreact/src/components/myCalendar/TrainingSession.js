@@ -111,12 +111,39 @@ class TrainingSession extends Component {
     });
   };
 
+
+  deleteSession = session => {
+    $.ajax({
+      type: "POST",
+      url: `http://localhost:8080/session/deleteNotifiedCanceledSessions/${this.state.session.id}`,
+      headers: { "X-MSG-AUTH": localStorage.getItem("token") },
+      async: true,
+      success: () => {
+        alert("Succesfuly Deleted");
+        this.props.history.push("/myaccount");
+      },
+      error: () => { }
+    });
+  }
+
+  generateButtons = () => {
+    if (this.state.session.cancelationStatus == 1) {
+      return (<button onClick={this.deleteSession.bind(this, this.props.location.state.session)} class="btn btn-danger" > Delete Training </button>)
+    } else {
+      if (this.state.pastSession) {
+        return (<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal"> Review Training </button>)
+      } else {
+        return (<button onClick={this.cancelSession.bind(this, this.props.location.state.session)} class="btn btn-danger" > Cancel Training </button>)
+      }
+    }
+  }
+
   render() {
     const { state } = this.props.location;
     if (state == null) {
       this.props.history.push("/calendar");
     } else {
-      const { area, client, date, time, trainer, trainingType } = this.state.session;
+      const { area, client, date, time, trainer, trainingType, cancelationStatus } = this.state.session;
       const { pastSession } = this.state;
       return (
         <React.Fragment>
@@ -139,11 +166,13 @@ class TrainingSession extends Component {
                 {"Trainer: " + trainer.firstName + " " + trainer.lastName}
               </li>
               <li class="list-group-item">{"Price: " + trainer.price}</li>
+              {cancelationStatus == 1 ? (<li class="list-group-item list-group-item-warning">This Session is Cancelled (Delete it to open timeSlot again)</li>) : null}
             </ul>
             <div class="card-body">
-              {pastSession ?
+              {this.generateButtons()}
+              {/* {pastSession ?
                 (<button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModal"> Review Session </button>) :
-                (<button onClick={this.cancelSession.bind(this, this.props.location.state.session)} class="btn btn-danger" > Cancel Training </button>)}
+                (<button onClick={this.cancelSession.bind(this, this.props.location.state.session)} class="btn btn-danger" > Cancel Training </button>)} */}
             </div>
           </div>
           <br />

@@ -35,6 +35,14 @@ class TrainerProfile extends Component {
       this.props.history.push("/login");
     }
   }
+
+  generateProfilePic = () => {
+    if (this.state.user.photoLink == "" || this.state.user.photoLink == null) {
+      return (<img class="editable img-responsive" alt=" Avatar" id="avatar2" src="https://www.chiosstartup.com/1.jpg" style={{ width: "200px" }} />)
+    } else {
+      return (<img class="editable img-responsive" alt=" Avatar" id="avatar2" src={this.state.user.photoLink} style={{ width: "200px" }} />)
+    }
+  }
   render() {
     const { user, loggedInUser } = this.state;
     return (
@@ -46,24 +54,16 @@ class TrainerProfile extends Component {
                 <div class="row">
                   <div class="col-xs-12 col-sm-3 center">
                     <span class="profile-picture">
-                      <img
-                        class="editable img-responsive"
-                        alt=" Avatar"
-                        id="avatar2"
-                        src="http://bootdey.com/img/Content/avatar/avatar6.png"
-                      />
+                      {this.generateProfilePic()}
                     </span>
 
                     <div class="space space-4" />
 
                     <a href="#" class="btn btn-sm btn-block btn-success">
                       {/* <i class="fas fa-paper-plane" /> */}
-                      <button
-                        type="button"
-                        class="btn btn-success"
+                      <button type="button" class="btn btn-success"
                         data-toggle="modal"
-                        data-target="#exampleModal"
-                      >
+                        data-target="#sendPersonalMessageModal">
                         <i class="fas fa-paper-plane">Send Message</i>
                       </button>
                       {/* <span class="bigger-110">Send Message</span> */}

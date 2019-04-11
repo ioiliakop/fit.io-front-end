@@ -84,6 +84,14 @@ class TrainerRow extends Component {
     console.log("End of fetch trainer areas");
   }
 
+  generateImage = () => {
+    if (this.props.trainer.photoLink == "" || this.props.trainer.photoLink == null) {
+      return (<img className="img-fluid" src="https://www.chiosstartup.com/1.jpg" alt="Profile Pic" style={{ width: "170px" }} />)
+    } else {
+      return (<img className="img-fluid" src={this.props.trainer.photoLink} alt="Profile pic " style={{ width: "170px" }} />)
+    }
+  }
+
   render() {
     const trainerTypes = this.state.trainerTypes;
     const trainerAreas = this.state.trainerAreas;
@@ -92,11 +100,8 @@ class TrainerRow extends Component {
         <div className="container">
           <div className="row bg-light border">
             <div className="col-md-3 border-right text-center pt-5">
-              <img
-                className="img-fluid"
-                src="./img/sample_trainer_1_thumb.jpg"
-                alt="Trainer 1"
-              />
+              {this.generateImage()}
+              {/* <img className="img-fluid" src="./img/sample_trainer_1_thumb.jpg"   alt="Trainer 1" /> */}
             </div>
             <div className="col-md-3 pt-4 px-4 border-right text-center">
               <h4 className="text-primary">

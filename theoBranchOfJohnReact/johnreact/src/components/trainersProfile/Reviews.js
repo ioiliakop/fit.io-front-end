@@ -4,7 +4,9 @@ import $ from "jquery";
 class Reviews extends Component {
   state = {
     user: {},
-    reviews: []
+    amountOfTotalRevies: 0,
+    reviews: [],
+    reviewsLoaded: false
   };
 
   componentDidMount = () => {
@@ -18,6 +20,7 @@ class Reviews extends Component {
       dataType: "json",
       async: true,
       success: reviews => {
+        console.log("wejkdowejdop");
         console.log(reviews);
         this.setState({
           reviews: reviews.results
@@ -25,7 +28,9 @@ class Reviews extends Component {
         if (reviews.results.length > 0) {
           let user = reviews.results[0].session.trainer;
           this.setState({
-            user
+            amountOfTotalRevies: reviews.count,
+            user,
+            reviewsLoaded: true
           });
         } else {
           this.getUser(id);
@@ -33,7 +38,7 @@ class Reviews extends Component {
         //   dispatch({ type: "FILL_MY_REVIEWS", payload: reviews });
         //   this.props.history.push("/myReviews");
       },
-      error: () => {}
+      error: () => { }
     });
     // }
   };
@@ -47,7 +52,8 @@ class Reviews extends Component {
       async: true,
       success: user => {
         this.setState({
-          user
+          user,
+          reviewsLoaded: true
         });
       },
       error: error => {
@@ -57,15 +63,11 @@ class Reviews extends Component {
   };
 
   render() {
-    const { reviews, user } = this.state;
+    const { reviews, user, reviewsLoaded, amountOfTotalRevies } = this.state;
     return (
       <React.Fragment>
         <div class="container">
-          <h2 class="text-center">
-            {reviews.length == 0
-              ? "No Reviews yet for " + user.firstName + " " + user.lastName
-              : "Reviews for " + user.firstName + " " + user.lastName}
-          </h2>
+          {reviewsLoaded ? (<h2 class="text-center"> {amountOfTotalRevies + " reviews for " + user.firstName + " " + user.lastName}</h2>) : (<img src="http://photodentro.edu.gr/v/images/loading.gif" style={{ width: "150px" }} />)}
           {reviews.map(review => (
             <Review key={review.id} review={review} />
           ))}

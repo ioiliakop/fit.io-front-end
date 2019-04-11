@@ -13,24 +13,27 @@ class Review extends Component {
     return ratings;
   };
 
+  generatePicture = () => {
+    const { client } = this.props.review.session;
+    if (client.photoLink == "" || client.photoLink == null) {
+      return (<img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid" />)
+    } else {
+      return (<img src={client.photoLink} class="img img-rounded img-fluid" />)
+    }
+  }
+
   render() {
     return (
       <div class="card">
         <div class="card-body">
           <div class="row">
             <div class="col-md-2">
-              <img
-                src="https://image.ibb.co/jw55Ex/def_face.jpg"
-                class="img img-rounded img-fluid"
-              />
+              {this.generatePicture()}
               <p class="text-secondary text-center">{this.props.review.date}</p>
             </div>
             <div class="col-md-10">
               <p>
-                <a
-                  class="float-left"
-                  href="https://maniruzzaman-akash.blogspot.com/p/contact.html"
-                >
+                <a class="float-left" href="https://maniruzzaman-akash.blogspot.com/p/contact.html"  >
                   <strong>
                     {this.props.review.session.client.firstName +
                       " " +

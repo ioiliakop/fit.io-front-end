@@ -17,23 +17,16 @@ class SendMessageModal extends Component {
       success: () => {
         alert("SUCCESFULLY SENT");
         document.getElementById("typedMessage").value = "";
-        $("#exampleModal").modal("hide");
+        $("#sendPersonalMessageModal").modal("hide");
       },
-      error: () => {}
+      error: () => { }
     });
   };
 
   render() {
     console.log(this.props.sender.firstName);
     return (
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
+      <div class="modal fade" id="sendPersonalMessageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -44,28 +37,14 @@ class SendMessageModal extends Component {
               </h5>
             </div>
             <div class="modal-body">
-              <textarea
-                id="typedMessage"
-                rows="4"
-                cols="50"
-                width="100px"
-                placeholder="Type Your Message Here"
-              />
+              <textarea id="typedMessage" rows="4" cols="50" width="100px" placeholder="Type Your Message Here" />
             </div>
             <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
                 Close
               </button>
 
-              <button
-                type="button"
-                class="btn btn-primary"
-                onClick={this.reply}
-              >
+              <button type="button" class="btn btn-primary" onClick={this.reply}>
                 Send
               </button>
             </div>

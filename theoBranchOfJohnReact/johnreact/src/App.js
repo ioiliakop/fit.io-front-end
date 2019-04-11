@@ -12,6 +12,7 @@ import PastTrainingSessions from "./components/TrainingSessions/PastTrainingSess
 import FutureTrainingSessions from "./components/TrainingSessions/FutureTrainingSessions";
 import MyAccount from "./components/User/MyAccount";
 import AdminTestPage from "./components/Admin/AdminTestPage";
+import AllUsers from "./components/Admin/AllUsers";
 import MyTrainingTypes from "./components/User/MyTrainingTypes";
 import TrainersSearch from "./components/User/TrainersSearch";
 import Calendar from "./components/myCalendar/Calendar";
@@ -60,42 +61,28 @@ class App extends Component {
     return (
       <Router>
         <UserContext.Provider value={this.state}>
-          {" "}
           {/* Passing this state as UserContext value */}
           <Header />
-          {this.state.isLoggedIn && <UserNavbar />}
+          {this.state.isLoggedIn && this.state.userInfo.role.id != 3 ? <UserNavbar /> : null}
+          {/* {this.state.isLoggedIn && <UserNavbar />} */}
           <Switch>
             <Route path="/admin" exact component={AdminTestPage} />{" "}
+            <Route path="/allUsers" component={AllUsers} />
             {/* Testing withAuthorization HOC - OK */}
             <Route path="/register/:rolename" exact component={Register} />{" "}
             {/*perhaps needs consideration to restrain possible values/routes*/}
             <Route path="/messages/out" exact component={OutboxMessages} />
             <Route path="/messages/" exact component={InboxMessages} />
             {/* <Route path="/messages/out" exact render={() => <Messages folderType='outbox' />} /> */}
-            <Route
-              path="/training-sessions/past"
-              exact
-              component={PastTrainingSessions}
-            />
-            <Route
-              path="/training-sessions"
-              exact
-              component={FutureTrainingSessions}
-            />
+            <Route path="/training-sessions/past" exact component={PastTrainingSessions} />
+            <Route path="/training-sessions" exact component={FutureTrainingSessions} />
             <Route path="/myaccount" exact component={MyAccount} />
-            <Route
-              path="/my-training-types"
-              exact
-              component={MyTrainingTypes}
-            />
+            <Route path="/my-training-types" exact component={MyTrainingTypes} />
             <Route path="/trainers" exact component={TrainersSearch} />
             <Route path="/trainerProfile/:id" component={TrainerProfile} />
             <Route path="/reviews/:id" component={Reviews} />
             <Route path="/trainersCalendar/:id" component={TrainersCalendar} />
-            <Route
-              path="/bookTrainingSession"
-              component={BookTrainingSession}
-            />
+            <Route path="/bookTrainingSession" component={BookTrainingSession} />
             <Route path="/myCalendar" component={Calendar} />
             <Route path="/trainingSession" component={TrainingSession} />
             {/* <Route path="/login" exact component={TempLogin} /> */}

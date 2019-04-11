@@ -48,9 +48,11 @@ class LoginModalBody extends Component {
                     // });
                     this.context.updateUserContext();
                     console.log('Changed context after login. New context', this.context);
+                } else {
+                    alert(data.message);
                 }
             })
-        }).catch(error => console.error('Error:', error));
+        }).catch(error => console.error('Error: error'));
 
         event.preventDefault();
     }
