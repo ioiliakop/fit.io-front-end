@@ -122,7 +122,7 @@ class MyAccount extends Component {
                         </div> --> */}
                             <div className="form-group">
                                 <label htmlFor="exampleFormControlTextarea1">Description</label>
-                                <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <textarea className="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
                             </div>
                             <button type="submit" className="btn btn-primary">Save Changes</button>
                         </form>

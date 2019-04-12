@@ -88,6 +88,8 @@ class AvailableActionsButtons extends Component {
                         <CancelTrainingSessionModalBody trsData={this.props.trsData} updateSessions={this.props.updateSessions} />
                     </React.Fragment>
                 );
+            } else if ((this.props.timeStatus === 'CANCELLED')) {
+                return <button type="button" className="btn btn-danger btn-block" disabled>CANCELLED</button>;
             } else {
                 console.error('Unknown timeStatus for Training Session:', this.props.timeStatus);
             }

@@ -11,4 +11,4 @@ class CancelledTrainingSessions extends Component {
     }
 }
 
-export default withAuthorization(CancelledTrainingSessions, [Role.Trainer], true);
+export default withAuthorization(CancelledTrainingSessions, [Role.User, Role.Trainer], true);
