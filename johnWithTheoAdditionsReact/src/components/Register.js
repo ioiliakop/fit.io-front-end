@@ -47,12 +47,14 @@ class Register extends Component {
                 'Accept': 'application/json',
             }
         }).then(response => {
-            console.log("response", response);
             if (response.status === 200) {
                 this.props.history.push('/');
+            } else if (response.status === 400) {
+                response.json().then(data => {
+                    this.setState({ regError: data.message });
+                })
             } else {
-                response.json().then(data => console.log('data:', data));
-                this.setState({ regError: true });
+                this.setState({ regError: 'Unknown Error...' });
             }
         }).catch(error => console.error('Error:', error));
 
@@ -61,7 +63,7 @@ class Register extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            <div style={{ minHeight: '80vh' }}>
                 <nav className="navbar navbar-light navbar-expand-md">
                     <div className="container col-sm pt-4 pb-2">
                         <ul className="navbar-nav mx-auto">
@@ -81,7 +83,7 @@ class Register extends Component {
                 <div className="container col-8">
                     <div className="text-center">
                         <h1 className="mx-auto">Register as {this.props.match.params.rolename}</h1>
-                        {this.state.regError && <h4 style={{ color: 'red' }}>Username or email exists</h4>}
+                        {this.state.regError && <h4 style={{ color: 'red' }}>{this.state.regError}</h4>}
                     </div>
                     <form onSubmit={this.handleSubmit} className="pt-3 pb-2">
                         <div className="form-group row justify-content-center">
@@ -126,7 +128,8 @@ class Register extends Component {
                         </div>
                     </form>
                 </div>
-            </React.Fragment>
+            </div>
+
         );
     }
 }
