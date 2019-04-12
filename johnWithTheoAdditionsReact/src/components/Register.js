@@ -27,29 +27,34 @@ class Register extends Component {
     }
 
     handleSubmit(event) {
-            const url = 'http://localhost:8080/register/save';
-            const formData = {
-                "username": this.username.current.value,
-                "password": this.password.current.value,
-                "email": this.email.current.value,
-                "firstName": this.firstName.current.value,
-                "lastName": this.lastName.current.value,
-                "role": {
-                    "id": this.state.roleId
-                }
-            };
+        const url = 'http://localhost:8080/register/save';
+        const formData = {
+            "username": this.username.current.value,
+            "password": this.password.current.value,
+            "email": this.email.current.value,
+            "firstName": this.firstName.current.value,
+            "lastName": this.lastName.current.value,
+            "role": {
+                "id": this.state.roleId
+            }
+        };
 
-            fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(formData),
-                headers: { 'Content-Type': 'application/json' }
-            }).then((response) => {
-                if (response.status === 200) {
-                    this.props.history.push('/');
-                } else {
-                    this.setState({ regError: true });
-                }
-            }).catch(error => console.error('Error:', error));
+        fetch(url, {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            }
+        }).then(response => {
+            console.log("response", response);
+            if (response.status === 200) {
+                this.props.history.push('/');
+            } else {
+                response.json().then(data => console.log('data:', data));
+                this.setState({ regError: true });
+            }
+        }).catch(error => console.error('Error:', error));
 
         event.preventDefault();
     }
