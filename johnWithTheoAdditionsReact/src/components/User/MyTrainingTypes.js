@@ -110,7 +110,7 @@ class MyTrainingTypes extends Component {
         // Check that input training area isn't already among trainer's areas
         // Only then we make ajax call, else no action is needed
         if ((areaId !== "") && !trainersAreasIdsOnlyList.includes(areaId)) {
-            const url = 'http://localhost:8080/find/trainer-choose-area/' + this.context.userInfo.id + '/' + areaId;
+            const url = 'http://localhost:8080/find/trainer-choose-area/' + areaId;
             console.log('Add area url:', url);
 
             fetch(url, {
@@ -121,7 +121,7 @@ class MyTrainingTypes extends Component {
             }).then(response => {
                 console.log('Response status:', response.status);
                 if (response.status === 200) {
-                    console.log('Added area with id:',areaId);
+                    console.log('Added area with id:', areaId);
                     this.fetchTrainersAreas();
                 }
             }).catch(error => console.error('Error:', error));
@@ -130,7 +130,7 @@ class MyTrainingTypes extends Component {
     }
 
     handleRemoveTrainersArea(areaId) {
-        const url = 'http://localhost:8080/find/trainer-remove-area/' + this.context.userInfo.id + '/' + areaId;
+        const url = 'http://localhost:8080/find/trainer-remove-area/' + areaId;
         console.log('Remove trainers area url:', url);
 
         fetch(url, {
@@ -195,7 +195,7 @@ class MyTrainingTypes extends Component {
     handleUpdateCost() {
         const newCost = this.inputPrice.current.value;
         if ((newCost !== "") && (newCost !== this.context.userInfo.price)) {
-            const url = 'http://localhost:8080/find/set-price/' + this.context.userInfo.id + '/' + this.inputPrice.current.value;
+            const url = 'http://localhost:8080/find/set-price/' + this.inputPrice.current.value;
             console.log('update cost url:', url);
 
             fetch(url, {
@@ -212,7 +212,7 @@ class MyTrainingTypes extends Component {
                     updatedUser.price = newCost;
                     localStorage.setItem("userInfo", JSON.stringify(updatedUser));
                     this.context.updateUserContext();
-                    this.setState({ price: newCost});
+                    this.setState({ price: newCost });
                 }
             }).catch(error => console.error('Error:', error));
             console.log('End of update cost');
@@ -224,7 +224,7 @@ class MyTrainingTypes extends Component {
         const trainersTypesIdsOnlyList = this.state.trainersTrainingTypes.map((tr, i) => { return tr.id });
 
         if ((trId !== "") && !trainersTypesIdsOnlyList.includes(trId)) {
-            const url = 'http://localhost:8080/find/trainer-choose-type/' + this.context.userInfo.id + '/' + trId;
+            const url = 'http://localhost:8080/find/trainer-choose-type/' + trId;
             console.log('Add training type url:', url);
 
             fetch(url, {
@@ -244,7 +244,7 @@ class MyTrainingTypes extends Component {
     }
 
     handleRemoveTrainingType(trainingTypeId) {
-        const url = 'http://localhost:8080/find/trainer-remove-type/' + this.context.userInfo.id + '/' + trainingTypeId;
+        const url = 'http://localhost:8080/find/trainer-remove-type/' + trainingTypeId;
         console.log('Remove training type url:', url);
 
         fetch(url, {
@@ -265,7 +265,7 @@ class MyTrainingTypes extends Component {
 
     render() {
         return (
-            <div className="container py-3 mt-3 text-center" style={{minHeight: '75vh'}}>
+            <div className="container py-3 mt-3 text-center" style={{ minHeight: '75vh' }}>
                 <div className="col-12 mx-auto">
                     <div className="form-group col-md-4 mx-auto">
                         <label htmlFor="inputEmail"><h5>Cost (&euro;/hour)</h5></label>

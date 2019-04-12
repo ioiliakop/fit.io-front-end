@@ -7,7 +7,7 @@ class TrainersSearchNav extends Component {
     render() {
         return (
             <li className="nav-item">
-                <Link className="nav-link" to="/trainers">Trainers</Link>
+                <Link className="nav-link" to="/trainers2">Trainers</Link>
             </li>
         );
     }

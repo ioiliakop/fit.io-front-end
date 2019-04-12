@@ -131,7 +131,7 @@ class MyAccount extends Component {
                     {/* <!-- Right Section --> */}
                     <div className="container col-md-4 text-center p-5">
                         <div>
-                            {this.context.userInfo.photoLink === '' ? <FontAwesomeIcon icon={["far", "user-circle"]} size="8x" /> : <img src={this.context.userInfo.photoLink} alt="Profile" style={{ width: "200px" }} />}
+                            {this.context.userInfo.photoLink == '' || this.context.userInfo.photoLink == null ? <FontAwesomeIcon icon={["far", "user-circle"]} size="8x" /> : <img src={this.context.userInfo.photoLink} alt="Profile" style={{ width: "200px" }} />}
                         </div>
                         <div className="my-2">{this.context.userInfo.firstName + ' ' + this.context.userInfo.lastName}<div className="text-muted">({this.context.userInfo.role.name})</div></div>
                         <div className="custom-file text-left">

@@ -41,7 +41,7 @@ class NotificationsNav extends Component {
     getNewTrainingSessions = () => {
         $.ajax({
             type: "GET",
-            url: `http://localhost:8080/session/notify-booked-sessions/${this.context.userInfo.id}`,
+            url: `http://localhost:8080/session/notify-booked-sessions`,
             headers: { "X-MSG-AUTH": this.context.token },
             dataType: "json",
             async: true,
@@ -55,19 +55,38 @@ class NotificationsNav extends Component {
     }
 
     getCancelledSessions = () => {
-        $.ajax({
-            type: "GET",
-            url: `http://localhost:8080/session/notify-canceled-sessions/${this.context.userInfo.id}`,
-            headers: { "X-MSG-AUTH": this.context.token },
-            dataType: "json",
-            async: true,
-            success: cancelledSessions => {
-                this.setState({
-                    cancelledSessions
-                }, () => this.checkNewNotificationsExist());
-            },
-            error: () => { }
-        });
+
+        if (this.context.userInfo.role.id == 2) {
+            $.ajax({
+                type: "GET",
+                url: `http://localhost:8080/session/notify-trainer-canceled-sessions`,
+                headers: { "X-MSG-AUTH": this.context.token },
+                dataType: "json",
+                async: true,
+                success: cancelledSessions => {
+                    this.setState({
+                        cancelledSessions
+                    }, () => this.checkNewNotificationsExist());
+                },
+                error: () => { }
+            });
+        } else if (this.context.userInfo.role.id == 1) {
+            $.ajax({
+                type: "GET",
+                url: `http://localhost:8080/session/notify-client-canceled-sessions`,
+                headers: { "X-MSG-AUTH": this.context.token },
+                dataType: "json",
+                async: true,
+                success: cancelledSessions => {
+                    this.setState({
+                        cancelledSessions
+                    }, () => this.checkNewNotificationsExist());
+                },
+                error: () => { }
+            });
+        }
+
+
     }
 
     getNewMessages = () => {

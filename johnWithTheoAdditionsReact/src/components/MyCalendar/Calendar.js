@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import "./calendar.css";
 import DayWithSession from "./DayWithSession";
-import { Link, withRouter } from "react-router-dom";
+import UserContext from "../../context/user-context";
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import $ from "jquery";
 
 export class Calendar extends Component {
+
+  static contextType = UserContext;
+
   state = {
     user:
       localStorage.getItem("userInfo") != ""
@@ -17,7 +21,8 @@ export class Calendar extends Component {
   };
 
   componentDidMount() {
-    if (localStorage.getItem("userInfo") !== "") {
+
+    if (this.context.isLoggedIn) {
       var date = new Date();
       var month = date.getMonth();
       let user = this.state.user;
@@ -143,85 +148,93 @@ export class Calendar extends Component {
   };
 
   render() {
-    return (
-      <React.Fragment>
-        <div class="bodyDivCalendar">
-          <div class="h1Calendar">
-            <button class="btn btn-warning" onClick={this.previousMonth}>
-              Previous Month
-            </button>
-            <button class="btn btn-warning" onClick={this.nextMonth}>
-              Next Month
-            </button>
-            <h3>
-              {this.state.month + "/ 2019  Your Calendar "}
-              {this.state.user.role.id == 2 ? " (Trainer)" : null}
-            </h3>
-          </div>
-
-          <section id="calendar" class="collectonme">
-            <div id="day-labels">
-              <div class="label">DAY</div>
-              <div class="label">DAY</div>
-              <div class="label">DAY</div>
-              <div class="label">DAY</div>
-              <div class="label">DAY</div>
-              <div class="label">DAY</div>
-              <div class="label">DAY</div>
+    if (this.context.isLoggedIn == false) {
+      return (
+        <Redirect to="/"></Redirect>
+      )
+    } else {
+      return (
+        <React.Fragment>
+          <div class="bodyDivCalendar">
+            <div class="h1Calendar">
+              <button class="btn btn-warning" onClick={this.previousMonth}>
+                Previous Month
+                </button>
+              <button class="btn btn-warning" onClick={this.nextMonth}>
+                Next Month
+                </button>
+              <h3>
+                {this.state.month + "/ 2019  Your Calendar "}
+                {this.state.user.role.id == 2 ? " (Trainer)" : null}
+              </h3>
             </div>
-            <div id="one" class="week">
-              <div class="day noDate" />
-              <div class="day noDate" />
-              <div class="day noDate" />
-              <div class="day noDate" />
-              {this.generateDays()}
-            </div>
-          </section>
 
-          {/* Modal */}
-          <div
-            class="modal fade"
-            id="sessionModal"
-            tabindex="-1"
-            role="dialog"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">
-                    Training sessions
-                  </h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <h6>Your sessions for {this.state.dateOfModal}</h6>
-                  <hr />
-                  <ul class="list-group">
-                    {this.state.modalSessions.map(session => (
-                      <Link class="list-group-item" to={{
-                        pathname: "/trainingSession",
-                        state: { session: session }
-                      }} onClick={this.hideModal}  >
-                        {"Time: " + session.time + " , Area: " + session.area.city + " ,Type: " + session.trainingType.title}
-                      </Link>
-                    ))}
-                  </ul>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal" >
-                    Close
-                  </button>
+            <section id="calendar" class="collectonme">
+              <div id="day-labels">
+                <div class="label">DAY</div>
+                <div class="label">DAY</div>
+                <div class="label">DAY</div>
+                <div class="label">DAY</div>
+                <div class="label">DAY</div>
+                <div class="label">DAY</div>
+                <div class="label">DAY</div>
+              </div>
+              <div id="one" class="week">
+                <div class="day noDate" />
+                <div class="day noDate" />
+                <div class="day noDate" />
+                <div class="day noDate" />
+                {this.generateDays()}
+              </div>
+            </section>
+
+            {/* Modal */}
+            <div
+              class="modal fade"
+              id="sessionModal"
+              tabindex="-1"
+              role="dialog"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Training sessions
+                      </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <h6>Your sessions for {this.state.dateOfModal}</h6>
+                    <hr />
+                    <ul class="list-group">
+                      {this.state.modalSessions.map(session => (
+                        <Link class="list-group-item" to={{
+                          pathname: "/trainingSession",
+                          state: { session: session }
+                        }} onClick={this.hideModal}  >
+                          {"Time: " + session.time + " , Area: " + session.area.city + " ,Type: " + session.trainingType.title}
+                        </Link>
+                      ))}
+                    </ul>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" >
+                      Close
+                      </button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </React.Fragment>
-    );
+        </React.Fragment>
+      );
+
+    }
+
   }
 }
 

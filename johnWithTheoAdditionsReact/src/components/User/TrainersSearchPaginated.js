@@ -133,7 +133,7 @@ class TrainersSearch extends Component {
             let inputAreaId = this.validateInputArea();
             if (inputAreaId !== -1) {
                 // this.fetchUrl = "http://localhost:8080/find/trainer2/" + this.inputTrainingType.current.value + "/" + inputAreaId + '?page=' + this.state.currentPage + '&size=' + this.state.resultsPerPage;
-                this.fetchUrl = "http://localhost:8080/find/trainer2/" + this.inputTrainingType.current.value + "/" + inputAreaId;
+                this.fetchUrl = "http://localhost:8080/find/trainer/" + this.inputTrainingType.current.value + "/" + inputAreaId;
             }
         }
 

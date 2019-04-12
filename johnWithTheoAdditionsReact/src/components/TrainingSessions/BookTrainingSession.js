@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import $ from "jquery";
 import UserContext from "../../context/user-context";
+import { Redirect } from 'react-router-dom'
 
 class BookTrainingSession extends Component {
 
@@ -14,11 +15,13 @@ class BookTrainingSession extends Component {
   };
 
   componentDidMount() {
+    if (this.props.location.state != null) {
+      const { trainersId } = this.props.location.state;
+      console.log("to id tou trainer apo to booking einai");
+      console.log(trainersId);
+      this.getUser(trainersId);
+    }
 
-    const { trainersId } = this.props.location.state;
-    console.log("to id tou trainer apo to booking einai");
-    console.log(trainersId);
-    this.getUser(trainersId);
   }
 
   getUser = trainersId => {
@@ -69,8 +72,10 @@ class BookTrainingSession extends Component {
   render() {
     const { client, trainer } = this.state;
     const { state } = this.props.location;
-    if (state == null) {
-      this.props.history.push("/calendar");
+    if (state == null || this.context.isLoggedIn == false) {
+      return (
+        <Redirect to="/myCalendar"></Redirect>
+      )
     } else {
       const { day, hour, trainersId } = this.props.location.state;
       return (

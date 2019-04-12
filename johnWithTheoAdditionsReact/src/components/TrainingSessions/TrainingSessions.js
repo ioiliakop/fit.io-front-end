@@ -49,7 +49,7 @@ class TrainingSessions extends Component {
         if (this.context.userInfo.role.name === Role.User) {
             this.fetchTrainingSessionsUrl = 'http://localhost:8080/session/client-sessions';
         } else if ((this.context.userInfo.role.name === Role.Trainer) && (this.props.folderType === 'CANCELLED')) {
-            this.fetchTrainingSessionsUrl = 'http://localhost:8080/session/notify-canceled-sessions/' + this.context.userInfo.id;
+            this.fetchTrainingSessionsUrl = 'http://localhost:8080/session/canceled-sessions';
         } else if (this.context.userInfo.role.name === Role.Trainer) {
             this.fetchTrainingSessionsUrl = 'http://localhost:8080/session/trainer-sessions';
         } else console.error('Invalid role for training session:', this.context.userInfo.role.name);
@@ -136,28 +136,28 @@ class TrainingSessions extends Component {
                     <h2>{this.trainingSessionsTitle} Training Sessions</h2>
                     {console.log(this.state.trainingSessions)}
                 </div>
-                
-                <div style={{minHeight: '60vh'}}>
-                {this.state.trainingSessions.map((t, index) => {
-                    if (this.props.folderType === 'CANCELLED') {
-                        return <TrainingSession key={t.id} trs={t} timeStatus="CANCELLED" userRole={this.context.userInfo.role.name} updateSessions={this.fetchTrainingSessions} />
-                    }
 
-                    console.log('Updating li for training session ' + index);
-                    let trsDate = new Date(t.date + ' ' + t.time);
-                    console.log('Training session date:', trsDate);
-                    let now = new Date();
-                    console.log('Now value:', now.valueOf());
-                    console.log('Training Session date value:', trsDate.valueOf());
+                <div style={{ minHeight: '60vh' }}>
+                    {this.state.trainingSessions.map((t, index) => {
+                        if (this.props.folderType === 'CANCELLED') {
+                            return <TrainingSession key={t.id} trs={t} timeStatus="CANCELLED" userRole={this.context.userInfo.role.name} updateSessions={this.fetchTrainingSessions} />
+                        }
 
-                    // Adds only corresponding training sessions to array returned
-                    if (now.valueOf() > trsDate.valueOf() && this.props.folderType === 'PAST') {
-                        return <TrainingSession key={t.id} trs={t} timeStatus="PAST" userRole={this.context.userInfo.role.name} />
-                    } else if (now.valueOf() < trsDate.valueOf() && this.props.folderType === 'FUTURE') {
-                        return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" userRole={this.context.userInfo.role.name} updateSessions={this.fetchTrainingSessions} />
-                    }
-                    // return console.error('Training Sessions return unknown Error');
-                })}
+                        console.log('Updating li for training session ' + index);
+                        let trsDate = new Date(t.date + ' ' + t.time);
+                        console.log('Training session date:', trsDate);
+                        let now = new Date();
+                        console.log('Now value:', now.valueOf());
+                        console.log('Training Session date value:', trsDate.valueOf());
+
+                        // Adds only corresponding training sessions to array returned
+                        if (now.valueOf() > trsDate.valueOf() && this.props.folderType === 'PAST') {
+                            return <TrainingSession key={t.id} trs={t} timeStatus="PAST" userRole={this.context.userInfo.role.name} />
+                        } else if (now.valueOf() < trsDate.valueOf() && this.props.folderType === 'FUTURE') {
+                            return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" userRole={this.context.userInfo.role.name} updateSessions={this.fetchTrainingSessions} />
+                        }
+                        // return console.error('Training Sessions return unknown Error');
+                    })}
                 </div>
             </React.Fragment>
         );
