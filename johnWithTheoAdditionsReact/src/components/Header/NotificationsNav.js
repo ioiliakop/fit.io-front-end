@@ -8,6 +8,9 @@ import $ from 'jquery';
 import CanceledSessionsModal from '../Notifications/CanceledSessionsModal';
 import NewTraininSessionsModal from '../Notifications/NewTraininSessionsModal';
 
+/**
+ * Displays notifications for user and trainer
+ */
 class NotificationsNav extends Component {
 
     static contextType = UserContext;
@@ -31,7 +34,7 @@ class NotificationsNav extends Component {
 
     // sets visible flag in state accordingly
     // if there are no notifications, the notifications nav will be hidden
-    // is called as callback after each setState that affects messages, newTrainingSessions and newCancelledSeddions
+    // is executed as callback after each setState that affects messages, newTrainingSessions and newCancelledSeddions
     checkNewNotificationsExist = () => {
         if (this.state.newMessagesCount === 0 && this.state.newTrainingSessions.length < 1 && this.state.cancelledSessions.length < 1) {
             this.setState({ visible: false });
@@ -171,9 +174,7 @@ class NotificationsNav extends Component {
                         <FontAwesomeIcon icon="bell" />
                     </a>
                     <div className="dropdown-menu" aria-labelledby="navbarProfileDropdownMenuLink" >
-                        {/* <Link className="dropdown-item">New Training Sessions</Link>
-                    <Link className="dropdown-item">New Messages</Link>
-                    <Link className="dropdown-item">New Cancelled Trainining Sessions</Link> */}
+
                         <Link onClick={this.setMessagesSeen.bind(this)} class="dropdown-item" to="/messages">
                             {"New Messages: " + this.state.newMessagesCount}
                         </Link>

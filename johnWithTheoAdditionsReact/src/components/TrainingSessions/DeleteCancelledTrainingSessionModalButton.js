@@ -5,6 +5,8 @@ import withAuthorization from '../../hoc/withAuthorization';
 import Role from '../../hoc/Role';
 
 /**
+ * Button/modal to delete a cancelled training session
+ * 
  * @property {Object} trsData - The trainining session object passed with relative data
  * @property {Function} updateSessions - handle to update training sessions list if a session is deleted
  */
@@ -68,5 +70,5 @@ class DeleteCancelledTrainingSessionModalBody extends Component {
     }
 }
 
-// we only want the trainer to be able to delete the cancelled session in our app - needs a bit more revisiting 
+// we only want the trainer to be able to delete the cancelled session in our app
 export default withAuthorization(DeleteCancelledTrainingSessionModalBody, [Role.Trainer]);

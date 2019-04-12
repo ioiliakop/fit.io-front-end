@@ -4,7 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import StarRating from './StarRating';
 
 /**
- *  Appears when training session has already been reviewed
+ * Appears when training session has already been reviewed
+ * Presents slightly different content depending on the role of the user who views it
  * 
  * @property {Object} props.trsData - the training session object passed with relative data
  * @property {String} props.userRole - the user role

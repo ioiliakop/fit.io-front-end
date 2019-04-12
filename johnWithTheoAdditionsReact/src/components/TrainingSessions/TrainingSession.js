@@ -4,6 +4,8 @@ import Role from '../../hoc/Role';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /**
+ * Used to display a single training session, by the TrainingSessions component
+ * 
  * @property {Object} props.trs - the training session object, containing relative data
  * @property {String} props.userRole - role of loggedIn user
  * @property {String} props.timeStatus - passed to AvailableActionsButtons to render only relative buttons/modals

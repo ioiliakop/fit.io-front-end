@@ -50,8 +50,6 @@ class TrainerProfile extends Component {
         this.fetchTrainerReviews();
     }
 
-    // is not needed if component was rendered through redirect
-    // all trainer info needed is passed through redirect as props
     fetchTrainer() {
         const url = 'http://localhost:8080/find/getUser/' + this.trainerId;
 

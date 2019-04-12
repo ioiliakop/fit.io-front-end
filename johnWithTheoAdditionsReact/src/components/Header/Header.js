@@ -13,7 +13,8 @@ import NotificationsNav from './NotificationsNav';
 
 /**
  * Our site header
- * All the authentication/authorization checks are handled by the the relative navs/components on export by a HOC
+ * All the authentication/authorization checks, whether a nav/component should be displayed/accessed
+ * are handled by the the relative navs/components on export by the withAuthorization HOC
  */
 class Header extends Component {
 

@@ -3,6 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import StarRating from '../TrainingSessions/StarRating';
 
 /**
+ * Renders a single review
+ * Used by TrainerProfile component
+ * 
  * @property {Object} props.review - review object carrying relative data
  */
 class ReviewRow extends Component {

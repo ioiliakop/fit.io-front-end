@@ -16,11 +16,6 @@ class ReplyModalButton extends Component {
 
     static contextType = UserContext;
 
-    componentDidMount() {
-        console.log('msg:', this.props.msg);
-        console.log('folderType' + this.props.folderType);
-    }
-
     handleSendMessage() {
         console.log('Inside handleSendMessage');
         console.log('MessageRef:', this.message.current.value);

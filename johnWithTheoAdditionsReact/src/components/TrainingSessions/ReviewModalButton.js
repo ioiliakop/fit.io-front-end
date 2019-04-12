@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UserContext from '../../context/user-context';
 
 /**
+ * Our button/modal which allows a user to leave a review for a past training session
+ * 
  * @property {Object} trsData - training session object with relative data
  */
 class ReviewModalButton extends Component {
@@ -19,12 +21,6 @@ class ReviewModalButton extends Component {
     }
 
     static contextType = UserContext;
-
-    // only for checking data atm - will probably be ommitted later
-    componentDidMount() {
-        console.log('trsData:', this.props.trsData);
-        console.log('rm_' + this.props.trsData.id);
-    }
 
     // setState could be called directly on onChange of Rating Component - will probably be ommitted later
     handleRatingChange(newValue) {
@@ -52,7 +48,7 @@ class ReviewModalButton extends Component {
             if (response.status === 200) {
                 console.log('Review Submitted');
                 // After review submission user should no longer have option to review
-                // We update the state of the parent element to properly rerender button/modal
+                // We update the state of the parent element to properly rerender button/modal to 'ReviewedModalButton'
                 this.props.handle();
             }
         }).catch(error => console.error('Error:', error));

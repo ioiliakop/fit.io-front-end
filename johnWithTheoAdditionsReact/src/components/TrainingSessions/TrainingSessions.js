@@ -33,16 +33,6 @@ class TrainingSessions extends Component {
 
     componentDidMount() {
         console.log('TrainingSessions component did mount');
-        // const url = 'http://localhost:8080/session/client-sessions';
-        // let url;
-
-        // // Making this element
-        // console.log('User Role: ', this.context.userInfo.role.name);
-        // if (this.context.userInfo.role.name === Role.User) {
-        //     url = 'http://localhost:8080/session/client-sessions';
-        // } else if (this.context.userInfo.role.name === Role.Trainer) {
-        //     url = 'http://localhost:8080/session/trainer-sessions';
-        // } else console.error('Invalid role for training session:', this.context.userInfo.role.name);
 
         // Making this element
         console.log('User Role: ', this.context.userInfo.role.name);
@@ -56,32 +46,9 @@ class TrainingSessions extends Component {
         } else console.error('Invalid role for training session:', this.context.userInfo.role.name);
 
         this.fetchTrainingSessions();
-
-        // Testing datetimes
-        // const now = new Date();
-        // console.log('Current date:', now);
-        // console.log('getDate', now.getDate());
-        // console.log('getDay', now.getDay());
-        // console.log('toLocaleDateString', now.toLocaleDateString());
-        // console.log('valueOf', now.valueOf());
-        // console.log('toLocaleTimeString', now.toLocaleTimeString());
-        // console.log('getTime', now.getTime());
-        // const otherdate = new Date('2019-03-17 16:00:00');
-        // console.log('Other date:', otherdate)
-        // console.log('valueOf', otherdate.valueOf());
     }
 
     fetchTrainingSessions() {
-        // let url;
-
-        // // Making this element
-        // console.log('User Role: ', this.context.userInfo.role.name);
-        // if (this.context.userInfo.role.name === Role.User) {
-        //     url = 'http://localhost:8080/session/client-sessions';
-        // } else if (this.context.userInfo.role.name === Role.Trainer) {
-        //     url = 'http://localhost:8080/session/trainer-sessions';
-        // } else console.error('Invalid role for training session:', this.context.userInfo.role.name);
-
         fetch(this.fetchTrainingSessionsUrl, {
             method: 'GET',
             headers: {
@@ -152,12 +119,12 @@ class TrainingSessions extends Component {
                         console.log('Training Session date value:', trsDate.valueOf());
 
                         // Adds only corresponding training sessions to array returned
+                        // Future and past sessions are calculated here in the front-end
                         if (now.valueOf() > trsDate.valueOf() && this.props.folderType === 'PAST') {
                             return <TrainingSession key={t.id} trs={t} timeStatus="PAST" userRole={this.context.userInfo.role.name} />
                         } else if (now.valueOf() < trsDate.valueOf() && this.props.folderType === 'FUTURE') {
                             return <TrainingSession key={t.id} trs={t} timeStatus="FUTURE" userRole={this.context.userInfo.role.name} updateSessions={this.fetchTrainingSessions} />
                         }
-                        // return console.error('Training Sessions return unknown Error');
                     })}
                 </div>
             </React.Fragment>

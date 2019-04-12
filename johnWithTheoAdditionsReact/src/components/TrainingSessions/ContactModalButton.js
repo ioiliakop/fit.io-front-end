@@ -3,6 +3,9 @@ import Role from '../../hoc/Role';
 import UserContext from '../../context/user-context';
 
 /**
+ * To contact user or trainer respectively
+ * Checks are made to determine the user sending and the user receiving the message
+ * 
  * @property {Object} props.trsData - The training session object passed with relative data
  */
 class ContactModalButton extends Component {
@@ -22,11 +25,6 @@ class ContactModalButton extends Component {
     }
 
     static contextType = UserContext;
-
-    componentDidMount() {
-        console.log('trsData:', this.props.trsData);
-        console.log('cm_' + this.props.trsData.id);
-    }
 
     handleSendMessage() {
         console.log('Inside handleSendMessage');

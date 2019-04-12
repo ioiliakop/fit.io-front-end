@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ReplyModalButton from './ReplyModalButton';
 
 /**
+ * Used by MessagesPaginated component
+ * 
  * @property {Number} props.i - used as the index of the message shown on the messages table
  * @property {Object} props.msg - the message object with relative data
  * @property {String} props.folderType - indicates if this is inbox or sentbox - passed to child ReplyModalButtonComponent

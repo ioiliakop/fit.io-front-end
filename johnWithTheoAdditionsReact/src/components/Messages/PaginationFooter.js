@@ -80,8 +80,7 @@ function PageNumberIcon(props) {
 }
 
 /**
- * Decides what page navigation icon to render based on props
- * e.g. active with number or clickable link with page number or 3 dots disabled or ommit page number button entirely
+ * Returns a group of links and numbers to help navigate through the pages of our list
  * 
  * @property {Number} activePage - indicates the currently active page
  * @property {Number} totalPages
@@ -89,7 +88,7 @@ function PageNumberIcon(props) {
  */
 class PaginationFooter extends Component {
     render() {
-        // we don't render anything for pagination bar if there is only one page
+        // we don't render anything if there is only one page
         if (this.props.totalPages <= 1) return null;
         return (
             <div className="container">

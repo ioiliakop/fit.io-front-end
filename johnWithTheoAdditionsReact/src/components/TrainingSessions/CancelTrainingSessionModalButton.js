@@ -15,7 +15,6 @@ class CancelTrainingSessionModalBody extends Component {
         const url = 'http://localhost:8080/session/cancel-session/' + this.props.trsData.id;
         console.log('Entered handleCancelSession');
 
-        // We send ajax call to backend
         fetch(url, {
             method: 'POST',
             headers: {
@@ -42,9 +41,6 @@ class CancelTrainingSessionModalBody extends Component {
                                 <button className="close" data-dismiss="modal">&times;</button>
                             </div>
                             <div className="modal-body">
-                                {/* <div className="text-center">
-                                    Are you sure you want to cancel this training session?
-                                </div> */}
                                 <div className="row text-center mb-2">
                                     <div className="col-md-8 mx-auto">Are you sure you want to cancel your {this.props.trsData.trainingType.title} training session with {this.props.trsData.trainer.firstName} {this.props.trsData.trainer.lastName}?</div>
                                 </div>

@@ -4,16 +4,6 @@ import ButtonLink from './Utils/ButtonLink';
 import Role from '../hoc/Role';
 import withAuthorization from '../hoc/withAuthorization';
 
-// decides whether item is active or not
-// function ButtonLink(props) {
-//     if (props.to === props.location) {
-//         return <Link className="btn btn-outline-primary btn-lg active" role="button" to={props.to}>{props.label}</Link>
-//     }
-//     else {
-//         return <Link className="btn btn-outline-primary btn-lg" role="button" to={props.to}>{props.label}</Link>
-//     }
-// }
-
 // TODO: Password repeat validation, check if email AND username already exists
 class Register extends Component {
 
@@ -50,8 +40,6 @@ class Register extends Component {
     }
 
     handleSubmit(event) {
-        // const ph = this.phone.current.value;
-
         const url = 'http://localhost:8080/register/save';
         const formData = {
             "username": this.username.current.value,
@@ -88,14 +76,12 @@ class Register extends Component {
                     <div className="container col-sm pt-4 pb-2">
                         <ul className="navbar-nav mx-auto">
                             <li>
-                                {/* <button className="btn btn-outline-primary" type="button">Register as User</button> */}
                                 <ButtonLink label="Register as User" to="/register/user" location={this.props.location.pathname} />
                             </li>
                             <li>
                                 <span className="col-1"> </span>
                             </li>
                             <li>
-                                {/* <button className="btn btn-outline-primary" type="button">Register as Trainer</button> */}
                                 <ButtonLink label="Register as Trainer" to="/register/trainer" location={this.props.location.pathname} />
                             </li>
                         </ul>
@@ -151,16 +137,6 @@ class Register extends Component {
                                 <input type="text" className="form-control" id="lastName" name="lastName" required ref={this.lastName} />
                             </div>
                         </div>
-                        {/* <div className="form-group row justify-content-center">
-                        <label htmlFor="phone" className="col-sm-3 col-form-label">Phone</label>
-                        <div className="col-sm-4">
-                            <input type="tel" className="form-control" pattern="69{1}[0-9]{8}" id="phone" name="phone"
-                                aria-describedby="phoneHelpBlock" required ref={this.phone} />
-                            <small id="phoneHelpBlock" className="form-text text-muted">
-                                10 digits - Format 69XXXXXXXX
-                            </small>
-                        </div>
-                    </div> */}
                         <div className="form-group row justify-content-center">
                             <div className="col-sm-3">
                                 <button type="submit" className="btn btn-primary btn-block">Submit</button>
