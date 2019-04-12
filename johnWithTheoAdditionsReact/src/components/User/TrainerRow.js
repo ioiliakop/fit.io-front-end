@@ -43,18 +43,14 @@ class TrainerRow extends Component {
         fetch(url, {
             method: 'GET',
         }).then(response => {
-            console.log('fetchTrainerTypes for trainerId', this.props.trainer.id, 'Response status:', response.status);
             if (response.status === 200) {
                 response.json().then(trainerTypes => {
-                    console.log('fetchTrainerTypes for trainerId', this.props.trainer.id, ' response data:', trainerTypes);
-                    console.log('Saving fetched training types to state');
                     this.setState({
                         trainerTypes: trainerTypes
                     });
                 })
             }
         }).catch(error => console.error('Error:', error));
-        console.log('End of fetch trainer types');
     }
 
     fetchTrainerAreas() {
@@ -63,18 +59,14 @@ class TrainerRow extends Component {
         fetch(url, {
             method: 'GET',
         }).then(response => {
-            console.log('Response status:', response.status);
             if (response.status === 200) {
                 response.json().then(trainerAreas => {
-                    console.log('fetchTrainerAreas response data:', trainerAreas);
-                    console.log('Saving fetched training areas to state');
                     this.setState({
                         trainerAreas: trainerAreas
                     });
                 })
             }
         }).catch(error => console.error('Error:', error));
-        console.log('End of fetch trainer areas');
     }
 
     setTrainersProfileRedirect() {

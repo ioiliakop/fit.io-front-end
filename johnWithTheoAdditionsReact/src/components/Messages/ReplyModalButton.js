@@ -17,8 +17,6 @@ class ReplyModalButton extends Component {
     static contextType = UserContext;
 
     handleSendMessage() {
-        console.log('Inside handleSendMessage');
-        console.log('MessageRef:', this.message.current.value);
         const url = 'http://localhost:8080/messages/save/' + this.receiver;
         
         fetch(url, {
@@ -28,7 +26,6 @@ class ReplyModalButton extends Component {
             },
             body: this.message.current.value
         }).then(response => {
-            console.log('Response status:', response.status);
             if (response.status === 200) {
                 console.log('Message sent.');
             }

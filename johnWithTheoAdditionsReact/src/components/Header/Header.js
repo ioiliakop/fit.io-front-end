@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import UserContext from '../../context/user-context';
 import LoginNav from './LoginNav';
 import RegisterNav from './RegisterNav';
 import UserNav from './UserNav';

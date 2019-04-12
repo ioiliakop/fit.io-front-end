@@ -27,7 +27,6 @@ class TrainerProfile extends Component {
             redirectToProfile: false
         }
         this.trainerId = props.match.params.trainerId;
-        console.log('Trainer id passed from url param:', this.trainerId);
         this.setRedirectToProfile = this.setRedirectToProfile.bind(this);
     }
 
@@ -56,7 +55,6 @@ class TrainerProfile extends Component {
         fetch(url, {
             method: 'GET',
         }).then(response => {
-            console.log('fetchTrainer Response:', response);
             response.json().then(trainer => {
                 if (response.status === 200) {
                     this.setState({
@@ -73,18 +71,14 @@ class TrainerProfile extends Component {
         fetch(url, {
             method: 'GET',
         }).then(response => {
-            console.log('fetchTrainerTypes for trainerId', this.trainerId, 'Response status:', response.status);
             if (response.status === 200) {
                 response.json().then(trainerTypes => {
-                    console.log('fetchTrainerTypes for trainerId', this.trainerId, ' response data:', trainerTypes);
-                    console.log('Saving fetched training types to state');
                     this.setState({
                         trainerTypes: trainerTypes
                     });
                 })
             }
         }).catch(error => console.error('Error:', error));
-        console.log('End of fetch trainer types');
     }
 
     fetchTrainerAreas() {
@@ -93,38 +87,30 @@ class TrainerProfile extends Component {
         fetch(url, {
             method: 'GET',
         }).then(response => {
-            console.log('Response status:', response.status);
             if (response.status === 200) {
                 response.json().then(trainerAreas => {
-                    console.log('fetchTrainerAreas response data:', trainerAreas);
-                    console.log('Saving fetched training areas to state');
                     this.setState({
                         trainerAreas: trainerAreas
                     });
                 })
             }
         }).catch(error => console.error('Error:', error));
-        console.log('End of fetch trainer areas');
     }
 
     fetchTrainerReviews() {
         const url = 'http://localhost:8080/session/reviews-trainer/' + this.trainerId + '?start=0&end=9';
-        console.log('fetch reviews url:', url);
 
         fetch(url, {
             method: 'GET',
         }).then(response => {
-            console.log('Response status:', response.status);
             if (response.status === 200) {
                 response.json().then(data => {
-                    console.log('fetchTrainerReviews response data:', data);
                     this.setState({
                         trainerReviews: data.results
                     });
                 })
             }
         }).catch(error => console.error('Error:', error));
-        console.log('End of fetch trainer reviews');
     }
 
     setRedirectToProfile() {
@@ -188,7 +174,6 @@ class TrainerProfile extends Component {
                     <div className="container mx-auto pt-2 col-md-8 bg-light shadow reviews">
                         <h3 className="text-danger text-center">Latest Reviews</h3>
                         {this.state.trainerReviews.map((review, index) => {
-                            console.log('Updating li for review ' + index);
                             return <ReviewRow key={index} review={review} ></ReviewRow>
                         })}
                     </div>

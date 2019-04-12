@@ -56,12 +56,10 @@ class MyTrainingTypes extends Component {
     }
 
     componentDidMount() {
-        console.log('MyTrainingTypes component did mount');
         this.fetchAllTrainingTypes();
         this.fetchTrainersTrainingTypes();
         this.fetchAllAreas();
         this.fetchTrainersAreas();
-        console.log('context:', this.context);
     }
 
     // fetches all areas from db to populate our datalist
@@ -72,18 +70,14 @@ class MyTrainingTypes extends Component {
             method: 'GET',
         }).then(response => {
             response.json().then(data => {
-                console.log('Response status:', response.status);
-                console.log('fetchAreas response data:', data);
                 if (response.status === 200) {
-                    console.log('Saving fetched areas to state');
+                    // Saving fetched areas to state'
                     this.setState({
                         allAreas: data
                     });
-                    console.log('Areas in state:', this.state.allAreas);
                 }
             })
         }).catch(error => console.error('Error:', error));
-        console.log('End of fetch areas');
     }
 
     fetchTrainersAreas() {
@@ -92,18 +86,14 @@ class MyTrainingTypes extends Component {
         fetch(url, {
             method: 'GET',
         }).then(response => {
-            console.log('Response status:', response.status);
             if (response.status === 200) {
                 response.json().then(trainersAreas => {
-                    console.log('fetchTrainerAreas response data:', trainersAreas);
-                    console.log('Saving fetched training areas to state');
                     this.setState({
                         trainersAreas: trainersAreas
                     });
                 })
             }
         }).catch(error => console.error('Error:', error));
-        console.log('End of fetch trainer areas');
     }
 
     handleAddTrainersArea() {
@@ -114,7 +104,6 @@ class MyTrainingTypes extends Component {
         // Only then we make ajax call, else no action is needed
         if ((areaId !== "") && !trainersAreasIdsOnlyList.includes(areaId)) {
             const url = 'http://localhost:8080/find/trainer-choose-area/' + areaId;
-            console.log('Add area url:', url);
 
             fetch(url, {
                 method: 'POST',
@@ -122,19 +111,15 @@ class MyTrainingTypes extends Component {
                     'X-MSG-AUTH': this.context.token
                 }
             }).then(response => {
-                console.log('Response status:', response.status);
                 if (response.status === 200) {
-                    console.log('Added area with id:', areaId);
                     this.fetchTrainersAreas();
                 }
             }).catch(error => console.error('Error:', error));
-            console.log('End of add training area');
         }
     }
 
     handleRemoveTrainersArea(areaId) {
         const url = 'http://localhost:8080/find/trainer-remove-area/' + areaId;
-        console.log('Remove trainers area url:', url);
 
         fetch(url, {
             method: 'POST',
@@ -142,13 +127,10 @@ class MyTrainingTypes extends Component {
                 'X-MSG-AUTH': this.context.token
             }
         }).then(response => {
-            console.log('Response status:', response.status);
             if (response.status === 200) {
-                console.log('Removed training area with id:', areaId);
                 this.fetchTrainersAreas();
             }
         }).catch(error => console.error('Error:', error));
-        console.log('End of remove training area');
     }
 
     // fetches all training types from db
@@ -158,19 +140,14 @@ class MyTrainingTypes extends Component {
         fetch(url, {
             method: 'GET',
         }).then(response => {
-            console.log('Response status:', response.status);
             if (response.status === 200) {
                 response.json().then(data => {
-                    console.log('fetchAllTrainingTypes response data:', data);
-                    console.log('Saving fetched training types to state');
                     this.setState({
                         allTrainingTypes: data
                     });
-                    console.log('All Training Types in state:', this.state.allTrainingTypes);
                 })
             }
         }).catch(error => console.error('Error:', error));
-        console.log('End of fetch all training types');
     }
 
     // fetches current trainer's training types
@@ -180,26 +157,20 @@ class MyTrainingTypes extends Component {
         fetch(url, {
             method: 'GET',
         }).then(response => {
-            console.log('Response status:', response.status);
             if (response.status === 200) {
                 response.json().then(data => {
-                    console.log('fetchTrainersTrainingTypes response data:', data);
-                    console.log('Saving fetched training types to state');
                     this.setState({
                         trainersTrainingTypes: data
                     });
-                    console.log('Training Types in state:', this.state.trainersTrainingTypes);
                 })
             }
         }).catch(error => console.error('Error:', error));
-        console.log('End of fetch trainers training types');
     }
 
     handleUpdateCost() {
         const newCost = this.inputPrice.current.value;
         if ((newCost !== "") && (newCost !== this.context.userInfo.price)) {
             const url = 'http://localhost:8080/find/set-price/' + this.inputPrice.current.value;
-            console.log('update cost url:', url);
 
             fetch(url, {
                 method: 'POST',
@@ -207,10 +178,8 @@ class MyTrainingTypes extends Component {
                     'X-MSG-AUTH': this.context.token
                 }
             }).then(response => {
-                console.log('Response status:', response.status);
                 if (response.status === 200) {
                     // We update user context with new info
-                    console.log('Set new cost:', newCost);
                     let updatedUser = this.context.userInfo;
                     updatedUser.price = newCost;
                     localStorage.setItem("userInfo", JSON.stringify(updatedUser));
@@ -218,7 +187,6 @@ class MyTrainingTypes extends Component {
                     this.setState({ price: newCost });
                 }
             }).catch(error => console.error('Error:', error));
-            console.log('End of update cost');
         }
     }
 
@@ -228,7 +196,6 @@ class MyTrainingTypes extends Component {
 
         if ((trId !== "") && !trainersTypesIdsOnlyList.includes(trId)) {
             const url = 'http://localhost:8080/find/trainer-choose-type/' + trId;
-            console.log('Add training type url:', url);
 
             fetch(url, {
                 method: 'POST',
@@ -236,19 +203,15 @@ class MyTrainingTypes extends Component {
                     'X-MSG-AUTH': this.context.token
                 }
             }).then(response => {
-                console.log('Response status:', response.status);
                 if (response.status === 200) {
-                    console.log('Added training type with id:', trId);
                     this.fetchTrainersTrainingTypes();
                 }
             }).catch(error => console.error('Error:', error));
-            console.log('End of add training type');
         }
     }
 
     handleRemoveTrainingType(trainingTypeId) {
         const url = 'http://localhost:8080/find/trainer-remove-type/' + trainingTypeId;
-        console.log('Remove training type url:', url);
 
         fetch(url, {
             method: 'POST',
@@ -256,14 +219,10 @@ class MyTrainingTypes extends Component {
                 'X-MSG-AUTH': this.context.token
             }
         }).then(response => {
-            console.log('Response status:', response.status);
             if (response.status === 200) {
-                console.log('Removed training type with id:', trainingTypeId);
                 this.fetchTrainersTrainingTypes();
-                console.log('All Training Types in state:', this.state.allTrainingTypes);
             }
         }).catch(error => console.error('Error:', error));
-        console.log('End of remove training type');
     }
 
     render() {
@@ -315,7 +274,6 @@ class MyTrainingTypes extends Component {
                             </thead>
                             <tbody>
                                 {this.state.trainersTrainingTypes.map((trainingType, index) => {
-                                    console.log('Updating li for message ' + index);
                                     return <TrainingTypeRow key={index} trType={trainingType} i={index + 1} trainerId={this.context.userInfo.id} handle={this.handleRemoveTrainingType} />
                                 })}
                             </tbody>
@@ -331,7 +289,6 @@ class MyTrainingTypes extends Component {
                             </thead>
                             <tbody>
                                 {this.state.trainersAreas.map((trainersArea, index) => {
-                                    console.log('Updating li for trainersArea ' + index);
                                     return <TrainersAreaRow key={index} trArea={trainersArea} i={index + 1} trainerId={this.context.userInfo.id} handle={this.handleRemoveTrainersArea} />
                                 })}
                             </tbody>

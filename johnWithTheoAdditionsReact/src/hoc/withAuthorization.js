@@ -20,9 +20,6 @@ function withAuthorization(WrappedComponent, roles, redirect) {
 
         render() {
 
-            console.log('Inside withAuthorization render method');
-            console.log('Roles given:', roles);
-
             // User not logged in
             if (!this.context.isLoggedIn) {
                 // component explicitly allowing access to logged out users only (e.g. Login/Register)
@@ -30,7 +27,6 @@ function withAuthorization(WrappedComponent, roles, redirect) {
                 // otherwise user is not authorized
                 else {
                     if (redirect === true) {
-                        console.log('Redirect to main triggerred from withAuthorization');
                         return <Redirect to="/" />;
                     } else return null;
                 }
@@ -39,7 +35,6 @@ function withAuthorization(WrappedComponent, roles, redirect) {
             // User not authorized for this component
             if (!(roles && roles.includes(this.context.userInfo.role.name))) {
                 if (redirect === true) {
-                    console.log('Redirect to main triggerred from withAuthorization');
                     return <Redirect to="/" />
                 }
                 else return null;

@@ -93,10 +93,8 @@ class MyAccount extends Component {
                 },
                 body: newDescription
             }).then(response => {
-                console.log('Response status:', response.status);
                 if (response.status === 200) {
                     // We update user context with new info
-                    console.log('Set new description:', newDescription);
                     let updatedUser = this.context.userInfo;
                     updatedUser.description = newDescription;
                     localStorage.setItem("userInfo", JSON.stringify(updatedUser));
@@ -104,7 +102,6 @@ class MyAccount extends Component {
                     this.setState({ description: newDescription });
                 }
             }).catch(error => console.error('Error:', error));
-            console.log('End of update description');
         }
         event.preventDefault();
     }

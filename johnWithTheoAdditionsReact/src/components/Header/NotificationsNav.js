@@ -28,8 +28,6 @@ class NotificationsNav extends Component {
             this.getNewTrainingSessions(this.context.userInfo);
         }
         this.getCancelledSessions(this.context.userInfo);
-        console.log('inside notificationsnav componentdidmount. Current state:', this.state);
-        // this.checkNewNotificationsExist();
     }
 
     // sets visible flag in state accordingly
@@ -100,7 +98,6 @@ class NotificationsNav extends Component {
             dataType: "json",
             async: true,
             success: result => {
-                console.log(result);
                 this.setState({
                     newMessagesCount: result.count
                 }, () => this.checkNewNotificationsExist());

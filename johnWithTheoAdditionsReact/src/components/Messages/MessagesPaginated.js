@@ -40,8 +40,6 @@ class Messages extends Component {
 
     // handle passed to PaginationFooter child
     setActivePage(newActivePage) {
-        console.log('Current page before change', this.state.currentPage);
-        console.log('Active Page passed as param', newActivePage);
         this.setState({
             currentPage: newActivePage,
         }, () => this.fetchPageMessages());
@@ -62,7 +60,6 @@ class Messages extends Component {
     fetchPageMessages() {
         const startIndex = (this.state.currentPage - 1) * this.state.messagesPerPage;
         const url = this.fetchUrl + '?start=' + startIndex + '&size=' + this.state.messagesPerPage;
-        console.log('url for messages fetch:', url);
 
         fetch(url, {
             method: 'GET',
@@ -71,28 +68,21 @@ class Messages extends Component {
                 'Accept': 'application/json',
             }
         }).then(response => {
-            console.log('Response status:', response.status);
             if (response.status === 200) {
-                response.json().then( data => {
-                console.log(data);
-                console.log('Saving fetched messages to state');
-                const lastPageMessages = data.count % this.state.messagesPerPage;
-                const pagesNumber = (lastPageMessages > 0) ? (((data.count - lastPageMessages) / this.state.messagesPerPage) + 1) : (data.count / this.state.messagesPerPage);
-                this.setState({
-                    totalPages: pagesNumber,
-                    totalMessages: data.count,
-                    messages: data.results
-                });
-                console.log('Messages in state:', this.state.messages);
+                response.json().then(data => {
+                    const lastPageMessages = data.count % this.state.messagesPerPage;
+                    const pagesNumber = (lastPageMessages > 0) ? (((data.count - lastPageMessages) / this.state.messagesPerPage) + 1) : (data.count / this.state.messagesPerPage);
+                    this.setState({
+                        totalPages: pagesNumber,
+                        totalMessages: data.count,
+                        messages: data.results
+                    });
                 })
             }
         }).catch(error => console.error('Error:', error));
-
-        console.log('End of fetch');
     }
 
     componentDidMount() {
-        console.log('Messages component did mount');
         this.fetchPageMessages();
     }
 
@@ -135,7 +125,6 @@ class Messages extends Component {
                             </thead>
                             <tbody>
                                 {this.state.messages.map((m, index) => {
-                                    console.log('Updating li for message ' + index);
                                     return <MessageRow key={'mk_' + m.id} msg={m} folderType={this.props.folderType} i={((this.state.currentPage - 1) * this.state.messagesPerPage) + (index + 1)}></MessageRow>
                                 })}
                             </tbody>

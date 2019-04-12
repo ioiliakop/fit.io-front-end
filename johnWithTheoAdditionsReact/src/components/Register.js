@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
 import ButtonLink from './Utils/ButtonLink';
 import Role from '../hoc/Role';
 import withAuthorization from '../hoc/withAuthorization';
@@ -21,12 +20,10 @@ class Register extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log('Previous roleId:', prevState.roleId);
         // We MUST make this check, otherwise the component will never stop updating (Infinite loop)
         if (prevState.roleId !== ((this.props.match.params.rolename === 'trainer') ? 2 : 1)) {
             this.setState({ roleId: ((prevState.roleId === 2) ? 1 : 2) });
         }
-        console.log('roleId after component did update:', this.state.roleId);
     }
 
     handleSubmit(event) {
@@ -47,8 +44,6 @@ class Register extends Component {
                 body: JSON.stringify(formData),
                 headers: { 'Content-Type': 'application/json' }
             }).then((response) => {
-                console.log('Sent. Response status:', response.status);
-                console.log(response);
                 if (response.status === 200) {
                     this.props.history.push('/');
                 } else {

@@ -15,8 +15,6 @@ class LoginModalBody extends Component {
     static contextType = UserContext;
 
     handleLogin(event) {
-        console.log('Context value in handleLogin()', this.context); //visible!!
-
         const url = 'http://localhost:8080/login/user';
         const loginData = {
             "username": this.username.current.value,
@@ -24,25 +22,19 @@ class LoginModalBody extends Component {
         }
 
         fetch(url, {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(loginData), // data can be `string` or {object}!
+            method: 'POST',
+            body: JSON.stringify(loginData),
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            console.log('Login Response status:', response.status);
-            console.log('Login Response', response);
             if (response.status === 200) {
                 response.json().then(data => {
-                    console.log(data);
                     // Handle login response to localStorage
-                    console.log('Saving token to localstorage', data.alphanumeric);
                     localStorage.setItem('token', data.alphanumeric);
-                    console.log('Saving userInfo to localstorage', data.user);
                     localStorage.setItem('userInfo', JSON.stringify(data.user));
                     this.context.updateUserContext();
-                    console.log('Changed context after login. New context', this.context);
                 })
             }
         }).catch(error => console.error('Error:', error));

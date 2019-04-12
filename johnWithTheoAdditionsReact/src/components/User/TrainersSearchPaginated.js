@@ -55,8 +55,6 @@ class TrainersSearch extends Component {
 
     // handle passed to PaginationFooter child
     setActivePage(newActivePage) {
-        console.log('Current page before change', this.state.currentPage);
-        console.log('Active Page passed as param', newActivePage);
         this.setState({
             currentPage: newActivePage - 1,     // we have to subtract 1. Our backend 1st page index is 0 for search results
         }, () => this.fetchPageResults());
@@ -81,18 +79,13 @@ class TrainersSearch extends Component {
             method: 'GET',
         }).then(response => {
             response.json().then(data => {
-                console.log('Response status:', response.status);
-                console.log('fetchAreas response data:', data);
                 if (response.status === 200) {
-                    console.log('Saving fetched areas to state');
                     this.setState({
                         areas: data
                     });
-                    console.log('Areas in state:', this.state.areas);
                 }
             })
         }).catch(error => console.error('Error:', error));
-        console.log('End of fetch areas');
     }
 
     // fetches all training types from db (initialization method)
@@ -103,27 +96,20 @@ class TrainersSearch extends Component {
             method: 'GET',
         }).then(response => {
             response.json().then(data => {
-                console.log('Response status:', response.status);
-                console.log('fetchTrainingTypes response data:', data);
                 if (response.status === 200) {
-                    console.log('Saving fetched training types to state');
                     this.setState({
                         trainingTypes: data
                     });
-                    console.log('Training Types in state:', this.state.trainingTypes);
                 }
             })
         }).catch(error => console.error('Error:', error));
-        console.log('End of fetch training types');
     }
 
     // depending on input values we build the respective url for ajax call
     // search by area only, training type only, or by area and type
     handleSearch(event) {
         if (this.inputTrainingType.current.value === "") {
-            console.log('trainingType left empty');
             if (this.inputArea.current.value !== "") {
-                console.log('area filled');
                 let inputAreaId = this.validateInputArea();
                 if (inputAreaId !== -1) {
                     this.fetchUrl = "http://localhost:8080/find/trainers-area/" + inputAreaId;
@@ -150,18 +136,13 @@ class TrainersSearch extends Component {
     }
 
     fetchPageResults() {
-        console.log('fetch page results url:', this.fetchUrl);
         // We append pagination options to our url here
         const finalUrl = this.fetchUrl + '?page=' + this.state.currentPage + '&size=' + this.state.resultsPerPage;
-        console.log('Final request url:', finalUrl);
         fetch(finalUrl, {
             method: 'GET',
         }).then((response) => {
-            console.log('Sent. Response status:', response.status);
             if (response.status === 200) {
                 response.json().then(data => {
-                    console.log(data);
-                    console.log('Saving fetched results to state');
                     const lastPageResults = data.count % this.state.resultsPerPage;
                     const pagesNumber = (lastPageResults > 0) ? (((data.count - lastPageResults) / this.state.resultsPerPage) + 1) : (data.count / this.state.resultsPerPage);
                     this.setState({
@@ -169,7 +150,7 @@ class TrainersSearch extends Component {
                         numberOfTotalResults: data.count,
                         searchResults: data.results,
                         noResults: data.count === 0 ? true : false
-                    }, () => console.log('Results in state:', this.state.searchResults));
+                    });
                 })
             } else { // we reset results. We don't want to keep the previous results on the screen
                 this.setState({
@@ -190,10 +171,7 @@ class TrainersSearch extends Component {
             return area.city.toLowerCase();
         })
         if (areaNamesList.includes(this.inputArea.current.value.toLowerCase())) {
-            console.log('Input area:', this.inputArea.current.value, ' is valid.');
             let i = areaNamesList.indexOf(this.inputArea.current.value.toLowerCase());
-            console.log('Index of:', i);
-            console.log('Area in state with that index:', this.state.areas[i]);
             return this.state.areas[i].id;
         } else {
             console.log('Input area :', this.inputArea.current.value, ' is NOT valid.');

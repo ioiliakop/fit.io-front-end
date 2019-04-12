@@ -10,17 +10,14 @@ class LogoutModalBody extends Component {
     handleLogout = () => {
         const url = 'http://localhost:8080/login/logout';
 
-        // We sand ajax call to backend
         fetch(url, {
             method: 'POST',
             headers: {
                 'X-MSG-AUTH': this.context.token
             }
         }).then(response => {
-            console.log('Response status:', response.status);
             // Handle logout action to localStorage
             if (response.status === 200) {
-                console.log('Wiping local storage...');
                 localStorage.clear();
                 this.context.updateUserContext();
             }
