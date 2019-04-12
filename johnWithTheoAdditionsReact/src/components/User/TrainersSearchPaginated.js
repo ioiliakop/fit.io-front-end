@@ -15,6 +15,10 @@ function SearchResults(props) {
     }
 }
 
+/**
+ * Our trainers search component
+ * Supports pagination
+ */
 class TrainersSearch extends Component {
 
     constructor(props) {
@@ -30,6 +34,7 @@ class TrainersSearch extends Component {
             resultsPerPage: this.itemsPerPageOptions[0],
             numberOfTotalPages: 0,
             numberOfTotalResults: 0,
+            noResults: false    // we don't want to display relative message when component first loads
         };
         this.fetchAreas = this.fetchAreas.bind(this);
         this.fetchTrainingTypes = this.fetchTrainingTypes.bind(this);
@@ -42,6 +47,7 @@ class TrainersSearch extends Component {
     }
 
     // We get areas and trainingTypes from db to populate our state and our datalists
+    // The user choices will be validated against our
     componentDidMount() {
         console.log('Search component did mount');
         this.fetchAreas();
@@ -53,7 +59,7 @@ class TrainersSearch extends Component {
         console.log('Current page before change', this.state.currentPage);
         console.log('Active Page passed as param', newActivePage);
         this.setState({
-            currentPage: newActivePage - 1,
+            currentPage: newActivePage - 1,     // we have to subtract 1. Our backend 1st page index is 0 for search results
         }, () => this.fetchPageResults());
         // setState is asynchronous
         // We had to update messages with callback to make sure they get updated AFTER the value of the current page has been set
@@ -68,8 +74,7 @@ class TrainersSearch extends Component {
         }, () => this.fetchPageResults());
     }
 
-
-    // fetches all areas from db to populate our datalist
+    // fetches all areas from db to populate our datalist (initialization method)
     fetchAreas() {
         const url = 'http://localhost:8080/areas/all';
 
@@ -91,7 +96,7 @@ class TrainersSearch extends Component {
         console.log('End of fetch areas');
     }
 
-    // fetches all training types from db
+    // fetches all training types from db (initialization method)
     fetchTrainingTypes() {
         const url = 'http://localhost:8080/types/all';
 
@@ -125,9 +130,7 @@ class TrainersSearch extends Component {
                 if (inputAreaId !== -1) {
                     this.fetchUrl = "http://localhost:8080/find/trainers-area/" + inputAreaId;
                 }
-            } else this.fetchUrl = "http://localhost:8080/find/all-trainers/2";
-            // find all trainers url - this works with pagination - unimplemented atm
-            // else url = "http://localhost:8080/find/all-trainers" + '?start=' + '0' + '&end=' + '100';
+            } else this.fetchUrl = "http://localhost:8080/find/all-trainers/2"; // get all trainers url - both type and area are empty
         } else if (this.inputArea.current.value === "") {
             this.fetchUrl = "http://localhost:8080/find/trainer-type/" + this.inputTrainingType.current.value;
         } else {
@@ -158,8 +161,9 @@ class TrainersSearch extends Component {
 
     fetchPageResults() {
         console.log('fetch page results url:', this.fetchUrl);
-        // We append pagination options here
+        // We append pagination options to our url here
         const finalUrl = this.fetchUrl + '?page=' + this.state.currentPage + '&size=' + this.state.resultsPerPage;
+        console.log('Final request url:', finalUrl);
         fetch(finalUrl, {
             method: 'GET',
         }).then((response) => {
@@ -173,9 +177,18 @@ class TrainersSearch extends Component {
                     this.setState({
                         numberOfTotalPages: pagesNumber,
                         numberOfTotalResults: data.count,
-                        searchResults: data.results
+                        searchResults: data.results,
+                        noResults: data.count === 0 ? true : false
                     }, () => console.log('Results in state:', this.state.searchResults));
                 })
+            } else { // we reset results. We don't want to keep the previous results on the screen
+                this.setState({
+                    currentPage: 0,
+                    searchResults: [],
+                    numberOfTotalPages: 0,
+                    numberOfTotalResults: 0,
+                    noResults: true,
+                });
             }
         }).catch(error => console.error('Error:', error));
     }
@@ -200,8 +213,7 @@ class TrainersSearch extends Component {
 
     render() {
         return (
-            <React.Fragment>
-
+            <div style={{ minHeight: '70vh' }}>
                 <div className="container my-4 py-5 mx-auto col-8">
 
                     {/* // datalist implementation */}
@@ -222,11 +234,12 @@ class TrainersSearch extends Component {
                     </form>
                 </div>
 
+                {this.state.noResults && <div className="container my-4 py-5 mx-auto col-8 text-center"><h3>NO TRAINERS FOUND</h3></div>}
+
                 <PaginationHeader count={this.state.numberOfTotalResults} options={this.itemsPerPageOptions} activeOption={this.state.resultsPerPage} handle={this.setResultsPerPage} />
                 <SearchResults results={this.state.searchResults} />
                 <PaginationFooter activePage={this.state.currentPage + 1} totalPages={this.state.numberOfTotalPages} handle={this.setActivePage} />
-
-            </React.Fragment>
+            </div>
         );
     }
 

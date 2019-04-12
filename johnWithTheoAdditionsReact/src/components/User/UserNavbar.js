@@ -21,6 +21,10 @@ const MyTrainingTypesNavLink = withAuthorization(((props) => {
     )
 }),[Role.Trainer]);
 
+/**
+ * Appears right below the header navbar only when a user or trainer is logged in
+ * Presents relative options
+ */
 class UserNavbar extends Component {
     render() {
         return (

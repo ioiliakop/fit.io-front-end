@@ -5,15 +5,30 @@ import UserContext from '../../context/user-context';
 import withAuthorization from '../../hoc/withAuthorization';
 import Role from '../../hoc/Role';
 
-// UNFINISHED
+/**
+ * Shows current user information about his/her account
+ * Every user can upload a profile picture
+ * Trainers can set their description too
+ */
 class MyAccount extends Component {
+
+    constructor(props) {
+        super(props);
+        this.inputDescription = React.createRef();
+        this.state = {
+            photoLink: '',
+            description: ''
+        };
+        this.handleSaveDescription = this.handleSaveDescription.bind(this);
+    }
 
     static contextType = UserContext;
 
     componentDidMount() {
         let user = this.context.userInfo;
         this.setState({
-            photoLink: user.photoLink
+            photoLink: user.photoLink,
+            description: user.description
         })
     }
 
@@ -66,6 +81,34 @@ class MyAccount extends Component {
         });
     };
 
+    handleSaveDescription(event) {
+        const newDescription = this.inputDescription.current.value;
+        if ((newDescription !== "") && (newDescription !== this.context.userInfo.price)) {
+            const url = 'http://localhost:8080/find/set-description/';
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'X-MSG-AUTH': this.context.token
+                },
+                body: newDescription
+            }).then(response => {
+                console.log('Response status:', response.status);
+                if (response.status === 200) {
+                    // We update user context with new info
+                    console.log('Set new description:', newDescription);
+                    let updatedUser = this.context.userInfo;
+                    updatedUser.description = newDescription;
+                    localStorage.setItem("userInfo", JSON.stringify(updatedUser));
+                    this.context.updateUserContext();
+                    this.setState({ description: newDescription });
+                }
+            }).catch(error => console.error('Error:', error));
+            console.log('End of update description');
+        }
+        event.preventDefault();
+    }
+
     render() {
         return (
             <div className="container py-3 my-3">
@@ -73,59 +116,35 @@ class MyAccount extends Component {
 
                     {/* <!-- Left Section --> */}
                     <div className="col-8">
-                        <form>
-                            <div className="form-row">
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="inputUsername">Username</label>
-                                    <input type="text" className="form-control" id="inputUsername" placeholder="Username" readOnly value={this.context.userInfo.username} />
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="inputEmail">Email</label>
-                                    <input type="email" className="form-control" id="inputEmail" placeholder="Email" readOnly value={this.context.userInfo.email} />
-                                </div>
+                        <div className="form-row">
+                            <div className="form-group col-md-6">
+                                <label htmlFor="inputUsername">Username</label>
+                                <input type="text" className="form-control" id="inputUsername" placeholder="Username" readOnly value={this.context.userInfo.username} />
                             </div>
-                            <div className="form-row">
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="inputFirstName">First Name</label>
-                                    <input type="text" className="form-control" id="inputLastName" placeholder="First name" readOnly value={this.context.userInfo.firstName} />
-                                </div>
-                                <div className="form-group col-md-6">
-                                    <label htmlFor="inputLastName">Last Name</label>
-                                    <input type="text" className="form-control" id="inputLastName" placeholder="Last name" readOnly value={this.context.userInfo.lastName} />
-                                </div>
+                            <div className="form-group col-md-6">
+                                <label htmlFor="inputEmail">Email</label>
+                                <input type="email" className="form-control" id="inputEmail" placeholder="Email" readOnly value={this.context.userInfo.email} />
                             </div>
-                            {/* <!-- <div className="form-group">
-                            <label htmlFor="inputAddress">Address</label>
-                            <input type="text" className="form-control" id="inputAddress" placeholder="1234 Main St">
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="inputAddress2">Address 2</label>
-                            <input type="text" className="form-control" id="inputAddress2"
-                                placeholder="Apartment, studio, or floor">
                         </div>
                         <div className="form-row">
                             <div className="form-group col-md-6">
-                                <label htmlFor="inputCity">City</label>
-                                <input type="text" className="form-control" id="inputCity">
+                                <label htmlFor="inputFirstName">First Name</label>
+                                <input type="text" className="form-control" id="inputLastName" placeholder="First name" readOnly value={this.context.userInfo.firstName} />
                             </div>
-                            <div className="form-group col-md-4">
-                                <label htmlFor="inputState">State</label>
-                                <select id="inputState" className="form-control">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                </select>
+                            <div className="form-group col-md-6">
+                                <label htmlFor="inputLastName">Last Name</label>
+                                <input type="text" className="form-control" id="inputLastName" placeholder="Last name" readOnly value={this.context.userInfo.lastName} />
                             </div>
-                            <div className="form-group col-md-2">
-                                <label htmlFor="inputZip">Zip</label>
-                                <input type="text" className="form-control" id="inputZip">
-                            </div>
-                        </div> --> */}
-                            <div className="form-group">
-                                <label htmlFor="exampleFormControlTextarea1">Description</label>
-                                <textarea className="form-control" id="exampleFormControlTextarea1" rows="8"></textarea>
-                            </div>
-                            <button type="submit" className="btn btn-primary">Save Changes</button>
-                        </form>
+                        </div>
+                        {this.context.userInfo.role.name === Role.Trainer &&
+                            <form>
+                                <div className="form-group">
+                                    <label htmlFor="exampleFormControlTextarea1">Description</label>
+                                    <textarea className="form-control" id="exampleFormControlTextarea1" rows="8" defaultValue={this.context.userInfo.description} ref={this.inputDescription}></textarea>
+                                </div>
+                                <button type="submit" className="btn btn-primary" onClick={this.handleSaveDescription}>Save Description</button>
+                            </form>
+                        }
                     </div>
 
                     {/* <!-- Right Section --> */}

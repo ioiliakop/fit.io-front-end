@@ -24,7 +24,10 @@ function TrainersAreaRow(props) {
 }
 
 /**
- * The trainer component which gives him the ability to select/adjust his training specialization, areas where he trains and price he charges
+ * The trainer component which gives him the ability to select/adjust:
+ * - his training specialization
+ * - areas where he trains
+ * - price he charges
  */
 class MyTrainingTypes extends Component {
 
