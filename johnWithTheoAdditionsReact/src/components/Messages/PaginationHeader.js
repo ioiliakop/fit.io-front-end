@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 /**
+ * Header displayed above our paginated items list
+ * Displays the total number of items and a dropdown to select number of items per page
  * 
  * @property {Number} props.count - number of total items
  * @property {Array} props.options - array with available 'items per page' options e.g. [5, 10, 25]

@@ -136,6 +136,7 @@ class MyAccount extends Component {
                                 <input type="text" className="form-control" id="inputLastName" placeholder="Last name" readOnly value={this.context.userInfo.lastName} />
                             </div>
                         </div>
+                        {/* Trainers can set/update their description */}
                         {this.context.userInfo.role.name === Role.Trainer &&
                             <form>
                                 <div className="form-group">

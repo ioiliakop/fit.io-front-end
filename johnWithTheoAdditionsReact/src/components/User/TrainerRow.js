@@ -4,6 +4,7 @@ import { Redirect, withRouter } from 'react-router-dom';
 import UserContext from '../../context/user-context';
 
 /**
+ * Used by TrainersSearch/SearchResults component to display each trainer result
  * 
  * @property {Object} props.trainer - the trainer object containing relative info
  */

@@ -22,10 +22,12 @@ class AvailableActionsButtons extends Component {
         this.state = {
             reviewed: false,
             review: {},
-            redirectToTrainersCalendar: false
+            redirectToTrainersCalendar: false,
+            redirectToTrainersProfile: false
         }
         this.fetchSessionReview = this.fetchSessionReview.bind(this);
         this.setRedirectToTrainersCalendar = this.setRedirectToTrainersCalendar.bind(this);
+        this.setTrainersProfileRedirect = this.setTrainersProfileRedirect.bind(this);
     }
 
     componentDidMount() {
@@ -66,8 +68,13 @@ class AvailableActionsButtons extends Component {
         this.setState({ redirectToTrainersCalendar: true });
     }
 
+    setTrainersProfileRedirect() {
+        this.setState({ redirectToTrainersProfile: true });
+    }
+
     renderRedirect() {
         if (this.state.redirectToTrainersCalendar) return <Redirect to={'/trainersCalendar/' + this.props.trsData.trainer.id} />
+        if (this.state.redirectToTrainersProfile) return <Redirect to={'/trainer-profile/' + this.props.trsData.trainer.id} />
     }
 
     render() {
@@ -84,7 +91,9 @@ class AvailableActionsButtons extends Component {
             } else if (this.props.timeStatus === 'FUTURE') {
                 return (
                     <React.Fragment>
+                        {this.renderRedirect()}
                         <ContactModalButton trsData={this.props.trsData} userRole={this.props.userRole} />
+                        <button type="button" className="btn btn-outline-info btn-block" onClick={this.setTrainersProfileRedirect}>PROFILE</button>
                         <CancelTrainingSessionModalBody trsData={this.props.trsData} updateSessions={this.props.updateSessions} />
                     </React.Fragment>
                 );

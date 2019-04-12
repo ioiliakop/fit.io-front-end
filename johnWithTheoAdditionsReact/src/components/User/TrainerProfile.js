@@ -7,8 +7,8 @@ import Role from '../../hoc/Role';
 import ReviewRow from './ReviewRow';
 
 /**
- * The trainer profile page, giving relative info, reviews and ability to book an appointment
- * optional props are either passed via redirect from another component or fetched via ajaxa calls if missing
+ * The trainer profile page, giving relative info, reviews and ability to book an appointment (for logged in users only)
+ * optional props are either passed via redirect from another component or fetched via ajax calls if missing
  * 
  * @param {Number} props.trainerId - the trainer id matched from route uri
  * @property {Object} [props.trainer] - the trainer object
@@ -24,17 +24,17 @@ class TrainerProfile extends Component {
             trainerAreas: [],
             trainerTypes: [],
             trainerReviews: [],
-            redirect: false
+            redirectToProfile: false
         }
         this.trainerId = props.match.params.trainerId;
         console.log('Trainer id passed from url param:', this.trainerId);
-        this.setRedirect = this.setRedirect.bind(this);
+        this.setRedirectToProfile = this.setRedirectToProfile.bind(this);
     }
 
     static contextType = UserContext;
 
     componentDidMount() {
-        // we check if the component was reached through redirect where it carries neccessary props
+        // we check if the component was reached through redirect that carried relative data (it passes neccessary props)
         if (this.props.location.state !== undefined) {
             this.setState({
                 trainer: this.props.location.state.trainer,
@@ -46,6 +46,7 @@ class TrainerProfile extends Component {
             this.fetchTrainerAreas();
             this.fetchTrainerTypes();
         }
+        // we fetch trainer reviews too
         this.fetchTrainerReviews();
     }
 
@@ -128,23 +129,15 @@ class TrainerProfile extends Component {
         console.log('End of fetch trainer reviews');
     }
 
-    setRedirect() {
+    setRedirectToProfile() {
         this.setState({
-            redirect: true
+            redirectToProfile: true
         });
     }
 
-    renderRedirect() {
-        // We pass trainer, trainerAreas, trainerTypes as props to the redirected TrainerProfile component/route
-        if (this.state.redirect) {
+    renderRedirectToProfile() {
+        if (this.state.redirectToProfile) {
             return <Redirect to={'/trainersCalendar/' + this.trainerId} />
-            // }
-            //         state: {
-            //             trainer: this.state.trainer,
-            //             trainerAreas: this.state.trainerAreas,
-            //             trainerTypes: this.state.trainerTypes
-            //          }
-            //     }} />
         }
     }
 
@@ -152,8 +145,8 @@ class TrainerProfile extends Component {
         const trainerTypes = this.state.trainerTypes;
         const trainerAreas = this.state.trainerAreas;
         return (
-            <div className="container complete-profile">
-                {this.renderRedirect()}
+            <div className="container complete-profile" style={{ minHeight: '80vh' }}>
+                {this.renderRedirectToProfile()}
                 <div className="container mb-4 p-4 col-9 bg-light shadow profile">
                     <div className="row mx-auto profile-header-info">
                         <div className="container col-md-3 photo">
@@ -177,7 +170,7 @@ class TrainerProfile extends Component {
                         {/* Unregistered users can view profile but not book appointment */}
                             {this.context.isLoggedIn ? (
                                 <React.Fragment>
-                                    <button className="btn btn-danger btn-block mt-auto" onClick={this.setRedirect}>Book appointment</button>
+                                    <button className="btn btn-danger btn-block mt-auto" onClick={this.setRedirectToProfile}>Book appointment</button>
                                     <p className="text-middle text-center p-2 rounded mb-auto">Cost: <span className="text-danger">{this.state.trainer.price}&euro;</span></p>
                                 </React.Fragment>
                             ) : (
