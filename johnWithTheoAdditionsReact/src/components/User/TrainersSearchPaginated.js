@@ -17,7 +17,7 @@ function SearchResults(props) {
 
 /**
  * Our trainers search component
- * Supports pagination
+ * Usese pagination components
  */
 class TrainersSearch extends Component {
 
@@ -49,7 +49,6 @@ class TrainersSearch extends Component {
     // We get areas and trainingTypes from db to populate our state and our datalists
     // The user choices will be validated against our
     componentDidMount() {
-        console.log('Search component did mount');
         this.fetchAreas();
         this.fetchTrainingTypes();
     }
@@ -121,7 +120,6 @@ class TrainersSearch extends Component {
     // depending on input values we build the respective url for ajax call
     // search by area only, training type only, or by area and type
     handleSearch(event) {
-        // let url;
         if (this.inputTrainingType.current.value === "") {
             console.log('trainingType left empty');
             if (this.inputArea.current.value !== "") {
@@ -136,25 +134,17 @@ class TrainersSearch extends Component {
         } else {
             let inputAreaId = this.validateInputArea();
             if (inputAreaId !== -1) {
-                // this.fetchUrl = "http://localhost:8080/find/trainer2/" + this.inputTrainingType.current.value + "/" + inputAreaId + '?page=' + this.state.currentPage + '&size=' + this.state.resultsPerPage;
                 this.fetchUrl = "http://localhost:8080/find/trainer/" + this.inputTrainingType.current.value + "/" + inputAreaId;
             }
         }
 
-        console.log('Url to be used for search, before pagination options are appended:', this.fetchUrl);
-
-        const formData = {
-            "area": this.inputArea.current.value,
-            "trainingType": this.inputTrainingType.current.value
-        };
-
-        console.log('Getting results for...', formData);
-
         // We go ahead with the ajax call only if validation above has produced a valid url
+        // We make sure to reset current page to the first one (reset leftover from a previous search)
         if (this.fetchUrl) {
-            this.fetchPageResults();
+            this.setState({
+                currentPage: 0
+            }, () => this.fetchPageResults());
         }
-        console.log('search results in state:', this.state.searchResults);
         // else handle respective notification prompt/alert
         event.preventDefault();
     }

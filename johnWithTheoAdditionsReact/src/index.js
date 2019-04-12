@@ -3,23 +3,15 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
-// import './index_style.css';
 import 'bootstrap';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faRunning, faMapMarkedAlt, faWallet, faAngleLeft, faAngleRight, faBan, faSearch, faCheck, faBell, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faUserCircle, faCalendarAlt, faEye, faUser } from '@fortawesome/free-regular-svg-icons';
 import { faStar as fasFaStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farFaStar } from '@fortawesome/free-regular-svg-icons';
-
-// // import * as serviceWorker from './serviceWorker';
+// import * as serviceWorker from './serviceWorker';
 
 library.add(faRunning, faMapMarkedAlt, faWallet, faAngleLeft, faAngleRight, faBan, faSearch, faCheck, faBell, faEnvelope, faUserCircle, faCalendarAlt, fasFaStar, farFaStar, faEye, faUser);
-
-// let localStorageVals = {
-//   isLoggedIn: false,
-//   token: '',
-//   userInfo: null
-// };
 
 let localStorageVals = null;
 

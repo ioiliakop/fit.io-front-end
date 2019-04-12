@@ -15,7 +15,6 @@ import MyAccount from './components/User/MyAccount';
 import AdminPage from './components/Admin/AdminPage';
 import AllUsers from './components/Admin/AllUsers';
 import MyTrainingTypes from './components/User/MyTrainingTypes';
-import TrainersSearch from './components/User/TrainersSearch';
 import TrainersSearchPaginated from './components/User/TrainersSearchPaginated';
 import TrainerProfile from './components/User/TrainerProfile';
 import TrainersCalendar from './components/User/TrainersCalendar';
@@ -28,20 +27,10 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   userCntxt: this.props.userProps
-    // }
-
     // Setter method for userContext which will be included in userContext
     this.updateUserContext = () => {
       this.setState(() => ({
-        // isLoggedIn: state.isLoggedIn,
-        // token: state.token,
-        // userInfo: state.userInfo
-
         // decided to update state directly from localstorage (we consider it the single source of truth)
-        // looks like there could be issues. db is single source of truth
-        // will revisit this. makes it complicated to update attributes in memory
         isLoggedIn: localStorage.getItem('token') ? true : false,
         token: localStorage.getItem('token') && localStorage.getItem('token'),
         userInfo: localStorage.getItem('token') && JSON.parse(localStorage.getItem('userInfo')),
@@ -75,7 +64,6 @@ class App extends Component {
             <Route path="/training-sessions" exact component={FutureTrainingSessions} />
             <Route path="/myaccount" exact component={MyAccount} />
             <Route path="/my-training-types" exact component={MyTrainingTypes} />
-            <Route path="/trainers" exact component={TrainersSearch} />
             <Route path="/trainers2" exact component={TrainersSearchPaginated} />
             <Route path="/trainer-profile/:trainerId" exact component={TrainerProfile} />
             <Route path="/trainersCalendar/:id" component={TrainersCalendar} />

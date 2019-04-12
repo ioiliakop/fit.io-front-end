@@ -4,7 +4,6 @@ import ButtonLink from './Utils/ButtonLink';
 import Role from '../hoc/Role';
 import withAuthorization from '../hoc/withAuthorization';
 
-// TODO: Password repeat validation, check if email AND username already exists
 class Register extends Component {
 
     constructor(props) {
@@ -17,9 +16,8 @@ class Register extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
             roleId: ((this.props.match.params.rolename === 'trainer') ? 2 : 1),
-            regSuccess: false
+            regError: false
         }
-        console.log('RoleId in register constructor:', this.state.roleId);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -31,39 +29,32 @@ class Register extends Component {
         console.log('roleId after component did update:', this.state.roleId);
     }
 
-    // Used to redirect after registration | either this or history.props.push
-    renderRedirect() {
-        return null;
-        if (this.state.regSuccess) {
-            return <Redirect to='/' />
-        }
-    }
-
     handleSubmit(event) {
-        const url = 'http://localhost:8080/register/save';
-        const formData = {
-            "username": this.username.current.value,
-            "password": this.password.current.value,
-            "email": this.email.current.value,
-            "firstName": this.firstName.current.value,
-            "lastName": this.lastName.current.value,
-            "role": {
-                "id": this.state.roleId
-            }
-        };
+            const url = 'http://localhost:8080/register/save';
+            const formData = {
+                "username": this.username.current.value,
+                "password": this.password.current.value,
+                "email": this.email.current.value,
+                "firstName": this.firstName.current.value,
+                "lastName": this.lastName.current.value,
+                "role": {
+                    "id": this.state.roleId
+                }
+            };
 
-        console.log('Submitting...', formData);
-
-        fetch(url, {
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify(formData), // data can be `string` or {object}!
-            headers: { 'Content-Type': 'application/json' }
-        }).then((response) => {
-            console.log('Sent. Response status:', response.status);
-            this.props.history.push('/');
-            // this.setState({ regSuccess: true });
-            // Redirect somewhere with success message alert or whatever
-        }).catch(error => console.error('Error:', error));
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(formData),
+                headers: { 'Content-Type': 'application/json' }
+            }).then((response) => {
+                console.log('Sent. Response status:', response.status);
+                console.log(response);
+                if (response.status === 200) {
+                    this.props.history.push('/');
+                } else {
+                    this.setState({ regError: true });
+                }
+            }).catch(error => console.error('Error:', error));
 
         event.preventDefault();
     }
@@ -71,7 +62,6 @@ class Register extends Component {
     render() {
         return (
             <React.Fragment>
-                {this.renderRedirect()}  {/* Redirects to landing page if registration was successfull. Maybe will be expanded for other cases Alternative way with history.push*/}
                 <nav className="navbar navbar-light navbar-expand-md">
                     <div className="container col-sm pt-4 pb-2">
                         <ul className="navbar-nav mx-auto">
@@ -89,9 +79,11 @@ class Register extends Component {
                 </nav>
 
                 <div className="container col-8">
-                    <div className="text-center"><h1 className="mx-auto">Register as {this.props.match.params.rolename}</h1></div>
+                    <div className="text-center">
+                        <h1 className="mx-auto">Register as {this.props.match.params.rolename}</h1>
+                        {this.state.regError && <h4 style={{ color: 'red' }}>Username or email exists</h4>}
+                    </div>
                     <form onSubmit={this.handleSubmit} className="pt-3 pb-2">
-                        {/* onInput='p2.setCustomValidity(p2.value != password.value ? "Passwords do not match" : "")' */}
                         <div className="form-group row justify-content-center">
                             <label htmlFor="email" className="col-sm-3 col-form-label">Email</label>
                             <div className="col-sm-4">
@@ -113,16 +105,6 @@ class Register extends Component {
                                 <small id="passwordHelpBlock" className="form-text text-muted">
                                     At least 8 characters long
                             </small>
-                            </div>
-                        </div>
-                        <div className="form-group row justify-content-center">
-                            <label htmlFor="repeatPassword" className="col-sm-3 col-form-label">Repeat Password</label>
-                            <div className="col-sm-4">
-                                <input type="password" className="form-control" id="repeatPassword" name="p2"
-                                    aria-describedby="password2HelpBlock" required />
-                                <small id="password2HelpBlock" className="form-text text-muted">
-                                    Passwords must match
-                    </small>
                             </div>
                         </div>
                         <div className="form-group row justify-content-center">
@@ -149,8 +131,5 @@ class Register extends Component {
     }
 }
 
-// worked with history.push
-// export default withRouter(Register);
-
-// with authorization alternative
+// only guest can access registration page
 export default withAuthorization(Register, [Role.Guest], true);

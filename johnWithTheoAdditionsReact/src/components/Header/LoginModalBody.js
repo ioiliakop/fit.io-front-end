@@ -41,14 +41,6 @@ class LoginModalBody extends Component {
                     localStorage.setItem('token', data.alphanumeric);
                     console.log('Saving userInfo to localstorage', data.user);
                     localStorage.setItem('userInfo', JSON.stringify(data.user));
-                    // this.props.history.push('/');
-                    // Attempt to change user context after login
-                    console.log('Context before change:', this.context)
-                    // appContext.setUserContext({
-                    //     isLoggedIn: true,
-                    //     token: data.alphanumeric,
-                    //     userInfo: data.user
-                    // });
                     this.context.updateUserContext();
                     console.log('Changed context after login. New context', this.context);
                 })
