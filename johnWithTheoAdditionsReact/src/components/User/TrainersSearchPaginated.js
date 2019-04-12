@@ -125,7 +125,8 @@ class TrainersSearch extends Component {
                 if (inputAreaId !== -1) {
                     this.fetchUrl = "http://localhost:8080/find/trainers-area/" + inputAreaId;
                 }
-            } // find all trainers url - this works with pagination - unimplemented atm
+            } else this.fetchUrl = "http://localhost:8080/find/all-trainers/2";
+            // find all trainers url - this works with pagination - unimplemented atm
             // else url = "http://localhost:8080/find/all-trainers" + '?start=' + '0' + '&end=' + '100';
         } else if (this.inputArea.current.value === "") {
             this.fetchUrl = "http://localhost:8080/find/trainer-type/" + this.inputTrainingType.current.value;
