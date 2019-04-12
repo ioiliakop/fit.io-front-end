@@ -16,7 +16,7 @@ class AdminNav extends Component {
                     {this.context.userInfo.username}
                 </a>
                 <div className="dropdown-menu" aria-labelledby="navbarProfileDropdownMenuLink">
-                    <Link className="dropdown-item" to="/admin">Admin Page</Link>
+                    <Link className="dropdown-item" to="/allUsers">Admin Page</Link>
                     <Link className="dropdown-item" to="/messages">My Messages</Link>
                     <a className="dropdown-item" data-toggle="modal" data-target="#logoutModal"
                         href="#logoutModal">Logout</a>
