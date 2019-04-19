@@ -35,10 +35,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     * Can leave a review/rating for a past training session or view his comment/rating if already reviewed
   * 'My Messages' Section
     * Can view his sent/received messages and reply to trainer
-  * 'My Account' Section
-    * Can view his account info and upload a profile photo
   * 'My Calendar' Section
     * Can view his training sessions in a calendar form
+  * 'My Account' Section
+    * Can view his account info and upload a profile photo
 * __Trainer__
   * 'My Training Sessions' Section
     * Can view his already booked training sessions grouped as future/upcoming, past and cancelled
