@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Training Sessions</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Fontawesome Icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+    <!-- DataTables/Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="./css/user_profile_style.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-sm bg-primary navbar-dark py-4">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><i class="fas fa-running"></i> <strong>fit.io</strong></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarProfileDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Username
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarProfileDropdownMenuLink">
+                            <a class="dropdown-item" href="#">My Profile</a>
+                            <a class="dropdown-item" href="#">My Training Sessions</a>
+                            <a class="dropdown-item" href="#">My Messages</a>
+                            <a class="dropdown-item" href="#">My Reviews</a>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="navbarLanguageDropdownMenuLink" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Language
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarLanguageDropdownMenuLink">
+                            <a class="dropdown-item" href="#">English</a>
+                            <a class="dropdown-item" href="#">Greek</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- USERNAV WITH LISTGROUP -->
+    <div class="container">
+        <ul class="list-group list-group-horizontal-sm">
+            <li class="list-group-item list-group-item-action active">Cras justo odio</li>
+            <li class="list-group-item list-group-item-action">Dapibus ac facilisis in</li>
+            <li class="list-group-item list-group-item-action">Morbi leo risus</li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="list-group list-group-horizontal-sm">
+            <button type="button" class="list-group-item list-group-item-action active">
+                Cras justo odio
+            </button>
+            <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
+            <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
+            <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
+            <button type="button" class="list-group-item list-group-item-action" disabled>Vestibulum at eros</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="list-group list-group-horizontal-sm">
+            <a href="#" class="list-group-item list-group-item-action col-2 active">
+              Cras justo odio
+            </a>
+            <a href="#" class="list-group-item list-group-item-action col-2">Dapibus ac facilisis in</a>
+            <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+            <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+            <a href="#" class="list-group-item list-group-item-action disabled" tabindex="-1" aria-disabled="true">Vestibulum at eros</a>
+          </div>
+    </div>
+
+    <div class="container">
+        <div class="list-group list-group-horizontal-sm">
+            <a href="#" class="list-group-item col-2 active">
+              Cras justo odio
+            </a>
+            <a href="#" class="list-group-item col-2">Dapibus ac facilisis in</a>
+            <a href="#" class="list-group-item col-2">Morbi leo risus</a>
+            <a href="#" class="list-group-item col-2">Porta ac consectetur ac</a>
+          </div>
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer id="main-footer" class="text-center p-4 bg-primary">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="text-center text-white">Copyright 2019 &copy; fit.io</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
