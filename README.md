@@ -1,6 +1,7 @@
 # fit.io-front-end
 
-The front-end part of the fit.io web application
+The front-end part of fit.io. A RESTful web application for finding personal trainers.
+
 #### Links to the other parts
 * [fit.io back-end](https://github.com/ioiliakop/fit.io-back-end)
 * [fit.io db](https://github.com/ioiliakop/fit.io-db)
