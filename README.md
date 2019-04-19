@@ -10,13 +10,13 @@ The front-end part of fit.io. A RESTful web application for finding personal tra
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 #### Main libraries used
-* [React 16.8.4](https://reactjs.org/) - The Main JavaScript library used
-* [Bootstrap 4.3.1](https://getbootstrap.com/) - Main library used to add responsiveness to the app
+* [React 16.8.4](https://reactjs.org/)
+* [Bootstrap 4.3.1](https://getbootstrap.com/)
 #### Other libraries/dependencies used
 * [jQuery 3.3.1](https://jquery.com/)
 * [Popper.js 1.14.7](https://popper.js.org/) - Bootstrap dependency
-* [react-fontawesome 0.1.4](https://github.com/FortAwesome/react-fontawesome) - Official Fontawesome 5 component for React
-* [react-rating 4.3.1](https://www.npmjs.com/package/react-rating) - a react rating component
+* [react-fontawesome 0.1.4](https://github.com/FortAwesome/react-fontawesome) - official Fontawesome 5 component for React
+* [react-rating 4.3.1](https://www.npmjs.com/package/react-rating)
 
 ## Implemented roles
 
